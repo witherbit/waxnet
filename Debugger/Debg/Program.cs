@@ -15,8 +15,18 @@ namespace Debg
             _api.OnQRUpdate += QR;
             _api.OnLoginSuccess += LS;
             _api.OnTextMessage += TM;
+            _api.OnRemainingMessages += RM;
             _api.Login();
-            Console.ReadKey();
+            while (true)
+            {
+                Console.ReadKey();
+                _api.User.Contacts();
+            }
+        }
+
+        private static void RM(ReceiveModel obj)
+        {
+            Console.WriteLine(obj.StringData);
         }
 
         private static void TM(TextMessage obj)

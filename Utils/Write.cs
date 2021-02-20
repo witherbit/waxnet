@@ -107,10 +107,7 @@ namespace WAX.Utils
         }
         public static void Send(this Api api, byte[] bs)
         {
-            //lock (_sendObj)
-            //{
-            api._socket.SendAsync(new ArraySegment<byte>(bs, 0, bs.Length), WebSocketMessageType.Text, true, CancellationToken.None);
-            //}
+            api._socket.SendAsync(new ReadOnlyMemory<byte>(bs, 0, bs.Length), WebSocketMessageType.Text, true, CancellationToken.None);
         }
     }
 }

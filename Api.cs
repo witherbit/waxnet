@@ -128,16 +128,11 @@ namespace WAX
             return string.Empty;
         }
 
-        public void UploadProfilePicture()
-        {
-
-        }
-
         public void Dispose()
         {
             _socket.CloseAsync(WebSocketCloseStatus.Empty, null, CancellationToken.None);
         }
-        private async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
+        internal async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
         {
             return await Download(url, mediaKey, MediaTypeConst.MediaImage);
         }
@@ -353,7 +348,7 @@ namespace WAX
             });
 
         }
-        private async Task<Node> GetDecryptNode(ReceiveModel rm)
+        internal async Task<Node> GetDecryptNode(ReceiveModel rm)
         {
             if (rm.Nodes != null)
             {
