@@ -26,7 +26,7 @@ namespace Debg
             //{
             //    _api.SendText(obj.ChatId, obj.Text);
             //}
-            _api.Message.ReadReceipt(obj.ChatId, obj.MessageId, 100);
+            _api.Message.Read(obj.ChatId, obj.MessageId);
         }
 
         private static void LS(Session obj)

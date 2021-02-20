@@ -129,7 +129,7 @@ namespace WAX.APIs
                     }
                 }
             };
-            _api.SendBinary();
+            _api.SendBinary(n, WriteBinaryType.Group, tag);
         }
     }
 }
