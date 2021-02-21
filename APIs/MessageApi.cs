@@ -46,7 +46,7 @@ namespace WAX.APIs
                         FileLength = uploadResponse.FileLength
                     }
                 }
-            }).tag;
+            }).Tag;
         }
         public string Send(string chatId, string text, Action<ReceiveModel> act = null)
         {
@@ -62,7 +62,7 @@ namespace WAX.APIs
                 },
                 
                 
-            }).tag;
+            }).Tag;
         }
         public void Delete(string chatId, string messageId, bool isIncoming)
         {

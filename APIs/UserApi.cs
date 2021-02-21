@@ -7,6 +7,7 @@ using WAX.Utils;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace WAX.APIs
 {
@@ -32,10 +33,13 @@ namespace WAX.APIs
             });
         }
 
-        public void Contacts()
+        public async void Contacts()
         {
-            var rm = _api.SendQuery("contacts", "", "", "", "", "", 0, 0, waitTime: 3000).receiveModel;
-            Console.WriteLine(rm.StringData);
+            var res = _api.SendQuery("contacts", "", "", "", "", "", 0, 0);
+            SyncReceive.AddEmpty(res.Tag);
+            res.ReceiveModel = SyncReceive.GetAsync(res.Tag).Result;
+            var n = await _api.GetDecryptNode(res.ReceiveModel);
+            Console.WriteLine(JsonConvert.SerializeObject(n));
         }
     }
 }

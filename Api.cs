@@ -157,7 +157,7 @@ namespace WAX
         }
         private async Task<MediaConnResponse> QueryMediaConn()
         {
-            MediaConnResponse connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(this.SendJson("[\"query\",\"mediaConn\"]").receiveModel.Body);
+            MediaConnResponse connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(this.SendJson("[\"query\",\"mediaConn\"]").ReceiveModel.Body);
             await await Task.Factory.StartNew(async () =>
             {
                 for (int i = 0; i < 100; i++)
@@ -171,7 +171,7 @@ namespace WAX
             }).ConfigureAwait(false);
             return connResponse;
         }
-        internal async Task<ReceiveModel> AddCallback(string tag, int count = 0, int waitTime = 0)
+        internal async Task<ReceiveModel> AddCallback(string tag, int count = 0)
         {
             ReceiveModel rrm = null;
             AddSnapReceive(tag, rm =>
@@ -181,7 +181,6 @@ namespace WAX
             }, count);
             return await Task.Run(()=>
             {
-                Thread.Sleep(waitTime);
                 while (true) if (rrm != null) break;
                 return rrm;
             });
@@ -348,7 +347,7 @@ namespace WAX
         }
         private async Task ReceiveHandle(ReceiveModel rm) 
         {
-            //Console.WriteLine(rm.StringData);
+            SyncReceive.TrySelectAsync(rm);
             var node = await GetDecryptNode(rm);
             if (rm.Body != null && rm.Body.Contains("Conn") && Info == null)
             {
@@ -391,7 +390,6 @@ namespace WAX
             }
             if (node != null)
             {
-                //Console.WriteLine(rm.Tag + " " + JsonConvert.SerializeObject(node));
                 if (node.Content is List<Node> nodeList)
                 {
                     foreach (var item in nodeList)

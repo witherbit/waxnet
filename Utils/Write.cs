@@ -11,7 +11,7 @@ namespace WAX.Utils
 {
     static class Write
     {
-        public static (string tag, ReceiveModel receiveModel) SendProto(this Api api, WebMessageInfo webMessage)
+        public static (string Tag, ReceiveModel ReceiveModel) SendProto(this Api api, WebMessageInfo webMessage)
         {
             if (webMessage.Key.Id.IsNullOrWhiteSpace())
             {
@@ -44,7 +44,7 @@ namespace WAX.Utils
             bs.AddRange(data);
             api._socket.SendAsync(new ArraySegment<byte>(bs.ToArray()), WebSocketMessageType.Binary, true, CancellationToken.None);
         }
-        public static (string tag, ReceiveModel receiveModel) SendQuery(this Api api, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0, int waitTime = 0)
+        public static (string Tag, ReceiveModel ReceiveModel) SendQuery(this Api api, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0)
         {
             var msgCount = Interlocked.Increment(ref api._msgCount) - 1;
             var tag = $"{DateTime.Now.GetTimeStampInt()}.--{msgCount}";
@@ -90,13 +90,13 @@ namespace WAX.Utils
                 msgType = WriteBinaryType.QueryMedia;
             }
             SendBinary(api, n, msgType, tag);
-            return (tag, api.AddCallback(tag, removeCount, waitTime).Result);
+            return (tag, api.AddCallback(tag, removeCount).Result);
         }
-        public static (string tag, ReceiveModel receiveModel) SendJson(this Api api, string str, int waitTime = 0)
+        public static (string Tag, ReceiveModel ReceiveModel) SendJson(this Api api, string str)
         {
             var tag = $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";
             Send(api, $"{tag},{str}");
-            return (tag, api.AddCallback(tag, waitTime: waitTime).Result);
+            return (tag, api.AddCallback(tag).Result);
         }
         public static void Send(this Api api, string str)
         {
@@ -104,7 +104,7 @@ namespace WAX.Utils
         }
         public static void Send(this Api api, byte[] bs)
         {
-            api._socket.SendAsync(new ReadOnlyMemory<byte>(bs, 0, bs.Length), WebSocketMessageType.Text, true, CancellationToken.None);
+            api._socket.SendAsync(new ArraySegment<byte>(bs, 0, bs.Length), WebSocketMessageType.Text, true, CancellationToken.None);
         }
     }
 }
