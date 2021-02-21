@@ -18,37 +18,24 @@ namespace WAX.APIs
             _api = api;
         }
 
-        public string GetStatus(string userId)
+        public void SetStatus(string status)
         {
-            return Invoker.StartAsync(() =>
+            
+        }
+
+        public async Task<string> GetStatus(string userId)
+        {
+            return await Task.Run(() =>
             {
-                string s = null;
-                _api.SendJson($"[\"query\",\"Status\",\"{userId}\"]", rm => s = rm.Body);
-                Invoker.Wait(() => {
-                    s = s.RegexGetString("\"status\":\"([^\"]*)\"");
-                    s = Regex.Replace(s.Replace(@"\u200e", ""), @"\\u([\da-f]{4})", m => ((char)Convert.ToInt32(m.Groups[1].Value, 16)).ToString());
-                });
-                return s;
-            }).Result.ToString();
+                var rm = _api.SendJson($"[\"query\",\"Status\",\"{userId}\"]");
+                return rm.Item2.Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
+            });
         }
 
         public void Contacts()
         {
-            var tag = $"{DateTime.Now.GetTimeStampInt()}.--{_api._msgCount}";
-            Action<ReceiveModel> act = new Action<ReceiveModel>((rm)=>
-            {
-                var i = rm.Body;
-                Console.WriteLine(i);
-            });
-            _api.AddCallback(tag, act);
-            var n = new Node
-            {
-                Description = "query",
-                Attributes = new Dictionary<string, string> {
-                    { "type", t },
-                    {"epoch",msgCount.ToString() }//"5" }//
-                },
-            };
+            var rm = _api.SendQuery("contacts", "", "", "", "", "", 0, 0, waitTime: 3000).receiveModel;
+            Console.WriteLine(rm.StringData);
         }
     }
 }

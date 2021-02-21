@@ -7,27 +7,19 @@ namespace WAX.Utils
 {
     static class Invoker
     {
-        public static void Wait(Action act)
-        {
-            while (true)
-            {
-                try
-                {
-                    act.Invoke();
-                    break;
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
         public static async Task<object> StartAsync(Func<object> act)
         {
             return await Task.Run(()=>
             {
                 return act.Invoke();
+            });
+        }
+
+        public static async void StartAsync(Action act)
+        {
+            await Task.Run(() =>
+            {
+                act.Invoke();
             });
         }
     }

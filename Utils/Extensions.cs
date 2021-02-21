@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -14,6 +15,20 @@ namespace WAX.Utils
 {
     static class Extensions
     {
+        public static string GetTag(this Api api)
+        {
+            return $"{DateTime.Now.GetTimeStampInt()}.--{api._msgCount}";
+        }
+        public static string GetTagWithLock(this Api api)
+        {
+            return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";
+        }
+
+        public static string ConverFromUnicode(this string str)
+        {
+            return Regex.Replace(str.Replace(@"\u200e", ""), @"\\u([\da-f]{4})", m => ((char)Convert.ToInt32(m.Groups[1].Value, 16)).ToString());
+        }
+
         public static string RegexGetString(this string str, string pattern, int retuenIndex = 1)
         {
             Regex r = new Regex(pattern, RegexOptions.None);

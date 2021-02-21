@@ -20,7 +20,7 @@ namespace WAX.APIs
             _api = api;
         }
 
-        public async Task<string> SendImage(string chatId, byte[] data, string caption = null, Action<ReceiveModel> act = null)
+        public async Task<string> SendImage(string chatId, byte[] data, string caption = null)
         {
             var uploadResponse = await _api.Upload(data, MediaTypeConst.MediaImage);
             if (uploadResponse == null)
@@ -46,7 +46,7 @@ namespace WAX.APIs
                         FileLength = uploadResponse.FileLength
                     }
                 }
-            }, act);
+            }).tag;
         }
         public string Send(string chatId, string text, Action<ReceiveModel> act = null)
         {
@@ -62,12 +62,12 @@ namespace WAX.APIs
                 },
                 
                 
-            }, act);
+            }).tag;
         }
         public void Delete(string chatId, string messageId, bool isIncoming)
         {
-            var tag = $"{DateTime.Now.GetTimeStampInt()}.--{_api._msgCount}";
-            _api.AddCallback(tag, null);
+            var tag = _api.GetTag();
+            _api.AddCallback(tag);
             string owner = isIncoming ? "false" : "true";
             var n = new Node
             {
@@ -106,7 +106,7 @@ namespace WAX.APIs
         public void Read(string chatId, string messageId)
         {
             var tag = $"{DateTime.Now.GetTimeStampInt()}.--{_api._msgCount}";
-            _api.AddCallback(tag, null);
+            _api.AddCallback(tag);
             var n = new Node
             {
                 Description = "action",

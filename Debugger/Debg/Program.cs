@@ -31,7 +31,7 @@ namespace Debg
 
         private static void TM(TextMessage obj)
         {
-            Console.WriteLine($"New message:\n\tFrom {obj.ChatId}\n\tBody: {obj.Text}\n\tTime: {obj.TimeStamp}\n\tId: {obj.MessageId}\n\tStatus: {obj.Status}\n\tIs incoming: {obj.IsIncoming}");
+            //Console.WriteLine($"New message:\n\tFrom {obj.ChatId}\n\tBody: {obj.Text}\n\tTime: {obj.TimeStamp}\n\tId: {obj.MessageId}\n\tStatus: {obj.Status}\n\tIs incoming: {obj.IsIncoming}");
             //if(obj.ChatId == "79143963386@s.whatsapp.net")
             //{
             //    _api.SendText(obj.ChatId, obj.Text);
@@ -41,7 +41,6 @@ namespace Debg
 
         private static void LS(Session obj)
         {
-            Console.Clear();
             SessionManager.Write(obj);
         }
 

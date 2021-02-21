@@ -19,6 +19,7 @@ using WAX.Models;
 using WAX.Serialization;
 using WAX.Utils;
 using WAX.Consts;
+using Newtonsoft.Json.Linq;
 
 namespace WAX
 {
@@ -58,6 +59,7 @@ namespace WAX
 
         public MessageApi Message;
         public UserApi User;
+        public InfoApi Info;
         private async Task<bool> Connect()
         {
             if (_socket.State == WebSocketState.Open || _socket.State == WebSocketState.Connecting)
@@ -89,45 +91,11 @@ namespace WAX
                 ReLogin();
             }
         }
-        public string LoadMediaInfo(string jid, string messageId, string owner, Action<ReceiveModel> act = null)
+        public (string tag, ReceiveModel receiveModel) LoadMediaInfo(string jid, string messageId, string owner)
         {
-            return this.SendQuery("media", jid, messageId, "", owner, "", 0, 0, act);
+            return this.SendQuery("media", jid, messageId, "", owner, "", 0, 0);
         }
-        public string GetFullChatHistory(string jid, int count = 300)
-        {
-            if (string.IsNullOrWhiteSpace(jid))
-            {
-                return string.Empty;
-            }
-            var beforeMsg = "";
-            var beforeMsgIsOwner = true;
-            //while (true)
-            {
-                this.SendQuery("message", jid, beforeMsg, "before", beforeMsgIsOwner ? "true" : "false", "", count, 0, async rm =>
-                           {
-                               var node = await GetDecryptNode(rm);
-                               if (node != null)
-                               {
-                                   if (node.Content is List<Node> nodeList)
-                                   {
-                                       foreach (var item in nodeList)
-                                       {
-                                           if (item.Description == "message")
-                                           {
-                                               var messageData = item.Content as byte[];
-                                               var ms = WebMessageInfo.Parser.ParseFrom(messageData);
-                                               if (ms.Message != null)
-                                               {
-                                               }
-                                           }
-                                       }
-                                   }
-                               }
-                           }, 2);
-            }
-            return string.Empty;
-        }
-
+        
         public void Dispose()
         {
             _socket.CloseAsync(WebSocketCloseStatus.Empty, null, CancellationToken.None);
@@ -189,8 +157,7 @@ namespace WAX
         }
         private async Task<MediaConnResponse> QueryMediaConn()
         {
-            MediaConnResponse connResponse = null;
-            this.SendJson("[\"query\",\"mediaConn\"]", rm => connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(rm.Body));
+            MediaConnResponse connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(this.SendJson("[\"query\",\"mediaConn\"]").receiveModel.Body);
             await await Task.Factory.StartNew(async () =>
             {
                 for (int i = 0; i < 100; i++)
@@ -204,16 +171,20 @@ namespace WAX
             }).ConfigureAwait(false);
             return connResponse;
         }
-        internal void AddCallback(string tag, Action<ReceiveModel> act, int count = 0)
+        internal async Task<ReceiveModel> AddCallback(string tag, int count = 0, int waitTime = 0)
         {
-            if (act != null)
+            ReceiveModel rrm = null;
+            AddSnapReceive(tag, rm =>
             {
-                AddSnapReceive(tag, rm =>
-                {
-                    act(rm);
-                    return true;
-                }, count);
-            }
+                rrm = rm;
+                return true;
+            }, count);
+            return await Task.Run(()=>
+            {
+                Thread.Sleep(waitTime);
+                while (true) if (rrm != null) break;
+                return rrm;
+            });
         }
         private void Receive(ReceiveModel receiveModel)
         {
@@ -295,7 +266,7 @@ namespace WAX
             {
                 var clientId = Rand.GetRandomByte(16);
                 Session.ClientId = Convert.ToBase64String(clientId);
-                var tag = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
+                (string tag, ReceiveModel rrm) = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
                 string refUrl = null;
                 AddSnapReceive(tag, rm =>
                 {
@@ -375,9 +346,25 @@ namespace WAX
             }
             return null;
         }
-        private async Task ReceiveHandle(ReceiveModel rm)
+        private async Task ReceiveHandle(ReceiveModel rm) 
         {
+            //Console.WriteLine(rm.StringData);
             var node = await GetDecryptNode(rm);
+            if (rm.Body != null && rm.Body.Contains("Conn") && Info == null)
+            {
+                Info = new InfoApi(this);
+                var json = JArray.Parse(rm.Body)[1];
+                Info.Battery = Convert.ToInt32(json["battery"]);
+                Info.PushName = json["pushname"].ToString();
+                Info.UserId = Session.Id;
+                Info.Plugged = Convert.ToBoolean(json["plugged"]);
+                Info.Connect = Convert.ToBoolean(json["connected"]);
+                Info.Version = json["phone"]["wa_version"].ToString();
+                Info.OSVersion = json["phone"]["os_version"].ToString();
+                Info.DeviceManufacturer = json["phone"]["device_manufacturer"].ToString();
+                Info.DeviceModel = json["phone"]["device_model"].ToString();
+                Info.Platform = json["platform"].ToString();
+            }
             if (rm.Tag != null && _snapReceiveDictionary.ContainsKey(rm.Tag))
             {
                 var result = await Task.Factory.StartNew(() => _snapReceiveDictionary[rm.Tag](rm));
@@ -404,6 +391,7 @@ namespace WAX
             }
             if (node != null)
             {
+                //Console.WriteLine(rm.Tag + " " + JsonConvert.SerializeObject(node));
                 if (node.Content is List<Node> nodeList)
                 {
                     foreach (var item in nodeList)
@@ -435,24 +423,22 @@ namespace WAX
                                         }
                                         catch (Exception ex)
                                         {
-                                            LoadMediaInfo(ms.Key.RemoteJid, ms.Key.Id, ms.Key.FromMe ? "true" : "false", async _ =>
-                                             {
-                                                 try
-                                                 {
-                                                     var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
-                                                     var ignore = Task.Factory.StartNew(() => OnImageMessage.Invoke(new Messages.ImageMessage
-                                                     {
-                                                         TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
-                                                         ChatId = ms.Key.RemoteJid,
-                                                         Text = ms.Message.ImageMessage.Caption,
-                                                         ImageData = fileData,
-                                                     }));
-                                                 }
-                                                 catch
-                                                 {
-                                                     return;
-                                                 }
-                                             });
+                                            LoadMediaInfo(ms.Key.RemoteJid, ms.Key.Id, ms.Key.FromMe ? "true" : "false");
+                                            try
+                                            {
+                                                var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
+                                                var ignore = Task.Factory.StartNew(() => OnImageMessage.Invoke(new Messages.ImageMessage
+                                                {
+                                                    TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
+                                                    ChatId = ms.Key.RemoteJid,
+                                                    Text = ms.Message.ImageMessage.Caption,
+                                                    ImageData = fileData,
+                                                }));
+                                            }
+                                            catch
+                                            {
+                                                return;
+                                            }
                                         }
                                     });
                                 }
