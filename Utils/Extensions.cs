@@ -15,6 +15,16 @@ namespace WAX.Utils
 {
     static class Extensions
     {
+        public static long GetChatId(this string id)
+        {
+            return Convert.ToInt64(id.Replace("@s.whatsapp.net", ""));
+        }
+
+        public static string GetChatId(this long id)
+        {
+            return id.ToString() + "@s.whatsapp.net";
+        }
+
         public static string GetTag(this Api api)
         {
             return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";

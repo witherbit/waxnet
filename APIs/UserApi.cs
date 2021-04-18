@@ -71,16 +71,16 @@ namespace WAX.APIs
             });
         }
 
-        public string GetStatus(string userId)
+        public string GetStatus(long userId)
         {
             return Invoker.StartAsync(()=>
             {
-                var tag = _api.SendJson($"[\"query\",\"Status\",\"{userId}\"]");
+                var tag = _api.SendJson($"[\"query\",\"Status\",\"{userId.GetChatId()}\"]");
                 return SyncReceive.WaitResult(tag).Result.Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
             }).Result.ToString();
         }
 
-        public string GetName(string userId)
+        public string GetName(long userId)
         {
             return Invoker.StartAsync(() =>
             {
@@ -98,6 +98,14 @@ namespace WAX.APIs
                 _api.SendBinary(n, WriteBinaryType.Profile, tag);
                 return SyncReceive.WaitResult(tag).Result;
             }).Result.ToString();
+        }
+
+        public bool IsExist(long userId)
+        {
+            var tag = _api.SendJson($"[\"query\",\"exist\",\"{userId.GetChatId()}\"]");
+            var body = SyncReceive.WaitResult(tag).Result.Body;
+            if (body.Contains("\"status\":404")) return false;
+            return true;
         }
 
         public void Contacts()
