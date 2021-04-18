@@ -1,5 +1,6 @@
 ﻿using System;
 using WAX;
+using WAX.Enum;
 using WAX.Messages;
 using WAX.Models;
 using WAX.Utils;
@@ -11,11 +12,12 @@ namespace Debg
         static Api _api = new Api();
         static void Main(string[] args)
         {
+            //Console.WriteLine(9944993388 ^ 6644996611 ^ 998866);
             _api.Session = SessionManager.Read();
             _api.OnQRUpdate += QR;
-            _api.OnLoginSuccess += LS;
+            _api.OnLogin += LS;
             _api.OnTextMessage += TM;
-            _api.OnRemainingMessages += RM;
+            _api.OnReceive += RM;
             _api.Login();
             while (true)
             {
@@ -26,7 +28,7 @@ namespace Debg
 
         private static void RM(ReceiveModel obj)
         {
-            Console.WriteLine(obj.StringData);
+            //Console.WriteLine(obj.StringData);
         }
 
         private static void TM(TextMessage obj)
@@ -42,6 +44,7 @@ namespace Debg
         private static void LS(Session obj)
         {
             SessionManager.Write(obj);
+            Console.WriteLine("Login success");
         }
 
         private static void QR(string obj)

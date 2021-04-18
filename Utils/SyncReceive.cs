@@ -8,10 +8,12 @@ namespace WAX.Utils
     static class SyncReceive
     {
         private static Dictionary<string, ReceiveModel> _receiveModels = new Dictionary<string, ReceiveModel>();
-        public static async Task<ReceiveModel> GetAsync(string tag, bool delete = true)
+        public static async Task<ReceiveModel> WaitResult(string tag, int delay = 0, bool delete = true)
         {
             return await Task.Run(()=>
             {
+                Task.Delay(delay).Wait();
+                _receiveModels.Add(tag, null);
                 while (true)
                 {
                     var rm = _receiveModels[tag];
@@ -23,11 +25,7 @@ namespace WAX.Utils
                 }
             });
         }
-        public static void AddEmpty(string tag)
-        {
-            _receiveModels.Add(tag, null);
-        }
-        public async static void TrySelectAsync(ReceiveModel rm)
+        public async static void Select(ReceiveModel rm)
         {
             await Task.Run(()=>
             {

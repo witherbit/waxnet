@@ -20,6 +20,6 @@ namespace WAX.Messages
 
         public int Status { get; set; }
 
-        public MessageType Type { get; set; }
+        public ChatType Type { get; set; }
     }
 }

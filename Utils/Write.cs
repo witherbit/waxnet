@@ -11,7 +11,7 @@ namespace WAX.Utils
 {
     static class Write
     {
-        public static (string Tag, ReceiveModel ReceiveModel) SendProto(this Api api, WebMessageInfo webMessage)
+        public static string SendProto(this Api api, WebMessageInfo webMessage, Action<ReceiveModel> action = null)
         {
             if (webMessage.Key.Id.IsNullOrWhiteSpace())
             {
@@ -28,12 +28,13 @@ namespace WAX.Utils
                 Description = "action",
                 Attributes = new Dictionary<string, string> {
                     { "type", "relay" },
-                    {"epoch",( Interlocked.Increment(ref api._msgCount) - 1).ToString() }//"5" }//
+                    {"epoch",( Interlocked.Increment(ref api._msgCount) - 1).ToString() }
                 },
                 Content = new List<WebMessageInfo> { webMessage }
             };
+            api.AddCallback(webMessage.Key.Id, action);
             SendBinary(api, n, WriteBinaryType.Message, webMessage.Key.Id);
-            return (webMessage.Key.Id, api.AddCallback(webMessage.Key.Id).Result);
+            return webMessage.Key.Id;
         }
         public static void SendBinary(this Api api, Node node, WriteBinaryType binaryType, string messageTag)
         {
@@ -44,10 +45,11 @@ namespace WAX.Utils
             bs.AddRange(data);
             api._socket.SendAsync(new ArraySegment<byte>(bs.ToArray()), WebSocketMessageType.Binary, true, CancellationToken.None);
         }
-        public static (string Tag, ReceiveModel ReceiveModel) SendQuery(this Api api, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0)
+        public static string SendQuery(this Api api, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0, Action<ReceiveModel> action = null)
         {
             var msgCount = Interlocked.Increment(ref api._msgCount) - 1;
-            var tag = $"{DateTime.Now.GetTimeStampInt()}.--{msgCount}";
+            var tag = api.GetTag();
+            api.AddCallback(tag, action, removeCount);
             var n = new Node
             {
                 Description = "query",
@@ -90,13 +92,14 @@ namespace WAX.Utils
                 msgType = WriteBinaryType.QueryMedia;
             }
             SendBinary(api, n, msgType, tag);
-            return (tag, api.AddCallback(tag, removeCount).Result);
+            return tag;
         }
-        public static (string Tag, ReceiveModel ReceiveModel) SendJson(this Api api, string str)
+        public static string SendJson(this Api api, string str, Action<ReceiveModel> action = null)
         {
-            var tag = $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";
+            var tag = api.GetTag();
+            api.AddCallback(tag, action);
             Send(api, $"{tag},{str}");
-            return (tag, api.AddCallback(tag).Result);
+            return tag;
         }
         public static void Send(this Api api, string str)
         {

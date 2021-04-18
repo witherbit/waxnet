@@ -46,7 +46,7 @@ namespace WAX.APIs
                         FileLength = uploadResponse.FileLength
                     }
                 }
-            }).Tag;
+            });
         }
         public string Send(string chatId, string text, Action<ReceiveModel> act = null)
         {
@@ -62,12 +62,11 @@ namespace WAX.APIs
                 },
                 
                 
-            }).Tag;
+            });
         }
         public void Delete(string chatId, string messageId, bool isIncoming)
         {
             var tag = _api.GetTag();
-            _api.AddCallback(tag);
             string owner = isIncoming ? "false" : "true";
             var n = new Node
             {
@@ -105,8 +104,7 @@ namespace WAX.APIs
 
         public void Read(string chatId, string messageId)
         {
-            var tag = $"{DateTime.Now.GetTimeStampInt()}.--{_api._msgCount}";
-            _api.AddCallback(tag);
+            var tag = _api.GetTag();
             var n = new Node
             {
                 Description = "action",

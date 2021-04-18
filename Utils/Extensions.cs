@@ -17,10 +17,6 @@ namespace WAX.Utils
     {
         public static string GetTag(this Api api)
         {
-            return $"{DateTime.Now.GetTimeStampInt()}.--{api._msgCount}";
-        }
-        public static string GetTagWithLock(this Api api)
-        {
             return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";
         }
 

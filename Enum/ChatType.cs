@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WAX.Enum
 {
-    public enum MessageType
+    public enum ChatType
     {
         User,
         Group

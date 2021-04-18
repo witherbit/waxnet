@@ -20,14 +20,15 @@ using WAX.Serialization;
 using WAX.Utils;
 using WAX.Consts;
 using Newtonsoft.Json.Linq;
+using WAX.Delegates;
 
 namespace WAX
 {
     public class Api : IDisposable
     {
-        public event Action<string> OnQRUpdate;
-        public event Action<Session> OnLoginSuccess;
-        public event Action<ReceiveModel> OnRemainingMessages;
+        public event Del.QrHandler OnQRUpdate;
+        public event Del.LoginHandler OnLogin;
+        public event Del.ReceiveHandle OnReceive;
         public event Action<TextMessage> OnTextMessage;
         public event Action<Messages.ImageMessage> OnImageMessage;
         public event Action OnAccountDropped;
@@ -91,11 +92,10 @@ namespace WAX
                 ReLogin();
             }
         }
-        public (string tag, ReceiveModel receiveModel) LoadMediaInfo(string jid, string messageId, string owner)
+        public string LoadMediaInfo(string jid, string messageId, string owner)
         {
             return this.SendQuery("media", jid, messageId, "", owner, "", 0, 0);
         }
-        
         public void Dispose()
         {
             _socket.CloseAsync(WebSocketCloseStatus.Empty, null, CancellationToken.None);
@@ -157,7 +157,8 @@ namespace WAX
         }
         private async Task<MediaConnResponse> QueryMediaConn()
         {
-            MediaConnResponse connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(this.SendJson("[\"query\",\"mediaConn\"]").ReceiveModel.Body);
+            MediaConnResponse connResponse = null;
+          this.SendJson("[\"query\",\"mediaConn\"]", rm => connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(rm.Body));
             await await Task.Factory.StartNew(async () =>
             {
                 for (int i = 0; i < 100; i++)
@@ -171,19 +172,16 @@ namespace WAX
             }).ConfigureAwait(false);
             return connResponse;
         }
-        internal async Task<ReceiveModel> AddCallback(string tag, int count = 0)
+        internal void AddCallback(string tag, Action<ReceiveModel> action = null, int count = 0)
         {
-            ReceiveModel rrm = null;
-            AddSnapReceive(tag, rm =>
+            if (action != null)
             {
-                rrm = rm;
-                return true;
-            }, count);
-            return await Task.Run(()=>
-            {
-                while (true) if (rrm != null) break;
-                return rrm;
-            });
+                AddSnapReceive(tag, rm =>
+                {
+                    action?.Invoke(rm);
+                    return true;
+                }, count);
+            }
         }
         private void Receive(ReceiveModel receiveModel)
         {
@@ -233,7 +231,7 @@ namespace WAX
                 Session.ClientToken = jsData[1]["clientToken"];
                 Session.ServerToken = jsData[1]["serverToken"];
                 Session.Id = jsData[1]["wid"];
-                _ = Task.Factory.StartNew(() => OnLoginSuccess?.Invoke(Session));
+                _ = Task.Factory.StartNew(() => OnLogin?.Invoke(Session));
                 _loginSuccess = true;
             }
             else
@@ -265,7 +263,7 @@ namespace WAX
             {
                 var clientId = Rand.GetRandomByte(16);
                 Session.ClientId = Convert.ToBase64String(clientId);
-                (string tag, ReceiveModel rrm) = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
+                var tag = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
                 string refUrl = null;
                 AddSnapReceive(tag, rm =>
                 {
@@ -304,7 +302,7 @@ namespace WAX
                     var keyDecrypted = decodedSecret.Skip(64).ToArray().AesCbcDecrypt(sharedSecretExtended.Take(32).ToArray(), sharedSecretExtended.Skip(64).ToArray());
                     Session.EncKey = keyDecrypted.Take(32).ToArray();
                     Session.MacKey = keyDecrypted.Skip(32).ToArray();
-                    _ = Task.Factory.StartNew(() => OnLoginSuccess?.Invoke(Session));
+                    _ = Task.Factory.StartNew(() => OnLogin?.Invoke(Session));
                     _loginSuccess = true;
                     return true;
                 });
@@ -347,7 +345,7 @@ namespace WAX
         }
         private async Task ReceiveHandle(ReceiveModel rm) 
         {
-            SyncReceive.TrySelectAsync(rm);
+            SyncReceive.Select(rm);
             var node = await GetDecryptNode(rm);
             if (rm.Body != null && rm.Body.Contains("Conn") && Info == null)
             {
@@ -398,6 +396,7 @@ namespace WAX
                         {
                             var messageData = item.Content as byte[];
                             var ms = WebMessageInfo.Parser.ParseFrom(messageData);
+                            //Console.WriteLine(JsonConvert.SerializeObject(ms));
                             if (ms.Message != null)
                             {
                                 if (ms.Message.ImageMessage != null && OnImageMessage != null)
@@ -480,7 +479,7 @@ namespace WAX
         }
         private void InvokeReceiveRemainingMessagesEvent(ReceiveModel receiveModel)
         {
-            Task.Factory.StartNew(() => OnRemainingMessages?.Invoke(receiveModel));
+            Task.Factory.StartNew(() => OnReceive?.Invoke(receiveModel));
         }
         private void InvokeReceiveRemainingMessagesEvent(byte[] data)
         {
