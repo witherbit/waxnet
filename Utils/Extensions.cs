@@ -15,12 +15,12 @@ namespace WAX.Utils
 {
     static class Extensions
     {
-        public static long GetChatId(this string id)
+        public static long GetId(this string id)
         {
             return Convert.ToInt64(id.Replace("@s.whatsapp.net", ""));
         }
 
-        public static string GetChatId(this long id)
+        public static string GetId(this long id)
         {
             return id.ToString() + "@s.whatsapp.net";
         }
@@ -218,6 +218,91 @@ namespace WAX.Utils
             {
                 return encoding.GetString(memory.ToArray());
             }
+        }
+
+        public static string EncryptAES(this string plainText, string ckey, string salt = "defaultSaltKey")
+        {
+            var bsalt = Encoding.ASCII.GetBytes(salt);
+            if (string.IsNullOrEmpty(plainText))
+                throw new ArgumentNullException("invalid plain text");
+            if (string.IsNullOrEmpty(ckey))
+                throw new ArgumentNullException("invalid key");
+            string outStr;
+            RijndaelManaged aesAlg = null;
+            try
+            {
+                var key = new Rfc2898DeriveBytes(ckey, bsalt);
+                aesAlg = new RijndaelManaged();
+                aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                using (var msEncrypt = new MemoryStream())
+                {
+                    msEncrypt.Write(BitConverter.GetBytes(aesAlg.IV.Length), 0, sizeof(int));
+                    msEncrypt.Write(aesAlg.IV, 0, aesAlg.IV.Length);
+                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (var swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(plainText);
+                        }
+                    }
+                    outStr = Convert.ToBase64String(msEncrypt.ToArray());
+                }
+            }
+            finally
+            {
+                if (aesAlg != null)
+                    aesAlg.Clear();
+            }
+            return outStr;
+        }
+        public static string DecryptAES(this string cipherText, string ckey, string salt = "defaultSaltKey")
+        {
+            var bsalt = Encoding.ASCII.GetBytes(salt);
+            if (string.IsNullOrEmpty(cipherText))
+                throw new ArgumentNullException("invalid cipher text");
+            if (string.IsNullOrEmpty(ckey))
+                throw new ArgumentNullException("invalid key");
+            RijndaelManaged aesAlg = null;
+            string plaintext;
+            try
+            {
+                var key = new Rfc2898DeriveBytes(ckey, bsalt);
+                byte[] bytes = Convert.FromBase64String(cipherText);
+                using (var msDecrypt = new MemoryStream(bytes))
+                {
+                    aesAlg = new RijndaelManaged();
+                    aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
+                    aesAlg.IV = ReadByteArray(msDecrypt);
+                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                    using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (var srDecrypt = new StreamReader(csDecrypt))
+                            plaintext = srDecrypt.ReadToEnd();
+                    }
+                }
+            }
+            finally
+            {
+                if (aesAlg != null)
+                    aesAlg.Clear();
+            }
+
+            return plaintext;
+        }
+        private static byte[] ReadByteArray(Stream s)
+        {
+            var rawLength = new byte[sizeof(int)];
+            if (s.Read(rawLength, 0, rawLength.Length) == rawLength.Length)
+            {
+                var buffer = new byte[BitConverter.ToInt32(rawLength, 0)];
+                if (s.Read(buffer, 0, buffer.Length) != buffer.Length)
+                {
+                    throw new SystemException("Did not read byte array properly");
+                }
+                return buffer;
+            }
+            throw new SystemException("Stream did not contain properly formatted byte array");
         }
     }
 }

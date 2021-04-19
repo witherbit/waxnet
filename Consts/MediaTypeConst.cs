@@ -10,5 +10,12 @@ namespace WAX.Consts
         public const string MediaVideo = "WhatsApp Video Keys";
         public const string MediaAudio = "WhatsApp Audio Keys";
         public const string MediaDocument = "WhatsApp Document Keys";
+
+        public static Dictionary<string, string> MediaTypeMap = new Dictionary<string, string>{
+            { MediaImage,"/mms/image" },
+            { MediaVideo,"/mms/video" },
+            { MediaAudio,"/mms/document" },
+            { MediaDocument,"/mms/audio" },
+        };
     }
 }

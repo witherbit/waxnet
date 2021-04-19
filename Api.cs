@@ -20,18 +20,17 @@ using WAX.Serialization;
 using WAX.Utils;
 using WAX.Consts;
 using Newtonsoft.Json.Linq;
-using WAX.Delegates;
 
 namespace WAX
 {
     public class Api : IDisposable
     {
-        public event Del.QrHandler OnQRUpdate;
-        public event Del.LoginHandler OnLogin;
-        public event Del.ReceiveHandle OnReceive;
-        public event Action<TextMessage> OnTextMessage;
-        public event Action<Messages.ImageMessage> OnImageMessage;
-        public event Action OnAccountDropped;
+        public event EventHandler<string> OnQRUpdate;
+        public event EventHandler<Session> OnLogin;
+        public event EventHandler<ReceiveModel> OnReceive;
+        public event EventHandler<TextMessage> OnTextMessage;
+        public event EventHandler<Messages.ImageMessage> OnImageMessage;
+        public event EventHandler<Exception> OnAccountDropped;
         public Session Session { set; get; }
         internal ClientWebSocket _socket;
         //private object _sendObj = new object();
@@ -40,12 +39,6 @@ namespace WAX
         private object _snapReceiveLock = new object();
         private Dictionary<string, Func<ReceiveModel, bool>> _snapReceiveDictionary = new Dictionary<string, Func<ReceiveModel, bool>>();
         private Dictionary<string, int> _snapReceiveRemoveCountDictionary = new Dictionary<string, int>();
-        private static Dictionary<string, string> MediaTypeMap = new Dictionary<string, string>{
-            { MediaTypeConst.MediaImage,"/mms/image" },
-            { MediaTypeConst.MediaVideo,"/mms/video" },
-            { MediaTypeConst.MediaAudio,"/mms/document" },
-            { MediaTypeConst.MediaDocument,"/mms/audio" },
-        };
         static Api()
         {
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
@@ -145,7 +138,7 @@ namespace WAX
                     return null;
                 }
                 var token = Convert.ToBase64String(uploadResponse.FileEncSha256).Replace("+", "-").Replace("/", "_");
-                var url = $"https://{mediaConnResponse.MediaConn.Hosts[0].Hostname}{MediaTypeMap[info]}/{token}?auth={mediaConnResponse.MediaConn.Auth}&token={token}";
+                var url = $"https://{mediaConnResponse.MediaConn.Hosts[0].Hostname}{MediaTypeConst.MediaTypeMap[info]}/{token}?auth={mediaConnResponse.MediaConn.Auth}&token={token}";
                 var response = await url.PostHtml(joinData, new Dictionary<string, string> {
                     { "Origin","https://web.whatsapp.com" },
                     { "Referer","https://web.whatsapp.com/"}
@@ -202,10 +195,10 @@ namespace WAX
                         Receive(receiveModel);
                     }
                 }
-                catch
+                catch (Exception e)
                 {
                     _socket.Dispose();
-                    _ = Task.Factory.StartNew(() => OnAccountDropped?.Invoke());
+                    _ = Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e));
                 }
             });
 
@@ -231,7 +224,7 @@ namespace WAX
                 Session.ClientToken = jsData[1]["clientToken"];
                 Session.ServerToken = jsData[1]["serverToken"];
                 Session.Id = jsData[1]["wid"];
-                _ = Task.Factory.StartNew(() => OnLogin?.Invoke(Session));
+                _ = Task.Factory.StartNew(() => OnLogin?.Invoke(this, Session));
                 _loginSuccess = true;
             }
             else
@@ -302,7 +295,7 @@ namespace WAX
                     var keyDecrypted = decodedSecret.Skip(64).ToArray().AesCbcDecrypt(sharedSecretExtended.Take(32).ToArray(), sharedSecretExtended.Skip(64).ToArray());
                     Session.EncKey = keyDecrypted.Take(32).ToArray();
                     Session.MacKey = keyDecrypted.Skip(32).ToArray();
-                    _ = Task.Factory.StartNew(() => OnLogin?.Invoke(Session));
+                    _ = Task.Factory.StartNew(() => OnLogin?.Invoke(this, Session));
                     _loginSuccess = true;
                     return true;
                 });
@@ -311,7 +304,7 @@ namespace WAX
                     await Task.Delay(100);
                 }
                 var loginUrl = $"{refUrl},{Convert.ToBase64String(publicKey)},{Session.ClientId}";
-                _ = Task.Factory.StartNew(() => OnQRUpdate?.Invoke(loginUrl));
+                _ = Task.Factory.StartNew(() => OnQRUpdate?.Invoke(this, loginUrl));
 
             });
 
@@ -407,7 +400,7 @@ namespace WAX
                                         {
 
                                             var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
-                                            OnImageMessage.Invoke(new Messages.ImageMessage
+                                            OnImageMessage.Invoke(this, new Messages.ImageMessage
                                             {
                                                 TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
                                                 ChatId = ms.Key.RemoteJid,
@@ -418,13 +411,13 @@ namespace WAX
                                                 Status = (int)ms.Status,
                                             });
                                         }
-                                        catch (Exception ex)
+                                        catch
                                         {
                                             LoadMediaInfo(ms.Key.RemoteJid, ms.Key.Id, ms.Key.FromMe ? "true" : "false");
                                             try
                                             {
                                                 var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
-                                                var ignore = Task.Factory.StartNew(() => OnImageMessage.Invoke(new Messages.ImageMessage
+                                                var ignore = Task.Factory.StartNew(() => OnImageMessage.Invoke(this, new Messages.ImageMessage
                                                 {
                                                     TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
                                                     ChatId = ms.Key.RemoteJid,
@@ -441,7 +434,7 @@ namespace WAX
                                 }
                                 else if (ms.Message.HasConversation && OnTextMessage != null)
                                 {
-                                    _ = Task.Factory.StartNew(() => OnTextMessage?.Invoke(new TextMessage
+                                    _ = Task.Factory.StartNew(() => OnTextMessage?.Invoke(this, new TextMessage
                                     {
                                         TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
                                         ChatId = ms.Key.RemoteJid,
@@ -479,7 +472,7 @@ namespace WAX
         }
         private void InvokeReceiveRemainingMessagesEvent(ReceiveModel receiveModel)
         {
-            Task.Factory.StartNew(() => OnReceive?.Invoke(receiveModel));
+            Task.Factory.StartNew(() => OnReceive?.Invoke(this, receiveModel));
         }
         private void InvokeReceiveRemainingMessagesEvent(byte[] data)
         {

@@ -75,7 +75,7 @@ namespace WAX.APIs
         {
             return Invoker.StartAsync(()=>
             {
-                var tag = _api.SendJson($"[\"query\",\"Status\",\"{userId.GetChatId()}\"]");
+                var tag = _api.SendJson($"[\"query\",\"Status\",\"{userId.GetId()}\"]");
                 return SyncReceive.WaitResult(tag).Result.Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
             }).Result.ToString();
         }
@@ -102,7 +102,7 @@ namespace WAX.APIs
 
         public bool IsExist(long userId)
         {
-            var tag = _api.SendJson($"[\"query\",\"exist\",\"{userId.GetChatId()}\"]");
+            var tag = _api.SendJson($"[\"query\",\"exist\",\"{userId.GetId()}\"]");
             var body = SyncReceive.WaitResult(tag).Result.Body;
             if (body.Contains("\"status\":404")) return false;
             return true;
