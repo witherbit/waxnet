@@ -8,7 +8,7 @@ namespace WAX.Utils
     static class SyncReceive
     {
         private static Dictionary<string, ReceiveModel> _receiveModels = new Dictionary<string, ReceiveModel>();
-        public static async Task<ReceiveModel> WaitResult(string tag, int delay = 0, bool delete = true)
+        public static async Task<ReceiveModel> WaitResult(string tag, int delay = 0)
         {
             return await Task.Run(()=>
             {
@@ -19,7 +19,7 @@ namespace WAX.Utils
                     var rm = _receiveModels[tag];
                     if (rm != null)
                     {
-                        if (delete) _receiveModels.Remove(tag);
+                        _receiveModels.Remove(tag);
                         return rm;
                     }
                 }

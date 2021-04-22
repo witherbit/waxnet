@@ -35,10 +35,10 @@ namespace WAX.Utils
             return Regex.Replace(str.Replace(@"\u200e", ""), @"\\u([\da-f]{4})", m => ((char)Convert.ToInt32(m.Groups[1].Value, 16)).ToString());
         }
 
-        public static string RegexGetString(this string str, string pattern, int retuenIndex = 1)
+        public static string RegexGetString(this string str, string pattern, int returnIndex = 1)
         {
             Regex r = new Regex(pattern, RegexOptions.None);
-            return r.Match(str).Groups[retuenIndex].Value;
+            return r.Match(str).Groups[returnIndex].Value;
         }
 
         public static string UrlEncode(this string str)

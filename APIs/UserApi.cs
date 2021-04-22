@@ -4,9 +4,7 @@ using System.Text;
 using WAX.Enum;
 using WAX.Models;
 using WAX.Utils;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Threading;
 using Newtonsoft.Json;
 using WAX.Consts;
 using Newtonsoft.Json.Linq;
@@ -21,9 +19,9 @@ namespace WAX.APIs
             _api = api;
         }
 
-        public void SetStatus(string status)
+        public async void SetStatus(string status)
         {
-            Invoker.StartAsync(()=>
+            await Task.Run(()=>
             {
                 var tag = _api.GetTag();
                 var n = new Node()
@@ -46,9 +44,9 @@ namespace WAX.APIs
             });
         }
 
-        public void SetName(string name)
+        public async void SetName(string name)
         {
-            Invoker.StartAsync(() =>
+            await Task.Run(()=>
             {
                 var tag = _api.GetTag();
                 var n = new Node()
@@ -71,57 +69,40 @@ namespace WAX.APIs
             });
         }
 
-        public string GetStatus(long userId)
+        public async Task<string> GetStatus(long userId)
         {
-            return Invoker.StartAsync(()=>
+            return await Task.Run(()=>
             {
-                var tag = _api.SendJson($"[\"query\",\"Status\",\"{userId.GetId()}\"]");
-                return SyncReceive.WaitResult(tag).Result.Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
-            }).Result.ToString();
+                return _api.SendJsonGet($"[\"query\",\"Status\",\"{userId.GetId()}\"]").Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
+            });
         }
 
-        public string GetName(long userId)
+        public async Task<JToken> IsExist(long userId)
         {
-            return Invoker.StartAsync(() =>
+            return await Task.Run(()=>
             {
-                var tag = _api.GetTag();
-                var n = new Node()
-                {
-                    Description = "query",
-                    Attributes = new Dictionary<string, string> {
-                    { "type", "set" },
-                    { "epoch", _api._msgCount.ToString() },
-                },
-                    Content = new List<Node> {
-                }
-                };
-                _api.SendBinary(n, WriteBinaryType.Profile, tag);
-                return SyncReceive.WaitResult(tag).Result;
-            }).Result.ToString();
+                return JToken.Parse(_api.SendJsonGet($"[\"query\",\"exist\",\"{userId.GetId()}\"]").Body);
+            });
         }
 
-        public bool IsExist(long userId)
+        public async Task<JToken> Contacts()
         {
-            var tag = _api.SendJson($"[\"query\",\"exist\",\"{userId.GetId()}\"]");
-            var body = SyncReceive.WaitResult(tag).Result.Body;
-            if (body.Contains("\"status\":404")) return false;
-            return true;
+            return await Task.Run(()=>
+            {
+                var rm = _api.SendQueryGet("contacts", "", "", "", "", "", 0, 0, delay: 500);
+                var n = _api.GetDecryptNode(rm);
+                return JToken.Parse(JsonConvert.SerializeObject(n));
+            });
         }
 
-        public void Contacts()
+        public async Task<JToken> Chats()
         {
-            var tag = _api.SendQuery("contacts", "", "", "", "", "", 0, 0);
-            var rm = SyncReceive.WaitResult(tag, 500).Result;
-            var n = _api.GetDecryptNode(rm);
-            Console.WriteLine(JsonConvert.SerializeObject(n));
-        }
-
-        public void Chats()
-        {
-            var tag = _api.SendQuery("chat", "", "", "", "", "", 0, 0);
-            var rm = SyncReceive.WaitResult(tag, 500).Result;
-            var n = _api.GetDecryptNode(rm);
-            Console.WriteLine(JsonConvert.SerializeObject(n));
+            return await Task.Run(() =>
+            {
+                var rm = _api.SendQueryGet("chat", "", "", "", "", "", 0, 0, delay:500);
+                var n = _api.GetDecryptNode(rm);
+                return JToken.Parse(JsonConvert.SerializeObject(n));
+            });
         }
 
         public string GetChat(string chatId)
@@ -136,9 +117,9 @@ namespace WAX.APIs
 
         }
 
-        public void SetPresence(string chatId, PresenceType type)
+        public async void SetPresence(string chatId, PresenceType type)
         {
-            Invoker.StartAsync(() =>
+            await Task.Run(()=>
             {
                 var tag = _api.GetTag();
                 var content = new Node()
