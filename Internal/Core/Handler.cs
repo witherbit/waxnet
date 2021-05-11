@@ -9,15 +9,23 @@ namespace waxnet.Internal.Core
 {
     class Handler
     {
-        internal Api api;
+        internal Api _api;
         internal void Controller(ReceiveModel rm)
         {
-            Console.WriteLine(rm.ToString());
+            
         }
 
         internal async Task Message()
         {
             await Task.Run(()=>
+            {
+
+            });
+        }
+
+        internal async Task ConnectInfo()
+        {
+            await Task.Run(() =>
             {
 
             });

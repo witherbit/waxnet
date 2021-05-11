@@ -260,7 +260,7 @@ namespace waxnet.Internal.Core
                 }
                 catch (Exception e)
                 {
-                    _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = e, Type = CallEventType.Exception }));
+                    _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = e, Type = CallEventType.AccountDropped }));
                     Stop();
                 }
             });

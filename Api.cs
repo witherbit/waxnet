@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WAX.Methods;
 using WAX.Models;
 using WAX.Models.Messages;
 using waxnet.Internal.Core;
@@ -39,23 +40,35 @@ namespace WAX
                 return _engine.CancellationToken; 
             } 
         }
+        public bool IsAuthorized { get; private set; }
+
+        public Messages Messages { get; private set; }
+        public User User { get; private set; }
+        public Profile Profile { get; private set; }
+        public Group Group { get; private set; }
 
         public Api()
         {
-            _engine = new Engine();
-            _handler = new Handler { api = this };
+            Initialize();
             _engine.SessionManager = new SessionManager();
-            _engine.Initialize();
-            _engine.CallEvent += CallEvent;
         }
         public Api(SessionManagerParameters parameters)
         {
-            _engine = new Engine();
-            _handler = new Handler { api = this };
+            Initialize();
             _engine.SessionManager = new SessionManager(parameters);
             _engine.SessionManager.Read();
+        }
+
+        private void Initialize()
+        {
+            _engine = new Engine();
+            _handler = new Handler { _api = this };
             _engine.Initialize();
             _engine.CallEvent += CallEvent;
+            Messages = new Messages { _api = this };
+            User = new User { _api = this };
+            Profile = new Profile { _api = this };
+            Group = new Group { _api = this };
         }
 
         internal void CallEvent(object sender, CallEventArgs e)
@@ -64,12 +77,21 @@ namespace WAX
             if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(()=>OnCodeUpdate?.Invoke(this, e.Content as string));
             if (e.Type == CallEventType.Login)
             {
+                IsAuthorized = true;
                 _engine.SessionManager.Save();
                 Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
             }
             if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
-            if (e.Type == CallEventType.AccountDropped) Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
-            if (e.Type == CallEventType.Stop) Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
+            if (e.Type == CallEventType.AccountDropped) 
+            {
+                IsAuthorized = false;
+                Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception)); 
+            }
+            if (e.Type == CallEventType.Stop)
+            {
+                IsAuthorized = false;
+                Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
+            }
             if (e.Type == CallEventType.Message) Task.Factory.StartNew(() => OnChatMessage?.Invoke(this, e.Content as ChatMessage));
             if (e.Type == CallEventType.GroupMessage) Task.Factory.StartNew(() => OnGroupMessage?.Invoke(this, e.Content as GroupMessage));
         }
