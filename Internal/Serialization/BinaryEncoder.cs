@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WAX.Models;
-using WAX.Utils;
-using static WAX.Serialization.BinaryDecoder;
+using waxnet.Internal.Models;
+using static waxnet.Internal.Serialization.BinaryDecoder;
 
-namespace WAX.Serialization
+namespace waxnet.Internal.Serialization
 {
     internal class BinaryEncoder
     {

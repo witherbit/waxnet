@@ -10,11 +10,22 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using WAX;
 
-namespace WAX.Utils
+namespace waxnet.Internal.Utils
 {
     static class Extensions
     {
+        public static byte[] GetRandomByte(this int length)
+        {
+            var random = new Random();
+            byte[] bs = new byte[length];
+            for (int i = 0; i < length; i++)
+            {
+                bs[i] = (byte)random.Next(0, 255);
+            }
+            return bs;
+        }
         public static long GetId(this string id)
         {
             return Convert.ToInt64(id.Replace("@s.whatsapp.net", ""));
@@ -25,9 +36,17 @@ namespace WAX.Utils
             return id.ToString() + "@s.whatsapp.net";
         }
 
-        public static string GetTag(this Api api)
+        public static (long OwnerId, long ChatId) GetGroupId(this string id)
         {
-            return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref api._msgCount) - 1}";
+            //79145768746-1567482853@g.us
+            id = id.Replace("@g.us", "");
+            var spt = id.Split(new char[] {'-'}, StringSplitOptions.RemoveEmptyEntries);
+            return (Convert.ToInt64(spt[0]), Convert.ToInt64(spt[1]));
+        }
+
+        public static string GetGroupId(this long id, long ownerId)
+        {
+            return ownerId + "-" + id.ToString() + "@g.us";
         }
 
         public static string ConverFromUnicode(this string str)

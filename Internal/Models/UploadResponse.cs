@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WAX.Models
+namespace waxnet.Internal.Models
 {
     internal class UploadResponse
     {

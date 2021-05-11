@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WAX.Models;
+using waxnet.Internal.Models;
 
-namespace WAX.Serialization
+namespace waxnet.Internal.Serialization
 {
     internal class BinaryDecoder
     {

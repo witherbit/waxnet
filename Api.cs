@@ -1,490 +1,91 @@
-﻿using AronParker.Hkdf;
-using Elliptic;
-using Google.Protobuf;
-using Newtonsoft.Json;
-using Proto;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.WebSockets;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WAX.APIs;
-using WAX.Enum;
-using WAX.Messages;
 using WAX.Models;
-using WAX.Serialization;
-using WAX.Utils;
-using WAX.Consts;
-using Newtonsoft.Json.Linq;
+using WAX.Models.Messages;
+using waxnet.Internal.Core;
+using waxnet.Internal.Models;
 
 namespace WAX
 {
-    public class Api : IDisposable
+    public sealed class Api : IDisposable
     {
-        public event EventHandler<string> OnQRUpdate;
-        public event EventHandler<Session> OnLogin;
-        public event EventHandler<ReceiveModel> OnReceive;
-        public event EventHandler<TextMessage> OnTextMessage;
-        public event EventHandler<Messages.ImageMessage> OnImageMessage;
+        public event EventHandler<string> OnCodeUpdate;
+        public event EventHandler OnLogin;
+        public event EventHandler<ChatMessage> OnChatMessage;
+        public event EventHandler<GroupMessage> OnGroupMessage;
         public event EventHandler<Exception> OnAccountDropped;
-        public Session Session { set; get; }
-        internal ClientWebSocket _socket;
-        //private object _sendObj = new object();
-        internal int _msgCount;
-        private bool _loginSuccess;
-        private object _snapReceiveLock = new object();
-        private Dictionary<string, Func<ReceiveModel, bool>> _snapReceiveDictionary = new Dictionary<string, Func<ReceiveModel, bool>>();
-        private Dictionary<string, int> _snapReceiveRemoveCountDictionary = new Dictionary<string, int>();
-        static Api()
+        public event EventHandler<CancellationToken> OnStart;
+        public event EventHandler<CancellationToken> OnStop;
+        public event EventHandler<CancellationToken> OnDispose;
+        public static event EventHandler<Exception> OnException;
+        internal static void CallException(object sender, Exception e)
         {
-            ServicePointManager.DefaultConnectionLimit = int.MaxValue;
-        }
-        public Api()
-        {
-            _socket = new ClientWebSocket();
-            _socket.Options.SetRequestHeader("Origin", "https://web.whatsapp.com");
-            Message = new MessageApi(this);
-            User = new UserApi(this);
+            Task.Factory.StartNew(() =>
+            {
+                OnException?.Invoke(sender, e);
+            });
         }
 
-        public MessageApi Message;
-        public UserApi User;
-        public InfoApi Info;
-        private async Task<bool> Connect()
-        {
-            if (_socket.State == WebSocketState.Open || _socket.State == WebSocketState.Connecting)
-            {
-                await _socket.CloseAsync(WebSocketCloseStatus.Empty, "Close", CancellationToken.None);
-            }
-            await _socket.ConnectAsync(new Uri("wss://web.whatsapp.com/ws"), CancellationToken.None);
-            Receive(ReceiveModel.GetReceiveModel());
-            this.Send("?,,");
-            return true;
+        private Handler _handler;
+        internal Engine _engine;
+
+        public CancellationToken CancellationToken 
+        { 
+            get 
+            { 
+                return _engine.CancellationToken; 
+            } 
         }
-        public async void Login()
+
+        public Api()
         {
-            _snapReceiveDictionary.Clear();
-            if (!await Connect())
-            {
-                throw new Exception("Connect Error");
-            }
-            if (Session == null)
-            {
-                Session = new Session();
-            }
-            if (string.IsNullOrEmpty(Session.ClientToken))
-            {
-                WhatsAppLogin();
-            }
-            else
-            {
-                ReLogin();
-            }
+            _engine = new Engine();
+            _handler = new Handler { api = this };
+            _engine.SessionManager = new SessionManager();
+            _engine.Initialize();
+            _engine.CallEvent += CallEvent;
         }
-        public string LoadMediaInfo(string jid, string messageId, string owner)
+        public Api(SessionManagerParameters parameters)
         {
-            return this.SendQuery("media", jid, messageId, "", owner, "", 0, 0);
+            _engine = new Engine();
+            _handler = new Handler { api = this };
+            _engine.SessionManager = new SessionManager(parameters);
+            _engine.SessionManager.Read();
+            _engine.Initialize();
+            _engine.CallEvent += CallEvent;
+        }
+
+        private void CallEvent(object sender, CallEventArgs e)
+        {
+            if (e.Type == CallEventType.Handle) _handler.Controller(e.Content as ReceiveModel);
+            if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(()=>OnCodeUpdate?.Invoke(this, e.Content as string));
+            if (e.Type == CallEventType.Login)
+            {
+                _engine.SessionManager.Save();
+                Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
+            }
+            if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
+            if (e.Type == CallEventType.AccountDropped) Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
+        }
+
+        public void Start()
+        {
+            Task.Factory.StartNew(() => OnStart?.Invoke(this, CancellationToken));
+            _engine.Start();
+        }
+        public void Stop()
+        {
+            Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
+            _engine.Stop();
         }
         public void Dispose()
         {
-            _socket.CloseAsync(WebSocketCloseStatus.Empty, null, CancellationToken.None);
-        }
-        internal async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
-        {
-            return await Download(url, mediaKey, MediaTypeConst.MediaImage);
-        }
-        private async Task<byte[]> Download(string url, byte[] mediaKey, string info)
-        {
-            var memory = await url.GetStream();
-            var mk = GetMediaKeys(mediaKey, info);
-            var data = memory.ToArray();
-            var file = data.Take(data.Length - 10).ToArray();
-            var mac = data.Skip(file.Length).ToArray();
-            var sign = (mk.Iv.Concat(file).ToArray()).HMACSHA256_Encrypt(mk.MacKey);
-            if (!sign.Take(10).ToArray().ValueEquals(mac))
-            {
-                return null;
-            }
-            var fileData = file.AesCbcDecrypt(mk.CipherKey, mk.Iv);
-            return fileData;
-
-        }
-        private MediaKeys GetMediaKeys(byte[] mediaKey, string info)
-        {
-            var sharedSecretExtract = new Hkdf(HashAlgorithmName.SHA256).Extract(mediaKey);
-            var sharedSecretExpand = new Hkdf(HashAlgorithmName.SHA256).Expand(sharedSecretExtract, 112, Encoding.UTF8.GetBytes(info));
-            return new MediaKeys(sharedSecretExpand);
-        }
-        internal async Task<UploadResponse> Upload(byte[] data, string info)
-        {
-            return await await Task.Factory.StartNew(async () =>
-            {
-                var uploadResponse = new UploadResponse();
-                uploadResponse.FileLength = (ulong)data.Length;
-                uploadResponse.MediaKey = Rand.GetRandomByte(32);
-                var mk = GetMediaKeys(uploadResponse.MediaKey, MediaTypeConst.MediaImage);
-                var enc = data.AesCbcEncrypt(mk.CipherKey, mk.Iv);
-                var mac = (mk.Iv.Concat(enc).ToArray()).HMACSHA256_Encrypt(mk.MacKey).Take(10);
-                uploadResponse.FileSha256 = data.SHA256_Encrypt();
-                var joinData = enc.Concat(mac).ToArray();
-                uploadResponse.FileEncSha256 = joinData.SHA256_Encrypt();
-                var mediaConnResponse = await QueryMediaConn();
-                if (mediaConnResponse == null)
-                {
-                    return null;
-                }
-                var token = Convert.ToBase64String(uploadResponse.FileEncSha256).Replace("+", "-").Replace("/", "_");
-                var url = $"https://{mediaConnResponse.MediaConn.Hosts[0].Hostname}{MediaTypeConst.MediaTypeMap[info]}/{token}?auth={mediaConnResponse.MediaConn.Auth}&token={token}";
-                var response = await url.PostHtml(joinData, new Dictionary<string, string> {
-                    { "Origin","https://web.whatsapp.com" },
-                    { "Referer","https://web.whatsapp.com/"}
-                });
-                uploadResponse.DownloadUrl = response.RegexGetString("url\":\"([^\"]*)\"");
-                return uploadResponse;
-            }).ConfigureAwait(false);
-
-        }
-        private async Task<MediaConnResponse> QueryMediaConn()
-        {
-            MediaConnResponse connResponse = null;
-          this.SendJson("[\"query\",\"mediaConn\"]", rm => connResponse = JsonConvert.DeserializeObject<MediaConnResponse>(rm.Body));
-            await await Task.Factory.StartNew(async () =>
-            {
-                for (int i = 0; i < 100; i++)
-                {
-                    if (connResponse != null)
-                    {
-                        return;
-                    }
-                    await Task.Delay(100);
-                }
-            }).ConfigureAwait(false);
-            return connResponse;
-        }
-        internal void AddCallback(string tag, Action<ReceiveModel> action = null, int count = 0)
-        {
-            if (action != null)
-            {
-                AddSnapReceive(tag, rm =>
-                {
-                    action?.Invoke(rm);
-                    return true;
-                }, count);
-            }
-        }
-        private void Receive(ReceiveModel receiveModel)
-        {
-            Task.Factory.StartNew(async () =>
-            {
-                var receiveResult = await _socket.ReceiveAsync(receiveModel.ReceiveData, CancellationToken.None);
-                try
-                {
-                    if (receiveResult.EndOfMessage)
-                    {
-                        Receive(ReceiveModel.GetReceiveModel());
-                        receiveModel.End(receiveResult.Count, receiveResult.MessageType);
-                        await ReceiveHandle(receiveModel);
-                    }
-                    else
-                    {
-                        receiveModel.Continue(receiveResult.Count);
-                        Receive(receiveModel);
-                    }
-                }
-                catch (Exception e)
-                {
-                    _socket.Dispose();
-                    _ = Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e));
-                }
-            });
-
-        }
-        internal byte[] EncryptBinaryMessage(Node node)
-        {
-            var b = node.Marshal();
-            var iv = Convert.FromBase64String("aKs1sBxLFMBHVkUQwS/YEg=="); //GetRandom(16);
-            var cipher = b.AesCbcEncrypt(Session.EncKey, iv);
-            var cipherIv = iv.Concat(cipher).ToArray();
-            var hash = cipherIv.HMACSHA256_Encrypt(Session.MacKey);
-            var data = new byte[cipherIv.Length + 32];
-            Array.Copy(hash, data, 32);
-            Array.Copy(cipherIv, 0, data, 32, cipherIv.Length);
-            return data;
-        }
-        private bool LoginResponseHandle(ReceiveModel receive)
-        {
-            var challenge = receive.Body.RegexGetString("\"challenge\":\"([^\"]*)\"");
-            if (challenge.IsNullOrWhiteSpace())
-            {
-                var jsData = JsonConvert.DeserializeObject<dynamic>(receive.Body);
-                Session.ClientToken = jsData[1]["clientToken"];
-                Session.ServerToken = jsData[1]["serverToken"];
-                Session.Id = jsData[1]["wid"];
-                _ = Task.Factory.StartNew(() => OnLogin?.Invoke(this, Session));
-                _loginSuccess = true;
-            }
-            else
-            {
-                AddSnapReceive("s2", LoginResponseHandle);
-                ResolveChallenge(challenge);
-            }
-            return true;
-        }
-        private void ReLogin()
-        {
-            AddSnapReceive("s1", LoginResponseHandle);
-            this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
-            Task.Delay(5000).ContinueWith(t =>
-            {
-                this.SendJson($"[\"admin\",\"login\",\"{Session.ClientToken}\",\"{Session.ServerToken}\",\"{Session.ClientId}\",\"takeover\"]");
-            });
-
-        }
-        private void ResolveChallenge(string challenge)
-        {
-            var decoded = Convert.FromBase64String(challenge);
-            var loginChallenge = decoded.HMACSHA256_Encrypt(Session.MacKey);
-            this.SendJson($"[\"admin\",\"challenge\",\"{Convert.ToBase64String(loginChallenge)}\",\"{Session.ServerToken}\",\"{Session.ClientId}\"]");
-        }
-        private void WhatsAppLogin()
-        {
-            Task.Factory.StartNew(async () =>
-            {
-                var clientId = Rand.GetRandomByte(16);
-                Session.ClientId = Convert.ToBase64String(clientId);
-                var tag = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{Session.ClientId}\",true]");
-                string refUrl = null;
-                AddSnapReceive(tag, rm =>
-                {
-                    if (rm.Body.Contains("\"ref\":\""))
-                    {
-                        refUrl = rm.Body.RegexGetString("\"ref\":\"([^\"]*)\"");
-                        return true;
-                    }
-                    return false;
-                });
-                var privateKey = Curve25519.CreateRandomPrivateKey();
-                var publicKey = Curve25519.GetPublicKey(privateKey);
-                AddSnapReceive("s1", rm =>
-                {
-                    var jsData = JsonConvert.DeserializeObject<dynamic>(rm.Body);
-                    Session.ClientToken = jsData[1]["clientToken"];
-                    Session.ServerToken = jsData[1]["serverToken"];
-                    Session.Id = jsData[1]["wid"];
-                    string secret = jsData[1]["secret"];
-                    var decodedSecret = Convert.FromBase64String(secret);
-                    var pubKey = decodedSecret.Take(32).ToArray();
-                    var sharedSecret = Curve25519.GetSharedSecret(privateKey, pubKey);
-                    var data = sharedSecret.HMACSHA256_Encrypt(new byte[32]);
-                    var sharedSecretExtended = new Hkdf(HashAlgorithmName.SHA256).Expand(data, 80);
-                    var checkSecret = new byte[112];
-                    Array.Copy(decodedSecret, checkSecret, 32);
-                    Array.Copy(decodedSecret, 64, checkSecret, 32, 80);
-                    var sign = checkSecret.HMACSHA256_Encrypt(sharedSecretExtended.Skip(32).Take(32).ToArray());
-                    if (!sign.ValueEquals(decodedSecret.Skip(32).Take(32).ToArray()))
-                    {
-                        return true;
-                    }
-                    var keysEncrypted = new byte[96];
-                    Array.Copy(sharedSecretExtended, 64, keysEncrypted, 0, 16);
-                    Array.Copy(decodedSecret, 64, keysEncrypted, 16, 80);
-                    var keyDecrypted = decodedSecret.Skip(64).ToArray().AesCbcDecrypt(sharedSecretExtended.Take(32).ToArray(), sharedSecretExtended.Skip(64).ToArray());
-                    Session.EncKey = keyDecrypted.Take(32).ToArray();
-                    Session.MacKey = keyDecrypted.Skip(32).ToArray();
-                    _ = Task.Factory.StartNew(() => OnLogin?.Invoke(this, Session));
-                    _loginSuccess = true;
-                    return true;
-                });
-                while (refUrl.IsNullOrWhiteSpace())
-                {
-                    await Task.Delay(100);
-                }
-                var loginUrl = $"{refUrl},{Convert.ToBase64String(publicKey)},{Session.ClientId}";
-                _ = Task.Factory.StartNew(() => OnQRUpdate?.Invoke(this, loginUrl));
-
-            });
-
-        }
-        internal async Task<Node> GetDecryptNode(ReceiveModel rm)
-        {
-            if (rm.Nodes != null)
-            {
-                return rm.Nodes;
-            }
-            if (rm.MessageType == WebSocketMessageType.Binary && rm.ByteData.Length >= 33)
-            {
-                while (!_loginSuccess)
-                {
-                    await Task.Delay(100);
-                }
-                var tindex = Array.IndexOf(rm.ByteData, (byte)44, 0, rm.ByteData.Length);
-                var wd = rm.ByteData.Skip(tindex + 1).ToArray();
-                var data = wd.Skip(32).ToArray();
-                if (!wd.Take(32).ToArray().ValueEquals(data.HMACSHA256_Encrypt(Session.MacKey)))
-                {
-                    return null;
-                }
-                var decryptData = data.AesCbcDecrypt(Session.EncKey);
-                var bd = new BinaryDecoder(decryptData);
-                var node = bd.ReadNode();
-                rm.Nodes = node;
-                return rm.Nodes;
-            }
-            return null;
-        }
-        private async Task ReceiveHandle(ReceiveModel rm) 
-        {
-            SyncReceive.Select(rm);
-            var node = await GetDecryptNode(rm);
-            if (rm.Body != null && rm.Body.Contains("Conn") && Info == null)
-            {
-                Info = new InfoApi(this);
-                var json = JArray.Parse(rm.Body)[1];
-                Info.Battery = Convert.ToInt32(json["battery"]);
-                Info.PushName = json["pushname"].ToString();
-                Info.UserId = Session.Id;
-                Info.Plugged = Convert.ToBoolean(json["plugged"]);
-                Info.Connect = Convert.ToBoolean(json["connected"]);
-                Info.Version = json["phone"]["wa_version"].ToString();
-                Info.OSVersion = json["phone"]["os_version"].ToString();
-                Info.DeviceManufacturer = json["phone"]["device_manufacturer"].ToString();
-                Info.DeviceModel = json["phone"]["device_model"].ToString();
-                Info.Platform = json["platform"].ToString();
-            }
-            if (rm.Tag != null && _snapReceiveDictionary.ContainsKey(rm.Tag))
-            {
-                var result = await Task.Factory.StartNew(() => _snapReceiveDictionary[rm.Tag](rm));
-                if (result)
-                {
-                    lock (_snapReceiveLock)
-                    {
-                        if (_snapReceiveRemoveCountDictionary.ContainsKey(rm.Tag))
-                        {
-                            if (_snapReceiveRemoveCountDictionary[rm.Tag] <= 1)
-                            {
-                                _snapReceiveRemoveCountDictionary.Remove(rm.Tag);
-                            }
-                            else
-                            {
-                                _snapReceiveRemoveCountDictionary[rm.Tag] = _snapReceiveRemoveCountDictionary[rm.Tag] - 1;
-                                return;
-                            }
-                        }
-                        _snapReceiveDictionary.Remove(rm.Tag);
-                    }
-                    return;
-                }
-            }
-            if (node != null)
-            {
-                if (node.Content is List<Node> nodeList)
-                {
-                    foreach (var item in nodeList)
-                    {
-                        if (item.Description == "message")
-                        {
-                            var messageData = item.Content as byte[];
-                            var ms = WebMessageInfo.Parser.ParseFrom(messageData);
-                            //Console.WriteLine(JsonConvert.SerializeObject(ms));
-                            if (ms.Message != null)
-                            {
-                                if (ms.Message.ImageMessage != null && OnImageMessage != null)
-                                {
-                                    _ = Task.Factory.StartNew(async () =>
-                                    {
-                                        try
-                                        {
-
-                                            var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
-                                            OnImageMessage.Invoke(this, new Messages.ImageMessage
-                                            {
-                                                TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
-                                                ChatId = ms.Key.RemoteJid,
-                                                Text = ms.Message.ImageMessage.Caption,
-                                                ImageData = fileData,
-                                                MessageId = ms.Key.Id,
-                                                IsIncoming = !ms.Key.FromMe,
-                                                Status = (int)ms.Status,
-                                            });
-                                        }
-                                        catch
-                                        {
-                                            LoadMediaInfo(ms.Key.RemoteJid, ms.Key.Id, ms.Key.FromMe ? "true" : "false");
-                                            try
-                                            {
-                                                var fileData = await DownloadImage(ms.Message.ImageMessage.Url, ms.Message.ImageMessage.MediaKey.ToArray());
-                                                var ignore = Task.Factory.StartNew(() => OnImageMessage.Invoke(this, new Messages.ImageMessage
-                                                {
-                                                    TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
-                                                    ChatId = ms.Key.RemoteJid,
-                                                    Text = ms.Message.ImageMessage.Caption,
-                                                    ImageData = fileData,
-                                                }));
-                                            }
-                                            catch
-                                            {
-                                                return;
-                                            }
-                                        }
-                                    });
-                                }
-                                else if (ms.Message.HasConversation && OnTextMessage != null)
-                                {
-                                    _ = Task.Factory.StartNew(() => OnTextMessage?.Invoke(this, new TextMessage
-                                    {
-                                        TimeStamp = ms.MessageTimestamp.ToString().GetDateTime(),
-                                        ChatId = ms.Key.RemoteJid,
-                                        Text = ms.Message.Conversation,
-                                        MessageId = ms.Key.Id,
-                                        IsIncoming = !ms.Key.FromMe,
-                                        Status = (int)ms.Status,
-                                    }));
-                                }
-                                else
-                                {
-                                    InvokeReceiveRemainingMessagesEvent(messageData);
-                                }
-                            }
-                            else
-                            {
-                                InvokeReceiveRemainingMessagesEvent(messageData);
-                            }
-                        }
-                        else if (item.Content is byte[] bs)
-                        {
-                            InvokeReceiveRemainingMessagesEvent(bs);
-                        }
-                    }
-                }
-                else
-                {
-                    InvokeReceiveRemainingMessagesEvent(rm);
-                }
-            }
-            else
-            {
-                InvokeReceiveRemainingMessagesEvent(rm);
-            }
-        }
-        private void InvokeReceiveRemainingMessagesEvent(ReceiveModel receiveModel)
-        {
-            Task.Factory.StartNew(() => OnReceive?.Invoke(this, receiveModel));
-        }
-        private void InvokeReceiveRemainingMessagesEvent(byte[] data)
-        {
-            InvokeReceiveRemainingMessagesEvent(ReceiveModel.GetReceiveModel(data));
-        }
-        private void AddSnapReceive(string tag, Func<ReceiveModel, bool> func, int count = 0)
-        {
-            if (count != 0)
-            {
-                _snapReceiveRemoveCountDictionary.Add(tag, count);
-            }
-            _snapReceiveDictionary.Add(tag, func);
+            Task.Factory.StartNew(() => OnDispose?.Invoke(this, CancellationToken));
+            _engine.Dispose();
+            GC.Collect();
         }
     }
 }

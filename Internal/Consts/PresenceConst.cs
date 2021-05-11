@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WAX.Consts
+namespace waxnet.Internal.Consts
 {
     struct PresenceConst
     {

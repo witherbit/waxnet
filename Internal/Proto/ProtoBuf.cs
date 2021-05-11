@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Proto {
+namespace waxnet.Internal.Proto {
 
     /// <summary>Holder for reflection information generated from def.proto</summary>
     internal static partial class DefReflection {
@@ -430,62 +430,62 @@ namespace Proto {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HydratedQuickReplyButton), global::Proto.HydratedQuickReplyButton.Parser, new[]{ "DisplayText", "ChatId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HydratedURLButton), global::Proto.HydratedURLButton.Parser, new[]{ "DisplayText", "Url" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HydratedCallButton), global::Proto.HydratedCallButton.Parser, new[]{ "DisplayText", "PhoneNumber" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HydratedTemplateButton), global::Proto.HydratedTemplateButton.Parser, new[]{ "Index", "QuickReplyButton", "UrlButton", "CallButton" }, new[]{ "HydratedButton" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.QuickReplyButton), global::Proto.QuickReplyButton.Parser, new[]{ "DisplayText", "ChatId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.URLButton), global::Proto.URLButton.Parser, new[]{ "DisplayText", "Url" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CallButton), global::Proto.CallButton.Parser, new[]{ "DisplayText", "PhoneNumber" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.TemplateButton), global::Proto.TemplateButton.Parser, new[]{ "Index", "QuickReplyButton", "UrlButton", "CallButton" }, new[]{ "Button" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Location), global::Proto.Location.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "Name" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Point), global::Proto.Point.Parser, new[]{ "XDeprecated", "YDeprecated", "X", "Y" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.InteractiveAnnotation), global::Proto.InteractiveAnnotation.Parser, new[]{ "PolygonVertices", "Location" }, new[]{ "Action" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.AdReplyInfo), global::Proto.AdReplyInfo.Parser, new[]{ "AdvertiserName", "MediaType", "JpegThumbnail", "Caption" }, null, new[]{ typeof(global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ContextInfo), global::Proto.ContextInfo.Parser, new[]{ "StanzaId", "Participant", "QuotedMessage", "RemoteJid", "MentionedJid", "ConversionSource", "ConversionData", "ConversionDelaySeconds", "ForwardingScore", "IsForwarded", "QuotedAd", "PlaceholderKey", "Expiration", "EphemeralSettingTimestamp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SenderKeyDistributionMessage), global::Proto.SenderKeyDistributionMessage.Parser, new[]{ "GroupId", "AxolotlSenderKeyDistributionMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ImageMessage), global::Proto.ImageMessage.Parser, new[]{ "Url", "Mimetype", "Caption", "FileSha256", "FileLength", "Height", "Width", "MediaKey", "FileEncSha256", "InteractiveAnnotations", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo", "FirstScanSidecar", "FirstScanLength", "ExperimentGroupId", "ScansSidecar", "ScanLengths", "MidQualityFileSha256", "MidQualityFileEncSha256" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ContactMessage), global::Proto.ContactMessage.Parser, new[]{ "DisplayName", "Vcard", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.LocationMessage), global::Proto.LocationMessage.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "Name", "Address", "Url", "IsLive", "AccuracyInMeters", "SpeedInMps", "DegreesClockwiseFromMagneticNorth", "Comment", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ExtendedTextMessage), global::Proto.ExtendedTextMessage.Parser, new[]{ "Text", "MatchedText", "CanonicalUrl", "Description", "Title", "TextArgb", "BackgroundArgb", "Font", "PreviewType", "JpegThumbnail", "ContextInfo", "DoNotPlayInline" }, null, new[]{ typeof(global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE), typeof(global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DocumentMessage), global::Proto.DocumentMessage.Parser, new[]{ "Url", "Mimetype", "Title", "FileSha256", "FileLength", "PageCount", "MediaKey", "FileName", "FileEncSha256", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.AudioMessage), global::Proto.AudioMessage.Parser, new[]{ "Url", "Mimetype", "FileSha256", "FileLength", "Seconds", "Ptt", "MediaKey", "FileEncSha256", "DirectPath", "MediaKeyTimestamp", "ContextInfo", "StreamingSidecar" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.VideoMessage), global::Proto.VideoMessage.Parser, new[]{ "Url", "Mimetype", "FileSha256", "FileLength", "Seconds", "MediaKey", "Caption", "GifPlayback", "Height", "Width", "FileEncSha256", "InteractiveAnnotations", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo", "StreamingSidecar", "GifAttribution" }, null, new[]{ typeof(global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Call), global::Proto.Call.Parser, new[]{ "CallKey" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Chat), global::Proto.Chat.Parser, new[]{ "DisplayName", "ChatId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ProtocolMessage), global::Proto.ProtocolMessage.Parser, new[]{ "Key", "Type", "EphemeralExpiration", "EphemeralSettingTimestamp", "HistorySyncNotification" }, null, new[]{ typeof(global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HistorySyncNotification), global::Proto.HistorySyncNotification.Parser, new[]{ "FileSha256", "FileLength", "MediaKey", "FileEncSha256", "DirectPath", "SyncType", "ChunkOrder" }, null, new[]{ typeof(global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ContactsArrayMessage), global::Proto.ContactsArrayMessage.Parser, new[]{ "DisplayName", "Contacts", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HSMCurrency), global::Proto.HSMCurrency.Parser, new[]{ "CurrencyCode", "Amount1000" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HSMDateTimeComponent), global::Proto.HSMDateTimeComponent.Parser, new[]{ "DayOfWeek", "Year", "Month", "DayOfMonth", "Hour", "Minute", "Calendar" }, null, new[]{ typeof(global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE), typeof(global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HSMDateTimeUnixEpoch), global::Proto.HSMDateTimeUnixEpoch.Parser, new[]{ "Timestamp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HSMDateTime), global::Proto.HSMDateTime.Parser, new[]{ "Component", "UnixEpoch" }, new[]{ "DatetimeOneof" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HSMLocalizableParameter), global::Proto.HSMLocalizableParameter.Parser, new[]{ "Default", "Currency", "DateTime" }, new[]{ "ParamOneof" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HighlyStructuredMessage), global::Proto.HighlyStructuredMessage.Parser, new[]{ "Namespace", "ElementName", "Params", "FallbackLg", "FallbackLc", "LocalizableParams", "DeterministicLg", "DeterministicLc", "HydratedHsm" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SendPaymentMessage), global::Proto.SendPaymentMessage.Parser, new[]{ "NoteMessage", "RequestMessageKey" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.RequestPaymentMessage), global::Proto.RequestPaymentMessage.Parser, new[]{ "NoteMessage", "CurrencyCodeIso4217", "Amount1000", "RequestFrom", "ExpiryTimestamp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DeclinePaymentRequestMessage), global::Proto.DeclinePaymentRequestMessage.Parser, new[]{ "Key" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CancelPaymentRequestMessage), global::Proto.CancelPaymentRequestMessage.Parser, new[]{ "Key" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.LiveLocationMessage), global::Proto.LiveLocationMessage.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "AccuracyInMeters", "SpeedInMps", "DegreesClockwiseFromMagneticNorth", "Caption", "SequenceNumber", "TimeOffset", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.StickerMessage), global::Proto.StickerMessage.Parser, new[]{ "Url", "FileSha256", "FileEncSha256", "MediaKey", "Mimetype", "Height", "Width", "DirectPath", "FileLength", "MediaKeyTimestamp", "FirstFrameLength", "FirstFrameSidecar", "IsAnimated", "PngThumbnail", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.FourRowTemplate), global::Proto.FourRowTemplate.Parser, new[]{ "Content", "Footer", "Buttons", "DocumentMessage", "HighlyStructuredMessage", "ImageMessage", "VideoMessage", "LocationMessage" }, new[]{ "Title" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HydratedFourRowTemplate), global::Proto.HydratedFourRowTemplate.Parser, new[]{ "HydratedContentText", "HydratedFooterText", "HydratedButtons", "TemplateId", "DocumentMessage", "HydratedTitleText", "ImageMessage", "VideoMessage", "LocationMessage" }, new[]{ "Title" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.TemplateMessage), global::Proto.TemplateMessage.Parser, new[]{ "ContextInfo", "HydratedTemplate", "FourRowTemplate", "HydratedFourRowTemplate" }, new[]{ "Format" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.TemplateButtonReplyMessage), global::Proto.TemplateButtonReplyMessage.Parser, new[]{ "SelectedId", "SelectedDisplayText", "ContextInfo", "SelectedIndex" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CatalogSnapshot), global::Proto.CatalogSnapshot.Parser, new[]{ "CatalogImage", "Title", "Description" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ProductSnapshot), global::Proto.ProductSnapshot.Parser, new[]{ "ProductImage", "ProductId", "Title", "Description", "CurrencyCode", "PriceAmount1000", "RetailerId", "Url", "ProductImageCount", "FirstImageId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.ProductMessage), global::Proto.ProductMessage.Parser, new[]{ "Product", "BusinessOwnerJid", "Catalog", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GroupInviteMessage), global::Proto.GroupInviteMessage.Parser, new[]{ "GroupJid", "InviteCode", "InviteExpiration", "GroupName", "JpegThumbnail", "Caption", "ContextInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DeviceSentMessage), global::Proto.DeviceSentMessage.Parser, new[]{ "DestinationJid", "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DeviceSyncMessage), global::Proto.DeviceSyncMessage.Parser, new[]{ "SerializedXmlBytes" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Message), global::Proto.Message.Parser, new[]{ "Conversation", "SenderKeyDistributionMessage", "ImageMessage", "ContactMessage", "LocationMessage", "ExtendedTextMessage", "DocumentMessage", "AudioMessage", "VideoMessage", "Call", "Chat", "ProtocolMessage", "ContactsArrayMessage", "HighlyStructuredMessage", "FastRatchetKeySenderKeyDistributionMessage", "SendPaymentMessage", "LiveLocationMessage", "RequestPaymentMessage", "DeclinePaymentRequestMessage", "CancelPaymentRequestMessage", "TemplateMessage", "StickerMessage", "GroupInviteMessage", "TemplateButtonReplyMessage", "ProductMessage", "DeviceSentMessage", "DeviceSyncMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MessageKey), global::Proto.MessageKey.Parser, new[]{ "RemoteJid", "FromMe", "ChatId", "Participant" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WebFeatures), global::Proto.WebFeatures.Parser, new[]{ "LabelsDisplay", "VoipIndividualOutgoing", "GroupsV3", "GroupsV3Create", "ChangeNumberV2", "QueryStatusV3Thumbnail", "LiveLocations", "QueryVname", "VoipIndividualIncoming", "QuickRepliesQuery", "Payments", "StickerPackQuery", "LiveLocationsFinal", "LabelsEdit", "MediaUpload", "MediaUploadRichQuickReplies", "VnameV2", "VideoPlaybackUrl", "StatusRanking", "VoipIndividualVideo", "ThirdPartyStickers", "FrequentlyForwardedSetting", "GroupsV4JoinPermission", "RecentStickers", "Catalog", "StarredStickers", "VoipGroupCall", "TemplateMessage", "TemplateMessageInteractivity", "EphemeralMessages", "E2ENotificationSync", "RecentStickersV2" }, null, new[]{ typeof(global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.TabletNotificationsInfo), global::Proto.TabletNotificationsInfo.Parser, new[]{ "Timestamp", "UnreadChats", "NotifyMessageCount", "NotifyMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NotificationMessageInfo), global::Proto.NotificationMessageInfo.Parser, new[]{ "Key", "Message", "MessageTimestamp", "Participant" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WebNotificationsInfo), global::Proto.WebNotificationsInfo.Parser, new[]{ "Timestamp", "UnreadChats", "NotifyMessageCount", "NotifyMessages" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PaymentInfo), global::Proto.PaymentInfo.Parser, new[]{ "CurrencyDeprecated", "Amount1000", "ReceiverJid", "Status", "TransactionTimestamp", "RequestMessageKey", "ExpiryTimestamp", "Futureproofed", "Currency", "TxnStatus" }, null, new[]{ typeof(global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY), typeof(global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS), typeof(global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WebMessageInfo), global::Proto.WebMessageInfo.Parser, new[]{ "Key", "Message", "MessageTimestamp", "Status", "Participant", "Ignore", "Starred", "Broadcast", "PushName", "MediaCiphertextSha256", "Multicast", "UrlText", "UrlNumber", "MessageStubType", "ClearMedia", "MessageStubParameters", "Duration", "Labels", "PaymentInfo", "FinalLiveLocation", "QuotedPaymentInfo", "EphemeralStartTimestamp", "EphemeralDuration" }, null, new[]{ typeof(global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS), typeof(global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HydratedQuickReplyButton), global::waxnet.Internal.Proto.HydratedQuickReplyButton.Parser, new[]{ "DisplayText", "ChatId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HydratedURLButton), global::waxnet.Internal.Proto.HydratedURLButton.Parser, new[]{ "DisplayText", "Url" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HydratedCallButton), global::waxnet.Internal.Proto.HydratedCallButton.Parser, new[]{ "DisplayText", "PhoneNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HydratedTemplateButton), global::waxnet.Internal.Proto.HydratedTemplateButton.Parser, new[]{ "Index", "QuickReplyButton", "UrlButton", "CallButton" }, new[]{ "HydratedButton" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.QuickReplyButton), global::waxnet.Internal.Proto.QuickReplyButton.Parser, new[]{ "DisplayText", "ChatId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.URLButton), global::waxnet.Internal.Proto.URLButton.Parser, new[]{ "DisplayText", "Url" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.CallButton), global::waxnet.Internal.Proto.CallButton.Parser, new[]{ "DisplayText", "PhoneNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.TemplateButton), global::waxnet.Internal.Proto.TemplateButton.Parser, new[]{ "Index", "QuickReplyButton", "UrlButton", "CallButton" }, new[]{ "Button" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.Location), global::waxnet.Internal.Proto.Location.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "Name" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.Point), global::waxnet.Internal.Proto.Point.Parser, new[]{ "XDeprecated", "YDeprecated", "X", "Y" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.InteractiveAnnotation), global::waxnet.Internal.Proto.InteractiveAnnotation.Parser, new[]{ "PolygonVertices", "Location" }, new[]{ "Action" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.AdReplyInfo), global::waxnet.Internal.Proto.AdReplyInfo.Parser, new[]{ "AdvertiserName", "MediaType", "JpegThumbnail", "Caption" }, null, new[]{ typeof(global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ContextInfo), global::waxnet.Internal.Proto.ContextInfo.Parser, new[]{ "StanzaId", "Participant", "QuotedMessage", "RemoteJid", "MentionedJid", "ConversionSource", "ConversionData", "ConversionDelaySeconds", "ForwardingScore", "IsForwarded", "QuotedAd", "PlaceholderKey", "Expiration", "EphemeralSettingTimestamp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.SenderKeyDistributionMessage), global::waxnet.Internal.Proto.SenderKeyDistributionMessage.Parser, new[]{ "GroupId", "AxolotlSenderKeyDistributionMessage" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ImageMessage), global::waxnet.Internal.Proto.ImageMessage.Parser, new[]{ "Url", "Mimetype", "Caption", "FileSha256", "FileLength", "Height", "Width", "MediaKey", "FileEncSha256", "InteractiveAnnotations", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo", "FirstScanSidecar", "FirstScanLength", "ExperimentGroupId", "ScansSidecar", "ScanLengths", "MidQualityFileSha256", "MidQualityFileEncSha256" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ContactMessage), global::waxnet.Internal.Proto.ContactMessage.Parser, new[]{ "DisplayName", "Vcard", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.LocationMessage), global::waxnet.Internal.Proto.LocationMessage.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "Name", "Address", "Url", "IsLive", "AccuracyInMeters", "SpeedInMps", "DegreesClockwiseFromMagneticNorth", "Comment", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ExtendedTextMessage), global::waxnet.Internal.Proto.ExtendedTextMessage.Parser, new[]{ "Text", "MatchedText", "CanonicalUrl", "Description", "Title", "TextArgb", "BackgroundArgb", "Font", "PreviewType", "JpegThumbnail", "ContextInfo", "DoNotPlayInline" }, null, new[]{ typeof(global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE), typeof(global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.DocumentMessage), global::waxnet.Internal.Proto.DocumentMessage.Parser, new[]{ "Url", "Mimetype", "Title", "FileSha256", "FileLength", "PageCount", "MediaKey", "FileName", "FileEncSha256", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.AudioMessage), global::waxnet.Internal.Proto.AudioMessage.Parser, new[]{ "Url", "Mimetype", "FileSha256", "FileLength", "Seconds", "Ptt", "MediaKey", "FileEncSha256", "DirectPath", "MediaKeyTimestamp", "ContextInfo", "StreamingSidecar" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.VideoMessage), global::waxnet.Internal.Proto.VideoMessage.Parser, new[]{ "Url", "Mimetype", "FileSha256", "FileLength", "Seconds", "MediaKey", "Caption", "GifPlayback", "Height", "Width", "FileEncSha256", "InteractiveAnnotations", "DirectPath", "MediaKeyTimestamp", "JpegThumbnail", "ContextInfo", "StreamingSidecar", "GifAttribution" }, null, new[]{ typeof(global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.Call), global::waxnet.Internal.Proto.Call.Parser, new[]{ "CallKey" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.Chat), global::waxnet.Internal.Proto.Chat.Parser, new[]{ "DisplayName", "ChatId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ProtocolMessage), global::waxnet.Internal.Proto.ProtocolMessage.Parser, new[]{ "Key", "Type", "EphemeralExpiration", "EphemeralSettingTimestamp", "HistorySyncNotification" }, null, new[]{ typeof(global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HistorySyncNotification), global::waxnet.Internal.Proto.HistorySyncNotification.Parser, new[]{ "FileSha256", "FileLength", "MediaKey", "FileEncSha256", "DirectPath", "SyncType", "ChunkOrder" }, null, new[]{ typeof(global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ContactsArrayMessage), global::waxnet.Internal.Proto.ContactsArrayMessage.Parser, new[]{ "DisplayName", "Contacts", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HSMCurrency), global::waxnet.Internal.Proto.HSMCurrency.Parser, new[]{ "CurrencyCode", "Amount1000" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HSMDateTimeComponent), global::waxnet.Internal.Proto.HSMDateTimeComponent.Parser, new[]{ "DayOfWeek", "Year", "Month", "DayOfMonth", "Hour", "Minute", "Calendar" }, null, new[]{ typeof(global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE), typeof(global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch), global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch.Parser, new[]{ "Timestamp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HSMDateTime), global::waxnet.Internal.Proto.HSMDateTime.Parser, new[]{ "Component", "UnixEpoch" }, new[]{ "DatetimeOneof" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HSMLocalizableParameter), global::waxnet.Internal.Proto.HSMLocalizableParameter.Parser, new[]{ "Default", "Currency", "DateTime" }, new[]{ "ParamOneof" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HighlyStructuredMessage), global::waxnet.Internal.Proto.HighlyStructuredMessage.Parser, new[]{ "Namespace", "ElementName", "Params", "FallbackLg", "FallbackLc", "LocalizableParams", "DeterministicLg", "DeterministicLc", "HydratedHsm" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.SendPaymentMessage), global::waxnet.Internal.Proto.SendPaymentMessage.Parser, new[]{ "NoteMessage", "RequestMessageKey" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.RequestPaymentMessage), global::waxnet.Internal.Proto.RequestPaymentMessage.Parser, new[]{ "NoteMessage", "CurrencyCodeIso4217", "Amount1000", "RequestFrom", "ExpiryTimestamp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.DeclinePaymentRequestMessage), global::waxnet.Internal.Proto.DeclinePaymentRequestMessage.Parser, new[]{ "Key" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.CancelPaymentRequestMessage), global::waxnet.Internal.Proto.CancelPaymentRequestMessage.Parser, new[]{ "Key" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.LiveLocationMessage), global::waxnet.Internal.Proto.LiveLocationMessage.Parser, new[]{ "DegreesLatitude", "DegreesLongitude", "AccuracyInMeters", "SpeedInMps", "DegreesClockwiseFromMagneticNorth", "Caption", "SequenceNumber", "TimeOffset", "JpegThumbnail", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.StickerMessage), global::waxnet.Internal.Proto.StickerMessage.Parser, new[]{ "Url", "FileSha256", "FileEncSha256", "MediaKey", "Mimetype", "Height", "Width", "DirectPath", "FileLength", "MediaKeyTimestamp", "FirstFrameLength", "FirstFrameSidecar", "IsAnimated", "PngThumbnail", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.FourRowTemplate), global::waxnet.Internal.Proto.FourRowTemplate.Parser, new[]{ "Content", "Footer", "Buttons", "DocumentMessage", "HighlyStructuredMessage", "ImageMessage", "VideoMessage", "LocationMessage" }, new[]{ "Title" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.HydratedFourRowTemplate), global::waxnet.Internal.Proto.HydratedFourRowTemplate.Parser, new[]{ "HydratedContentText", "HydratedFooterText", "HydratedButtons", "TemplateId", "DocumentMessage", "HydratedTitleText", "ImageMessage", "VideoMessage", "LocationMessage" }, new[]{ "Title" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.TemplateMessage), global::waxnet.Internal.Proto.TemplateMessage.Parser, new[]{ "ContextInfo", "HydratedTemplate", "FourRowTemplate", "HydratedFourRowTemplate" }, new[]{ "Format" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.TemplateButtonReplyMessage), global::waxnet.Internal.Proto.TemplateButtonReplyMessage.Parser, new[]{ "SelectedId", "SelectedDisplayText", "ContextInfo", "SelectedIndex" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.CatalogSnapshot), global::waxnet.Internal.Proto.CatalogSnapshot.Parser, new[]{ "CatalogImage", "Title", "Description" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ProductSnapshot), global::waxnet.Internal.Proto.ProductSnapshot.Parser, new[]{ "ProductImage", "ProductId", "Title", "Description", "CurrencyCode", "PriceAmount1000", "RetailerId", "Url", "ProductImageCount", "FirstImageId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.ProductMessage), global::waxnet.Internal.Proto.ProductMessage.Parser, new[]{ "Product", "BusinessOwnerJid", "Catalog", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.GroupInviteMessage), global::waxnet.Internal.Proto.GroupInviteMessage.Parser, new[]{ "GroupJid", "InviteCode", "InviteExpiration", "GroupName", "JpegThumbnail", "Caption", "ContextInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.DeviceSentMessage), global::waxnet.Internal.Proto.DeviceSentMessage.Parser, new[]{ "DestinationJid", "Message" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.DeviceSyncMessage), global::waxnet.Internal.Proto.DeviceSyncMessage.Parser, new[]{ "SerializedXmlBytes" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.Message), global::waxnet.Internal.Proto.Message.Parser, new[]{ "Conversation", "SenderKeyDistributionMessage", "ImageMessage", "ContactMessage", "LocationMessage", "ExtendedTextMessage", "DocumentMessage", "AudioMessage", "VideoMessage", "Call", "Chat", "ProtocolMessage", "ContactsArrayMessage", "HighlyStructuredMessage", "FastRatchetKeySenderKeyDistributionMessage", "SendPaymentMessage", "LiveLocationMessage", "RequestPaymentMessage", "DeclinePaymentRequestMessage", "CancelPaymentRequestMessage", "TemplateMessage", "StickerMessage", "GroupInviteMessage", "TemplateButtonReplyMessage", "ProductMessage", "DeviceSentMessage", "DeviceSyncMessage" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.MessageKey), global::waxnet.Internal.Proto.MessageKey.Parser, new[]{ "RemoteJid", "FromMe", "ChatId", "Participant" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.WebFeatures), global::waxnet.Internal.Proto.WebFeatures.Parser, new[]{ "LabelsDisplay", "VoipIndividualOutgoing", "GroupsV3", "GroupsV3Create", "ChangeNumberV2", "QueryStatusV3Thumbnail", "LiveLocations", "QueryVname", "VoipIndividualIncoming", "QuickRepliesQuery", "Payments", "StickerPackQuery", "LiveLocationsFinal", "LabelsEdit", "MediaUpload", "MediaUploadRichQuickReplies", "VnameV2", "VideoPlaybackUrl", "StatusRanking", "VoipIndividualVideo", "ThirdPartyStickers", "FrequentlyForwardedSetting", "GroupsV4JoinPermission", "RecentStickers", "Catalog", "StarredStickers", "VoipGroupCall", "TemplateMessage", "TemplateMessageInteractivity", "EphemeralMessages", "E2ENotificationSync", "RecentStickersV2" }, null, new[]{ typeof(global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.TabletNotificationsInfo), global::waxnet.Internal.Proto.TabletNotificationsInfo.Parser, new[]{ "Timestamp", "UnreadChats", "NotifyMessageCount", "NotifyMessage" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.NotificationMessageInfo), global::waxnet.Internal.Proto.NotificationMessageInfo.Parser, new[]{ "Key", "Message", "MessageTimestamp", "Participant" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.WebNotificationsInfo), global::waxnet.Internal.Proto.WebNotificationsInfo.Parser, new[]{ "Timestamp", "UnreadChats", "NotifyMessageCount", "NotifyMessages" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.PaymentInfo), global::waxnet.Internal.Proto.PaymentInfo.Parser, new[]{ "CurrencyDeprecated", "Amount1000", "ReceiverJid", "Status", "TransactionTimestamp", "RequestMessageKey", "ExpiryTimestamp", "Futureproofed", "Currency", "TxnStatus" }, null, new[]{ typeof(global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY), typeof(global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS), typeof(global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::waxnet.Internal.Proto.WebMessageInfo), global::waxnet.Internal.Proto.WebMessageInfo.Parser, new[]{ "Key", "Message", "MessageTimestamp", "Status", "Participant", "Ignore", "Starred", "Broadcast", "PushName", "MediaCiphertextSha256", "Multicast", "UrlText", "UrlNumber", "MessageStubType", "ClearMedia", "MessageStubParameters", "Duration", "Labels", "PaymentInfo", "FinalLiveLocation", "QuotedPaymentInfo", "EphemeralStartTimestamp", "EphemeralDuration" }, null, new[]{ typeof(global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS), typeof(global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) }, null, null)
           }));
     }
     #endregion
@@ -504,7 +504,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[0]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -736,7 +736,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[1]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -968,7 +968,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[2]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1201,7 +1201,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[3]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1267,8 +1267,8 @@ namespace Proto {
     /// <summary>Field number for the "quickReplyButton" field.</summary>
     public const int QuickReplyButtonFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HydratedQuickReplyButton QuickReplyButton {
-      get { return hydratedButtonCase_ == HydratedButtonOneofCase.QuickReplyButton ? (global::Proto.HydratedQuickReplyButton) hydratedButton_ : null; }
+    public global::waxnet.Internal.Proto.HydratedQuickReplyButton QuickReplyButton {
+      get { return hydratedButtonCase_ == HydratedButtonOneofCase.QuickReplyButton ? (global::waxnet.Internal.Proto.HydratedQuickReplyButton) hydratedButton_ : null; }
       set {
         hydratedButton_ = value;
         hydratedButtonCase_ = value == null ? HydratedButtonOneofCase.None : HydratedButtonOneofCase.QuickReplyButton;
@@ -1278,8 +1278,8 @@ namespace Proto {
     /// <summary>Field number for the "urlButton" field.</summary>
     public const int UrlButtonFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HydratedURLButton UrlButton {
-      get { return hydratedButtonCase_ == HydratedButtonOneofCase.UrlButton ? (global::Proto.HydratedURLButton) hydratedButton_ : null; }
+    public global::waxnet.Internal.Proto.HydratedURLButton UrlButton {
+      get { return hydratedButtonCase_ == HydratedButtonOneofCase.UrlButton ? (global::waxnet.Internal.Proto.HydratedURLButton) hydratedButton_ : null; }
       set {
         hydratedButton_ = value;
         hydratedButtonCase_ = value == null ? HydratedButtonOneofCase.None : HydratedButtonOneofCase.UrlButton;
@@ -1289,8 +1289,8 @@ namespace Proto {
     /// <summary>Field number for the "callButton" field.</summary>
     public const int CallButtonFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HydratedCallButton CallButton {
-      get { return hydratedButtonCase_ == HydratedButtonOneofCase.CallButton ? (global::Proto.HydratedCallButton) hydratedButton_ : null; }
+    public global::waxnet.Internal.Proto.HydratedCallButton CallButton {
+      get { return hydratedButtonCase_ == HydratedButtonOneofCase.CallButton ? (global::waxnet.Internal.Proto.HydratedCallButton) hydratedButton_ : null; }
       set {
         hydratedButton_ = value;
         hydratedButtonCase_ = value == null ? HydratedButtonOneofCase.None : HydratedButtonOneofCase.CallButton;
@@ -1441,19 +1441,19 @@ namespace Proto {
       switch (other.HydratedButtonCase) {
         case HydratedButtonOneofCase.QuickReplyButton:
           if (QuickReplyButton == null) {
-            QuickReplyButton = new global::Proto.HydratedQuickReplyButton();
+            QuickReplyButton = new global::waxnet.Internal.Proto.HydratedQuickReplyButton();
           }
           QuickReplyButton.MergeFrom(other.QuickReplyButton);
           break;
         case HydratedButtonOneofCase.UrlButton:
           if (UrlButton == null) {
-            UrlButton = new global::Proto.HydratedURLButton();
+            UrlButton = new global::waxnet.Internal.Proto.HydratedURLButton();
           }
           UrlButton.MergeFrom(other.UrlButton);
           break;
         case HydratedButtonOneofCase.CallButton:
           if (CallButton == null) {
-            CallButton = new global::Proto.HydratedCallButton();
+            CallButton = new global::waxnet.Internal.Proto.HydratedCallButton();
           }
           CallButton.MergeFrom(other.CallButton);
           break;
@@ -1474,7 +1474,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.HydratedQuickReplyButton subBuilder = new global::Proto.HydratedQuickReplyButton();
+            global::waxnet.Internal.Proto.HydratedQuickReplyButton subBuilder = new global::waxnet.Internal.Proto.HydratedQuickReplyButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.QuickReplyButton) {
               subBuilder.MergeFrom(QuickReplyButton);
             }
@@ -1483,7 +1483,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HydratedURLButton subBuilder = new global::Proto.HydratedURLButton();
+            global::waxnet.Internal.Proto.HydratedURLButton subBuilder = new global::waxnet.Internal.Proto.HydratedURLButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.UrlButton) {
               subBuilder.MergeFrom(UrlButton);
             }
@@ -1492,7 +1492,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.HydratedCallButton subBuilder = new global::Proto.HydratedCallButton();
+            global::waxnet.Internal.Proto.HydratedCallButton subBuilder = new global::waxnet.Internal.Proto.HydratedCallButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.CallButton) {
               subBuilder.MergeFrom(CallButton);
             }
@@ -1519,7 +1519,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.HydratedQuickReplyButton subBuilder = new global::Proto.HydratedQuickReplyButton();
+            global::waxnet.Internal.Proto.HydratedQuickReplyButton subBuilder = new global::waxnet.Internal.Proto.HydratedQuickReplyButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.QuickReplyButton) {
               subBuilder.MergeFrom(QuickReplyButton);
             }
@@ -1528,7 +1528,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HydratedURLButton subBuilder = new global::Proto.HydratedURLButton();
+            global::waxnet.Internal.Proto.HydratedURLButton subBuilder = new global::waxnet.Internal.Proto.HydratedURLButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.UrlButton) {
               subBuilder.MergeFrom(UrlButton);
             }
@@ -1537,7 +1537,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.HydratedCallButton subBuilder = new global::Proto.HydratedCallButton();
+            global::waxnet.Internal.Proto.HydratedCallButton subBuilder = new global::waxnet.Internal.Proto.HydratedCallButton();
             if (hydratedButtonCase_ == HydratedButtonOneofCase.CallButton) {
               subBuilder.MergeFrom(CallButton);
             }
@@ -1568,7 +1568,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[4]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1597,9 +1597,9 @@ namespace Proto {
 
     /// <summary>Field number for the "displayText" field.</summary>
     public const int DisplayTextFieldNumber = 1;
-    private global::Proto.HighlyStructuredMessage displayText_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage displayText_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage DisplayText {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage DisplayText {
       get { return displayText_; }
       set {
         displayText_ = value;
@@ -1721,7 +1721,7 @@ namespace Proto {
       }
       if (other.displayText_ != null) {
         if (displayText_ == null) {
-          DisplayText = new global::Proto.HighlyStructuredMessage();
+          DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         DisplayText.MergeFrom(other.DisplayText);
       }
@@ -1744,7 +1744,7 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
@@ -1769,7 +1769,7 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
@@ -1797,7 +1797,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[5]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1826,9 +1826,9 @@ namespace Proto {
 
     /// <summary>Field number for the "displayText" field.</summary>
     public const int DisplayTextFieldNumber = 1;
-    private global::Proto.HighlyStructuredMessage displayText_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage displayText_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage DisplayText {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage DisplayText {
       get { return displayText_; }
       set {
         displayText_ = value;
@@ -1837,9 +1837,9 @@ namespace Proto {
 
     /// <summary>Field number for the "url" field.</summary>
     public const int UrlFieldNumber = 2;
-    private global::Proto.HighlyStructuredMessage url_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage url_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage Url {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage Url {
       get { return url_; }
       set {
         url_ = value;
@@ -1938,13 +1938,13 @@ namespace Proto {
       }
       if (other.displayText_ != null) {
         if (displayText_ == null) {
-          DisplayText = new global::Proto.HighlyStructuredMessage();
+          DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         DisplayText.MergeFrom(other.DisplayText);
       }
       if (other.url_ != null) {
         if (url_ == null) {
-          Url = new global::Proto.HighlyStructuredMessage();
+          Url = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         Url.MergeFrom(other.Url);
       }
@@ -1964,14 +1964,14 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
           }
           case 18: {
             if (url_ == null) {
-              Url = new global::Proto.HighlyStructuredMessage();
+              Url = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Url);
             break;
@@ -1992,14 +1992,14 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
           }
           case 18: {
             if (url_ == null) {
-              Url = new global::Proto.HighlyStructuredMessage();
+              Url = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Url);
             break;
@@ -2023,7 +2023,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[6]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2052,9 +2052,9 @@ namespace Proto {
 
     /// <summary>Field number for the "displayText" field.</summary>
     public const int DisplayTextFieldNumber = 1;
-    private global::Proto.HighlyStructuredMessage displayText_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage displayText_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage DisplayText {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage DisplayText {
       get { return displayText_; }
       set {
         displayText_ = value;
@@ -2063,9 +2063,9 @@ namespace Proto {
 
     /// <summary>Field number for the "phoneNumber" field.</summary>
     public const int PhoneNumberFieldNumber = 2;
-    private global::Proto.HighlyStructuredMessage phoneNumber_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage phoneNumber_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage PhoneNumber {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage PhoneNumber {
       get { return phoneNumber_; }
       set {
         phoneNumber_ = value;
@@ -2164,13 +2164,13 @@ namespace Proto {
       }
       if (other.displayText_ != null) {
         if (displayText_ == null) {
-          DisplayText = new global::Proto.HighlyStructuredMessage();
+          DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         DisplayText.MergeFrom(other.DisplayText);
       }
       if (other.phoneNumber_ != null) {
         if (phoneNumber_ == null) {
-          PhoneNumber = new global::Proto.HighlyStructuredMessage();
+          PhoneNumber = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         PhoneNumber.MergeFrom(other.PhoneNumber);
       }
@@ -2190,14 +2190,14 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
           }
           case 18: {
             if (phoneNumber_ == null) {
-              PhoneNumber = new global::Proto.HighlyStructuredMessage();
+              PhoneNumber = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(PhoneNumber);
             break;
@@ -2218,14 +2218,14 @@ namespace Proto {
             break;
           case 10: {
             if (displayText_ == null) {
-              DisplayText = new global::Proto.HighlyStructuredMessage();
+              DisplayText = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(DisplayText);
             break;
           }
           case 18: {
             if (phoneNumber_ == null) {
-              PhoneNumber = new global::Proto.HighlyStructuredMessage();
+              PhoneNumber = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(PhoneNumber);
             break;
@@ -2250,7 +2250,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[7]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2316,8 +2316,8 @@ namespace Proto {
     /// <summary>Field number for the "quickReplyButton" field.</summary>
     public const int QuickReplyButtonFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.QuickReplyButton QuickReplyButton {
-      get { return buttonCase_ == ButtonOneofCase.QuickReplyButton ? (global::Proto.QuickReplyButton) button_ : null; }
+    public global::waxnet.Internal.Proto.QuickReplyButton QuickReplyButton {
+      get { return buttonCase_ == ButtonOneofCase.QuickReplyButton ? (global::waxnet.Internal.Proto.QuickReplyButton) button_ : null; }
       set {
         button_ = value;
         buttonCase_ = value == null ? ButtonOneofCase.None : ButtonOneofCase.QuickReplyButton;
@@ -2327,8 +2327,8 @@ namespace Proto {
     /// <summary>Field number for the "urlButton" field.</summary>
     public const int UrlButtonFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.URLButton UrlButton {
-      get { return buttonCase_ == ButtonOneofCase.UrlButton ? (global::Proto.URLButton) button_ : null; }
+    public global::waxnet.Internal.Proto.URLButton UrlButton {
+      get { return buttonCase_ == ButtonOneofCase.UrlButton ? (global::waxnet.Internal.Proto.URLButton) button_ : null; }
       set {
         button_ = value;
         buttonCase_ = value == null ? ButtonOneofCase.None : ButtonOneofCase.UrlButton;
@@ -2338,8 +2338,8 @@ namespace Proto {
     /// <summary>Field number for the "callButton" field.</summary>
     public const int CallButtonFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.CallButton CallButton {
-      get { return buttonCase_ == ButtonOneofCase.CallButton ? (global::Proto.CallButton) button_ : null; }
+    public global::waxnet.Internal.Proto.CallButton CallButton {
+      get { return buttonCase_ == ButtonOneofCase.CallButton ? (global::waxnet.Internal.Proto.CallButton) button_ : null; }
       set {
         button_ = value;
         buttonCase_ = value == null ? ButtonOneofCase.None : ButtonOneofCase.CallButton;
@@ -2490,19 +2490,19 @@ namespace Proto {
       switch (other.ButtonCase) {
         case ButtonOneofCase.QuickReplyButton:
           if (QuickReplyButton == null) {
-            QuickReplyButton = new global::Proto.QuickReplyButton();
+            QuickReplyButton = new global::waxnet.Internal.Proto.QuickReplyButton();
           }
           QuickReplyButton.MergeFrom(other.QuickReplyButton);
           break;
         case ButtonOneofCase.UrlButton:
           if (UrlButton == null) {
-            UrlButton = new global::Proto.URLButton();
+            UrlButton = new global::waxnet.Internal.Proto.URLButton();
           }
           UrlButton.MergeFrom(other.UrlButton);
           break;
         case ButtonOneofCase.CallButton:
           if (CallButton == null) {
-            CallButton = new global::Proto.CallButton();
+            CallButton = new global::waxnet.Internal.Proto.CallButton();
           }
           CallButton.MergeFrom(other.CallButton);
           break;
@@ -2523,7 +2523,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.QuickReplyButton subBuilder = new global::Proto.QuickReplyButton();
+            global::waxnet.Internal.Proto.QuickReplyButton subBuilder = new global::waxnet.Internal.Proto.QuickReplyButton();
             if (buttonCase_ == ButtonOneofCase.QuickReplyButton) {
               subBuilder.MergeFrom(QuickReplyButton);
             }
@@ -2532,7 +2532,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.URLButton subBuilder = new global::Proto.URLButton();
+            global::waxnet.Internal.Proto.URLButton subBuilder = new global::waxnet.Internal.Proto.URLButton();
             if (buttonCase_ == ButtonOneofCase.UrlButton) {
               subBuilder.MergeFrom(UrlButton);
             }
@@ -2541,7 +2541,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.CallButton subBuilder = new global::Proto.CallButton();
+            global::waxnet.Internal.Proto.CallButton subBuilder = new global::waxnet.Internal.Proto.CallButton();
             if (buttonCase_ == ButtonOneofCase.CallButton) {
               subBuilder.MergeFrom(CallButton);
             }
@@ -2568,7 +2568,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.QuickReplyButton subBuilder = new global::Proto.QuickReplyButton();
+            global::waxnet.Internal.Proto.QuickReplyButton subBuilder = new global::waxnet.Internal.Proto.QuickReplyButton();
             if (buttonCase_ == ButtonOneofCase.QuickReplyButton) {
               subBuilder.MergeFrom(QuickReplyButton);
             }
@@ -2577,7 +2577,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.URLButton subBuilder = new global::Proto.URLButton();
+            global::waxnet.Internal.Proto.URLButton subBuilder = new global::waxnet.Internal.Proto.URLButton();
             if (buttonCase_ == ButtonOneofCase.UrlButton) {
               subBuilder.MergeFrom(UrlButton);
             }
@@ -2586,7 +2586,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.CallButton subBuilder = new global::Proto.CallButton();
+            global::waxnet.Internal.Proto.CallButton subBuilder = new global::waxnet.Internal.Proto.CallButton();
             if (buttonCase_ == ButtonOneofCase.CallButton) {
               subBuilder.MergeFrom(CallButton);
             }
@@ -2618,7 +2618,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[8]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2902,7 +2902,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[9]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3235,7 +3235,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[10]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3269,19 +3269,19 @@ namespace Proto {
 
     /// <summary>Field number for the "polygonVertices" field.</summary>
     public const int PolygonVerticesFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Proto.Point> _repeated_polygonVertices_codec
-        = pb::FieldCodec.ForMessage(10, global::Proto.Point.Parser);
-    private readonly pbc::RepeatedField<global::Proto.Point> polygonVertices_ = new pbc::RepeatedField<global::Proto.Point>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.Point> _repeated_polygonVertices_codec
+        = pb::FieldCodec.ForMessage(10, global::waxnet.Internal.Proto.Point.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.Point> polygonVertices_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.Point>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.Point> PolygonVertices {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.Point> PolygonVertices {
       get { return polygonVertices_; }
     }
 
     /// <summary>Field number for the "location" field.</summary>
     public const int LocationFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Location Location {
-      get { return actionCase_ == ActionOneofCase.Location ? (global::Proto.Location) action_ : null; }
+    public global::waxnet.Internal.Proto.Location Location {
+      get { return actionCase_ == ActionOneofCase.Location ? (global::waxnet.Internal.Proto.Location) action_ : null; }
       set {
         action_ = value;
         actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.Location;
@@ -3394,7 +3394,7 @@ namespace Proto {
       switch (other.ActionCase) {
         case ActionOneofCase.Location:
           if (Location == null) {
-            Location = new global::Proto.Location();
+            Location = new global::waxnet.Internal.Proto.Location();
           }
           Location.MergeFrom(other.Location);
           break;
@@ -3419,7 +3419,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.Location subBuilder = new global::Proto.Location();
+            global::waxnet.Internal.Proto.Location subBuilder = new global::waxnet.Internal.Proto.Location();
             if (actionCase_ == ActionOneofCase.Location) {
               subBuilder.MergeFrom(Location);
             }
@@ -3446,7 +3446,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.Location subBuilder = new global::Proto.Location();
+            global::waxnet.Internal.Proto.Location subBuilder = new global::waxnet.Internal.Proto.Location();
             if (actionCase_ == ActionOneofCase.Location) {
               subBuilder.MergeFrom(Location);
             }
@@ -3474,7 +3474,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[11]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3529,11 +3529,11 @@ namespace Proto {
 
     /// <summary>Field number for the "mediaType" field.</summary>
     public const int MediaTypeFieldNumber = 2;
-    private readonly static global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE MediaTypeDefaultValue = global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE.None;
+    private readonly static global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE MediaTypeDefaultValue = global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE.None;
 
-    private global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE mediaType_;
+    private global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE mediaType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE MediaType {
+    public global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE MediaType {
       get { if ((_hasBits0 & 1) != 0) { return mediaType_; } else { return MediaTypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -3744,7 +3744,7 @@ namespace Proto {
             break;
           }
           case 16: {
-            MediaType = (global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) input.ReadEnum();
+            MediaType = (global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) input.ReadEnum();
             break;
           }
           case 130: {
@@ -3774,7 +3774,7 @@ namespace Proto {
             break;
           }
           case 16: {
-            MediaType = (global::Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) input.ReadEnum();
+            MediaType = (global::waxnet.Internal.Proto.AdReplyInfo.Types.AD_REPLY_INFO_MEDIATYPE) input.ReadEnum();
             break;
           }
           case 130: {
@@ -3818,7 +3818,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[12]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3906,9 +3906,9 @@ namespace Proto {
 
     /// <summary>Field number for the "quotedMessage" field.</summary>
     public const int QuotedMessageFieldNumber = 3;
-    private global::Proto.Message quotedMessage_;
+    private global::waxnet.Internal.Proto.Message quotedMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message QuotedMessage {
+    public global::waxnet.Internal.Proto.Message QuotedMessage {
       get { return quotedMessage_; }
       set {
         quotedMessage_ = value;
@@ -4068,9 +4068,9 @@ namespace Proto {
 
     /// <summary>Field number for the "quotedAd" field.</summary>
     public const int QuotedAdFieldNumber = 23;
-    private global::Proto.AdReplyInfo quotedAd_;
+    private global::waxnet.Internal.Proto.AdReplyInfo quotedAd_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.AdReplyInfo QuotedAd {
+    public global::waxnet.Internal.Proto.AdReplyInfo QuotedAd {
       get { return quotedAd_; }
       set {
         quotedAd_ = value;
@@ -4079,9 +4079,9 @@ namespace Proto {
 
     /// <summary>Field number for the "placeholderKey" field.</summary>
     public const int PlaceholderKeyFieldNumber = 24;
-    private global::Proto.MessageKey placeholderKey_;
+    private global::waxnet.Internal.Proto.MessageKey placeholderKey_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey PlaceholderKey {
+    public global::waxnet.Internal.Proto.MessageKey PlaceholderKey {
       get { return placeholderKey_; }
       set {
         placeholderKey_ = value;
@@ -4382,7 +4382,7 @@ namespace Proto {
       }
       if (other.quotedMessage_ != null) {
         if (quotedMessage_ == null) {
-          QuotedMessage = new global::Proto.Message();
+          QuotedMessage = new global::waxnet.Internal.Proto.Message();
         }
         QuotedMessage.MergeFrom(other.QuotedMessage);
       }
@@ -4407,13 +4407,13 @@ namespace Proto {
       }
       if (other.quotedAd_ != null) {
         if (quotedAd_ == null) {
-          QuotedAd = new global::Proto.AdReplyInfo();
+          QuotedAd = new global::waxnet.Internal.Proto.AdReplyInfo();
         }
         QuotedAd.MergeFrom(other.QuotedAd);
       }
       if (other.placeholderKey_ != null) {
         if (placeholderKey_ == null) {
-          PlaceholderKey = new global::Proto.MessageKey();
+          PlaceholderKey = new global::waxnet.Internal.Proto.MessageKey();
         }
         PlaceholderKey.MergeFrom(other.PlaceholderKey);
       }
@@ -4447,7 +4447,7 @@ namespace Proto {
           }
           case 26: {
             if (quotedMessage_ == null) {
-              QuotedMessage = new global::Proto.Message();
+              QuotedMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(QuotedMessage);
             break;
@@ -4482,14 +4482,14 @@ namespace Proto {
           }
           case 186: {
             if (quotedAd_ == null) {
-              QuotedAd = new global::Proto.AdReplyInfo();
+              QuotedAd = new global::waxnet.Internal.Proto.AdReplyInfo();
             }
             input.ReadMessage(QuotedAd);
             break;
           }
           case 194: {
             if (placeholderKey_ == null) {
-              PlaceholderKey = new global::Proto.MessageKey();
+              PlaceholderKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(PlaceholderKey);
             break;
@@ -4526,7 +4526,7 @@ namespace Proto {
           }
           case 26: {
             if (quotedMessage_ == null) {
-              QuotedMessage = new global::Proto.Message();
+              QuotedMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(QuotedMessage);
             break;
@@ -4561,14 +4561,14 @@ namespace Proto {
           }
           case 186: {
             if (quotedAd_ == null) {
-              QuotedAd = new global::Proto.AdReplyInfo();
+              QuotedAd = new global::waxnet.Internal.Proto.AdReplyInfo();
             }
             input.ReadMessage(QuotedAd);
             break;
           }
           case 194: {
             if (placeholderKey_ == null) {
-              PlaceholderKey = new global::Proto.MessageKey();
+              PlaceholderKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(PlaceholderKey);
             break;
@@ -4600,7 +4600,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[13]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4833,7 +4833,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[14]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5092,11 +5092,11 @@ namespace Proto {
 
     /// <summary>Field number for the "interactiveAnnotations" field.</summary>
     public const int InteractiveAnnotationsFieldNumber = 10;
-    private static readonly pb::FieldCodec<global::Proto.InteractiveAnnotation> _repeated_interactiveAnnotations_codec
-        = pb::FieldCodec.ForMessage(82, global::Proto.InteractiveAnnotation.Parser);
-    private readonly pbc::RepeatedField<global::Proto.InteractiveAnnotation> interactiveAnnotations_ = new pbc::RepeatedField<global::Proto.InteractiveAnnotation>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.InteractiveAnnotation> _repeated_interactiveAnnotations_codec
+        = pb::FieldCodec.ForMessage(82, global::waxnet.Internal.Proto.InteractiveAnnotation.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation> interactiveAnnotations_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.InteractiveAnnotation> InteractiveAnnotations {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation> InteractiveAnnotations {
       get { return interactiveAnnotations_; }
     }
 
@@ -5172,9 +5172,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -5691,7 +5691,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -5782,7 +5782,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -5884,7 +5884,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -5937,7 +5937,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[15]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6013,9 +6013,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -6133,7 +6133,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -6161,7 +6161,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -6190,7 +6190,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -6215,7 +6215,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[16]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6514,9 +6514,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -6778,7 +6778,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -6842,7 +6842,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -6907,7 +6907,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -6932,7 +6932,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[17]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7135,11 +7135,11 @@ namespace Proto {
 
     /// <summary>Field number for the "font" field.</summary>
     public const int FontFieldNumber = 9;
-    private readonly static global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE FontDefaultValue = global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE.SansSerif;
+    private readonly static global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE FontDefaultValue = global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE.SansSerif;
 
-    private global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE font_;
+    private global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE font_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE Font {
+    public global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE Font {
       get { if ((_hasBits0 & 4) != 0) { return font_; } else { return FontDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -7159,11 +7159,11 @@ namespace Proto {
 
     /// <summary>Field number for the "previewType" field.</summary>
     public const int PreviewTypeFieldNumber = 10;
-    private readonly static global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE PreviewTypeDefaultValue = global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE.None;
+    private readonly static global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE PreviewTypeDefaultValue = global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE.None;
 
-    private global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE previewType_;
+    private global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE previewType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE PreviewType {
+    public global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE PreviewType {
       get { if ((_hasBits0 & 8) != 0) { return previewType_; } else { return PreviewTypeDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -7206,9 +7206,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -7491,7 +7491,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -7541,11 +7541,11 @@ namespace Proto {
             break;
           }
           case 72: {
-            Font = (global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE) input.ReadEnum();
+            Font = (global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE) input.ReadEnum();
             break;
           }
           case 80: {
-            PreviewType = (global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) input.ReadEnum();
+            PreviewType = (global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) input.ReadEnum();
             break;
           }
           case 130: {
@@ -7554,7 +7554,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -7606,11 +7606,11 @@ namespace Proto {
             break;
           }
           case 72: {
-            Font = (global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE) input.ReadEnum();
+            Font = (global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_FONTTYPE) input.ReadEnum();
             break;
           }
           case 80: {
-            PreviewType = (global::Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) input.ReadEnum();
+            PreviewType = (global::waxnet.Internal.Proto.ExtendedTextMessage.Types.EXTENDED_TEXT_MESSAGE_PREVIEWTYPE) input.ReadEnum();
             break;
           }
           case 130: {
@@ -7619,7 +7619,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -7669,7 +7669,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[18]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7989,9 +7989,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -8269,7 +8269,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -8337,7 +8337,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -8406,7 +8406,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -8431,7 +8431,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[19]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8705,9 +8705,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -8989,7 +8989,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -9052,7 +9052,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -9117,7 +9117,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -9146,7 +9146,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[20]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9450,11 +9450,11 @@ namespace Proto {
 
     /// <summary>Field number for the "interactiveAnnotations" field.</summary>
     public const int InteractiveAnnotationsFieldNumber = 12;
-    private static readonly pb::FieldCodec<global::Proto.InteractiveAnnotation> _repeated_interactiveAnnotations_codec
-        = pb::FieldCodec.ForMessage(98, global::Proto.InteractiveAnnotation.Parser);
-    private readonly pbc::RepeatedField<global::Proto.InteractiveAnnotation> interactiveAnnotations_ = new pbc::RepeatedField<global::Proto.InteractiveAnnotation>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.InteractiveAnnotation> _repeated_interactiveAnnotations_codec
+        = pb::FieldCodec.ForMessage(98, global::waxnet.Internal.Proto.InteractiveAnnotation.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation> interactiveAnnotations_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.InteractiveAnnotation> InteractiveAnnotations {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.InteractiveAnnotation> InteractiveAnnotations {
       get { return interactiveAnnotations_; }
     }
 
@@ -9530,9 +9530,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -9564,11 +9564,11 @@ namespace Proto {
 
     /// <summary>Field number for the "gifAttribution" field.</summary>
     public const int GifAttributionFieldNumber = 19;
-    private readonly static global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION GifAttributionDefaultValue = global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION.None;
+    private readonly static global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION GifAttributionDefaultValue = global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION.None;
 
-    private global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION gifAttribution_;
+    private global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION gifAttribution_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION GifAttribution {
+    public global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION GifAttribution {
       get { if ((_hasBits0 & 64) != 0) { return gifAttribution_; } else { return GifAttributionDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -9921,7 +9921,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -10007,7 +10007,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -10017,7 +10017,7 @@ namespace Proto {
             break;
           }
           case 152: {
-            GifAttribution = (global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) input.ReadEnum();
+            GifAttribution = (global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) input.ReadEnum();
             break;
           }
         }
@@ -10096,7 +10096,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -10106,7 +10106,7 @@ namespace Proto {
             break;
           }
           case 152: {
-            GifAttribution = (global::Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) input.ReadEnum();
+            GifAttribution = (global::waxnet.Internal.Proto.VideoMessage.Types.VIDEO_MESSAGE_ATTRIBUTION) input.ReadEnum();
             break;
           }
         }
@@ -10141,7 +10141,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[21]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10325,7 +10325,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[22]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10558,7 +10558,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[23]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10591,9 +10591,9 @@ namespace Proto {
 
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
-    private global::Proto.MessageKey key_;
+    private global::waxnet.Internal.Proto.MessageKey key_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey Key {
+    public global::waxnet.Internal.Proto.MessageKey Key {
       get { return key_; }
       set {
         key_ = value;
@@ -10602,11 +10602,11 @@ namespace Proto {
 
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 2;
-    private readonly static global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE TypeDefaultValue = global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE.Revoke;
+    private readonly static global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE TypeDefaultValue = global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE.Revoke;
 
-    private global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE type_;
+    private global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE type_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE Type {
+    public global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE Type {
       get { if ((_hasBits0 & 1) != 0) { return type_; } else { return TypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -10674,9 +10674,9 @@ namespace Proto {
 
     /// <summary>Field number for the "historySyncNotification" field.</summary>
     public const int HistorySyncNotificationFieldNumber = 6;
-    private global::Proto.HistorySyncNotification historySyncNotification_;
+    private global::waxnet.Internal.Proto.HistorySyncNotification historySyncNotification_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HistorySyncNotification HistorySyncNotification {
+    public global::waxnet.Internal.Proto.HistorySyncNotification HistorySyncNotification {
       get { return historySyncNotification_; }
       set {
         historySyncNotification_ = value;
@@ -10814,7 +10814,7 @@ namespace Proto {
       }
       if (other.key_ != null) {
         if (key_ == null) {
-          Key = new global::Proto.MessageKey();
+          Key = new global::waxnet.Internal.Proto.MessageKey();
         }
         Key.MergeFrom(other.Key);
       }
@@ -10829,7 +10829,7 @@ namespace Proto {
       }
       if (other.historySyncNotification_ != null) {
         if (historySyncNotification_ == null) {
-          HistorySyncNotification = new global::Proto.HistorySyncNotification();
+          HistorySyncNotification = new global::waxnet.Internal.Proto.HistorySyncNotification();
         }
         HistorySyncNotification.MergeFrom(other.HistorySyncNotification);
       }
@@ -10849,13 +10849,13 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 16: {
-            Type = (global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) input.ReadEnum();
+            Type = (global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) input.ReadEnum();
             break;
           }
           case 32: {
@@ -10868,7 +10868,7 @@ namespace Proto {
           }
           case 50: {
             if (historySyncNotification_ == null) {
-              HistorySyncNotification = new global::Proto.HistorySyncNotification();
+              HistorySyncNotification = new global::waxnet.Internal.Proto.HistorySyncNotification();
             }
             input.ReadMessage(HistorySyncNotification);
             break;
@@ -10889,13 +10889,13 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 16: {
-            Type = (global::Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) input.ReadEnum();
+            Type = (global::waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE) input.ReadEnum();
             break;
           }
           case 32: {
@@ -10908,7 +10908,7 @@ namespace Proto {
           }
           case 50: {
             if (historySyncNotification_ == null) {
-              HistorySyncNotification = new global::Proto.HistorySyncNotification();
+              HistorySyncNotification = new global::waxnet.Internal.Proto.HistorySyncNotification();
             }
             input.ReadMessage(HistorySyncNotification);
             break;
@@ -10947,7 +10947,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[24]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11098,11 +11098,11 @@ namespace Proto {
 
     /// <summary>Field number for the "syncType" field.</summary>
     public const int SyncTypeFieldNumber = 6;
-    private readonly static global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE SyncTypeDefaultValue = global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE.InitialBootstrap;
+    private readonly static global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE SyncTypeDefaultValue = global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE.InitialBootstrap;
 
-    private global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE syncType_;
+    private global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE syncType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE SyncType {
+    public global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE SyncType {
       get { if ((_hasBits0 & 2) != 0) { return syncType_; } else { return SyncTypeDefaultValue; } }
       set {
         _hasBits0 |= 2;
@@ -11355,7 +11355,7 @@ namespace Proto {
             break;
           }
           case 48: {
-            SyncType = (global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) input.ReadEnum();
+            SyncType = (global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) input.ReadEnum();
             break;
           }
           case 56: {
@@ -11397,7 +11397,7 @@ namespace Proto {
             break;
           }
           case 48: {
-            SyncType = (global::Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) input.ReadEnum();
+            SyncType = (global::waxnet.Internal.Proto.HistorySyncNotification.Types.HISTORY_SYNC_NOTIFICATION_HISTORYSYNCTYPE) input.ReadEnum();
             break;
           }
           case 56: {
@@ -11437,7 +11437,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[25]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11490,19 +11490,19 @@ namespace Proto {
 
     /// <summary>Field number for the "contacts" field.</summary>
     public const int ContactsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Proto.ContactMessage> _repeated_contacts_codec
-        = pb::FieldCodec.ForMessage(18, global::Proto.ContactMessage.Parser);
-    private readonly pbc::RepeatedField<global::Proto.ContactMessage> contacts_ = new pbc::RepeatedField<global::Proto.ContactMessage>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.ContactMessage> _repeated_contacts_codec
+        = pb::FieldCodec.ForMessage(18, global::waxnet.Internal.Proto.ContactMessage.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.ContactMessage> contacts_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.ContactMessage>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.ContactMessage> Contacts {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.ContactMessage> Contacts {
       get { return contacts_; }
     }
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -11610,7 +11610,7 @@ namespace Proto {
       contacts_.Add(other.contacts_);
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -11638,7 +11638,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -11667,7 +11667,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -11692,7 +11692,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[26]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11927,7 +11927,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[27]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11962,11 +11962,11 @@ namespace Proto {
 
     /// <summary>Field number for the "dayOfWeek" field.</summary>
     public const int DayOfWeekFieldNumber = 1;
-    private readonly static global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE DayOfWeekDefaultValue = global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE.Monday;
+    private readonly static global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE DayOfWeekDefaultValue = global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE.Monday;
 
-    private global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE dayOfWeek_;
+    private global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE dayOfWeek_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE DayOfWeek {
+    public global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE DayOfWeek {
       get { if ((_hasBits0 & 1) != 0) { return dayOfWeek_; } else { return DayOfWeekDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -12106,11 +12106,11 @@ namespace Proto {
 
     /// <summary>Field number for the "calendar" field.</summary>
     public const int CalendarFieldNumber = 7;
-    private readonly static global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE CalendarDefaultValue = global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE.Gregorian;
+    private readonly static global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE CalendarDefaultValue = global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE.Gregorian;
 
-    private global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE calendar_;
+    private global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE calendar_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE Calendar {
+    public global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE Calendar {
       get { if ((_hasBits0 & 64) != 0) { return calendar_; } else { return CalendarDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -12319,7 +12319,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            DayOfWeek = (global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE) input.ReadEnum();
+            DayOfWeek = (global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE) input.ReadEnum();
             break;
           }
           case 16: {
@@ -12343,7 +12343,7 @@ namespace Proto {
             break;
           }
           case 56: {
-            Calendar = (global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) input.ReadEnum();
+            Calendar = (global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) input.ReadEnum();
             break;
           }
         }
@@ -12361,7 +12361,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            DayOfWeek = (global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE) input.ReadEnum();
+            DayOfWeek = (global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_DAYOFWEEKTYPE) input.ReadEnum();
             break;
           }
           case 16: {
@@ -12385,7 +12385,7 @@ namespace Proto {
             break;
           }
           case 56: {
-            Calendar = (global::Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) input.ReadEnum();
+            Calendar = (global::waxnet.Internal.Proto.HSMDateTimeComponent.Types.HSM_DATE_TIME_COMPONENT_CALENDARTYPE) input.ReadEnum();
             break;
           }
         }
@@ -12430,7 +12430,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[28]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12616,7 +12616,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[29]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12653,8 +12653,8 @@ namespace Proto {
     /// <summary>Field number for the "component" field.</summary>
     public const int ComponentFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMDateTimeComponent Component {
-      get { return datetimeOneofCase_ == DatetimeOneofOneofCase.Component ? (global::Proto.HSMDateTimeComponent) datetimeOneof_ : null; }
+    public global::waxnet.Internal.Proto.HSMDateTimeComponent Component {
+      get { return datetimeOneofCase_ == DatetimeOneofOneofCase.Component ? (global::waxnet.Internal.Proto.HSMDateTimeComponent) datetimeOneof_ : null; }
       set {
         datetimeOneof_ = value;
         datetimeOneofCase_ = value == null ? DatetimeOneofOneofCase.None : DatetimeOneofOneofCase.Component;
@@ -12664,8 +12664,8 @@ namespace Proto {
     /// <summary>Field number for the "unixEpoch" field.</summary>
     public const int UnixEpochFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMDateTimeUnixEpoch UnixEpoch {
-      get { return datetimeOneofCase_ == DatetimeOneofOneofCase.UnixEpoch ? (global::Proto.HSMDateTimeUnixEpoch) datetimeOneof_ : null; }
+    public global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch UnixEpoch {
+      get { return datetimeOneofCase_ == DatetimeOneofOneofCase.UnixEpoch ? (global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch) datetimeOneof_ : null; }
       set {
         datetimeOneof_ = value;
         datetimeOneofCase_ = value == null ? DatetimeOneofOneofCase.None : DatetimeOneofOneofCase.UnixEpoch;
@@ -12786,13 +12786,13 @@ namespace Proto {
       switch (other.DatetimeOneofCase) {
         case DatetimeOneofOneofCase.Component:
           if (Component == null) {
-            Component = new global::Proto.HSMDateTimeComponent();
+            Component = new global::waxnet.Internal.Proto.HSMDateTimeComponent();
           }
           Component.MergeFrom(other.Component);
           break;
         case DatetimeOneofOneofCase.UnixEpoch:
           if (UnixEpoch == null) {
-            UnixEpoch = new global::Proto.HSMDateTimeUnixEpoch();
+            UnixEpoch = new global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch();
           }
           UnixEpoch.MergeFrom(other.UnixEpoch);
           break;
@@ -12813,7 +12813,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.HSMDateTimeComponent subBuilder = new global::Proto.HSMDateTimeComponent();
+            global::waxnet.Internal.Proto.HSMDateTimeComponent subBuilder = new global::waxnet.Internal.Proto.HSMDateTimeComponent();
             if (datetimeOneofCase_ == DatetimeOneofOneofCase.Component) {
               subBuilder.MergeFrom(Component);
             }
@@ -12822,7 +12822,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HSMDateTimeUnixEpoch subBuilder = new global::Proto.HSMDateTimeUnixEpoch();
+            global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch subBuilder = new global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch();
             if (datetimeOneofCase_ == DatetimeOneofOneofCase.UnixEpoch) {
               subBuilder.MergeFrom(UnixEpoch);
             }
@@ -12845,7 +12845,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.HSMDateTimeComponent subBuilder = new global::Proto.HSMDateTimeComponent();
+            global::waxnet.Internal.Proto.HSMDateTimeComponent subBuilder = new global::waxnet.Internal.Proto.HSMDateTimeComponent();
             if (datetimeOneofCase_ == DatetimeOneofOneofCase.Component) {
               subBuilder.MergeFrom(Component);
             }
@@ -12854,7 +12854,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HSMDateTimeUnixEpoch subBuilder = new global::Proto.HSMDateTimeUnixEpoch();
+            global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch subBuilder = new global::waxnet.Internal.Proto.HSMDateTimeUnixEpoch();
             if (datetimeOneofCase_ == DatetimeOneofOneofCase.UnixEpoch) {
               subBuilder.MergeFrom(UnixEpoch);
             }
@@ -12881,7 +12881,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[30]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12942,8 +12942,8 @@ namespace Proto {
     /// <summary>Field number for the "currency" field.</summary>
     public const int CurrencyFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMCurrency Currency {
-      get { return paramOneofCase_ == ParamOneofOneofCase.Currency ? (global::Proto.HSMCurrency) paramOneof_ : null; }
+    public global::waxnet.Internal.Proto.HSMCurrency Currency {
+      get { return paramOneofCase_ == ParamOneofOneofCase.Currency ? (global::waxnet.Internal.Proto.HSMCurrency) paramOneof_ : null; }
       set {
         paramOneof_ = value;
         paramOneofCase_ = value == null ? ParamOneofOneofCase.None : ParamOneofOneofCase.Currency;
@@ -12953,8 +12953,8 @@ namespace Proto {
     /// <summary>Field number for the "dateTime" field.</summary>
     public const int DateTimeFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HSMDateTime DateTime {
-      get { return paramOneofCase_ == ParamOneofOneofCase.DateTime ? (global::Proto.HSMDateTime) paramOneof_ : null; }
+    public global::waxnet.Internal.Proto.HSMDateTime DateTime {
+      get { return paramOneofCase_ == ParamOneofOneofCase.DateTime ? (global::waxnet.Internal.Proto.HSMDateTime) paramOneof_ : null; }
       set {
         paramOneof_ = value;
         paramOneofCase_ = value == null ? ParamOneofOneofCase.None : ParamOneofOneofCase.DateTime;
@@ -13091,13 +13091,13 @@ namespace Proto {
       switch (other.ParamOneofCase) {
         case ParamOneofOneofCase.Currency:
           if (Currency == null) {
-            Currency = new global::Proto.HSMCurrency();
+            Currency = new global::waxnet.Internal.Proto.HSMCurrency();
           }
           Currency.MergeFrom(other.Currency);
           break;
         case ParamOneofOneofCase.DateTime:
           if (DateTime == null) {
-            DateTime = new global::Proto.HSMDateTime();
+            DateTime = new global::waxnet.Internal.Proto.HSMDateTime();
           }
           DateTime.MergeFrom(other.DateTime);
           break;
@@ -13122,7 +13122,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HSMCurrency subBuilder = new global::Proto.HSMCurrency();
+            global::waxnet.Internal.Proto.HSMCurrency subBuilder = new global::waxnet.Internal.Proto.HSMCurrency();
             if (paramOneofCase_ == ParamOneofOneofCase.Currency) {
               subBuilder.MergeFrom(Currency);
             }
@@ -13131,7 +13131,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.HSMDateTime subBuilder = new global::Proto.HSMDateTime();
+            global::waxnet.Internal.Proto.HSMDateTime subBuilder = new global::waxnet.Internal.Proto.HSMDateTime();
             if (paramOneofCase_ == ParamOneofOneofCase.DateTime) {
               subBuilder.MergeFrom(DateTime);
             }
@@ -13158,7 +13158,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HSMCurrency subBuilder = new global::Proto.HSMCurrency();
+            global::waxnet.Internal.Proto.HSMCurrency subBuilder = new global::waxnet.Internal.Proto.HSMCurrency();
             if (paramOneofCase_ == ParamOneofOneofCase.Currency) {
               subBuilder.MergeFrom(Currency);
             }
@@ -13167,7 +13167,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.HSMDateTime subBuilder = new global::Proto.HSMDateTime();
+            global::waxnet.Internal.Proto.HSMDateTime subBuilder = new global::waxnet.Internal.Proto.HSMDateTime();
             if (paramOneofCase_ == ParamOneofOneofCase.DateTime) {
               subBuilder.MergeFrom(DateTime);
             }
@@ -13194,7 +13194,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[31]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13332,11 +13332,11 @@ namespace Proto {
 
     /// <summary>Field number for the "localizableParams" field.</summary>
     public const int LocalizableParamsFieldNumber = 6;
-    private static readonly pb::FieldCodec<global::Proto.HSMLocalizableParameter> _repeated_localizableParams_codec
-        = pb::FieldCodec.ForMessage(50, global::Proto.HSMLocalizableParameter.Parser);
-    private readonly pbc::RepeatedField<global::Proto.HSMLocalizableParameter> localizableParams_ = new pbc::RepeatedField<global::Proto.HSMLocalizableParameter>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.HSMLocalizableParameter> _repeated_localizableParams_codec
+        = pb::FieldCodec.ForMessage(50, global::waxnet.Internal.Proto.HSMLocalizableParameter.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.HSMLocalizableParameter> localizableParams_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.HSMLocalizableParameter>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.HSMLocalizableParameter> LocalizableParams {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.HSMLocalizableParameter> LocalizableParams {
       get { return localizableParams_; }
     }
 
@@ -13388,9 +13388,9 @@ namespace Proto {
 
     /// <summary>Field number for the "hydratedHsm" field.</summary>
     public const int HydratedHsmFieldNumber = 9;
-    private global::Proto.TemplateMessage hydratedHsm_;
+    private global::waxnet.Internal.Proto.TemplateMessage hydratedHsm_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.TemplateMessage HydratedHsm {
+    public global::waxnet.Internal.Proto.TemplateMessage HydratedHsm {
       get { return hydratedHsm_; }
       set {
         hydratedHsm_ = value;
@@ -13584,7 +13584,7 @@ namespace Proto {
       }
       if (other.hydratedHsm_ != null) {
         if (hydratedHsm_ == null) {
-          HydratedHsm = new global::Proto.TemplateMessage();
+          HydratedHsm = new global::waxnet.Internal.Proto.TemplateMessage();
         }
         HydratedHsm.MergeFrom(other.HydratedHsm);
       }
@@ -13636,7 +13636,7 @@ namespace Proto {
           }
           case 74: {
             if (hydratedHsm_ == null) {
-              HydratedHsm = new global::Proto.TemplateMessage();
+              HydratedHsm = new global::waxnet.Internal.Proto.TemplateMessage();
             }
             input.ReadMessage(HydratedHsm);
             break;
@@ -13689,7 +13689,7 @@ namespace Proto {
           }
           case 74: {
             if (hydratedHsm_ == null) {
-              HydratedHsm = new global::Proto.TemplateMessage();
+              HydratedHsm = new global::waxnet.Internal.Proto.TemplateMessage();
             }
             input.ReadMessage(HydratedHsm);
             break;
@@ -13713,7 +13713,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[32]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13742,9 +13742,9 @@ namespace Proto {
 
     /// <summary>Field number for the "noteMessage" field.</summary>
     public const int NoteMessageFieldNumber = 2;
-    private global::Proto.Message noteMessage_;
+    private global::waxnet.Internal.Proto.Message noteMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message NoteMessage {
+    public global::waxnet.Internal.Proto.Message NoteMessage {
       get { return noteMessage_; }
       set {
         noteMessage_ = value;
@@ -13753,9 +13753,9 @@ namespace Proto {
 
     /// <summary>Field number for the "requestMessageKey" field.</summary>
     public const int RequestMessageKeyFieldNumber = 3;
-    private global::Proto.MessageKey requestMessageKey_;
+    private global::waxnet.Internal.Proto.MessageKey requestMessageKey_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey RequestMessageKey {
+    public global::waxnet.Internal.Proto.MessageKey RequestMessageKey {
       get { return requestMessageKey_; }
       set {
         requestMessageKey_ = value;
@@ -13854,13 +13854,13 @@ namespace Proto {
       }
       if (other.noteMessage_ != null) {
         if (noteMessage_ == null) {
-          NoteMessage = new global::Proto.Message();
+          NoteMessage = new global::waxnet.Internal.Proto.Message();
         }
         NoteMessage.MergeFrom(other.NoteMessage);
       }
       if (other.requestMessageKey_ != null) {
         if (requestMessageKey_ == null) {
-          RequestMessageKey = new global::Proto.MessageKey();
+          RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
         }
         RequestMessageKey.MergeFrom(other.RequestMessageKey);
       }
@@ -13880,14 +13880,14 @@ namespace Proto {
             break;
           case 18: {
             if (noteMessage_ == null) {
-              NoteMessage = new global::Proto.Message();
+              NoteMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(NoteMessage);
             break;
           }
           case 26: {
             if (requestMessageKey_ == null) {
-              RequestMessageKey = new global::Proto.MessageKey();
+              RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(RequestMessageKey);
             break;
@@ -13908,14 +13908,14 @@ namespace Proto {
             break;
           case 18: {
             if (noteMessage_ == null) {
-              NoteMessage = new global::Proto.Message();
+              NoteMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(NoteMessage);
             break;
           }
           case 26: {
             if (requestMessageKey_ == null) {
-              RequestMessageKey = new global::Proto.MessageKey();
+              RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(RequestMessageKey);
             break;
@@ -13940,7 +13940,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[33]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13973,9 +13973,9 @@ namespace Proto {
 
     /// <summary>Field number for the "noteMessage" field.</summary>
     public const int NoteMessageFieldNumber = 4;
-    private global::Proto.Message noteMessage_;
+    private global::waxnet.Internal.Proto.Message noteMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message NoteMessage {
+    public global::waxnet.Internal.Proto.Message NoteMessage {
       get { return noteMessage_; }
       set {
         noteMessage_ = value;
@@ -14207,7 +14207,7 @@ namespace Proto {
       }
       if (other.noteMessage_ != null) {
         if (noteMessage_ == null) {
-          NoteMessage = new global::Proto.Message();
+          NoteMessage = new global::waxnet.Internal.Proto.Message();
         }
         NoteMessage.MergeFrom(other.NoteMessage);
       }
@@ -14251,7 +14251,7 @@ namespace Proto {
           }
           case 34: {
             if (noteMessage_ == null) {
-              NoteMessage = new global::Proto.Message();
+              NoteMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(NoteMessage);
             break;
@@ -14288,7 +14288,7 @@ namespace Proto {
           }
           case 34: {
             if (noteMessage_ == null) {
-              NoteMessage = new global::Proto.Message();
+              NoteMessage = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(NoteMessage);
             break;
@@ -14316,7 +14316,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[34]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14344,9 +14344,9 @@ namespace Proto {
 
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
-    private global::Proto.MessageKey key_;
+    private global::waxnet.Internal.Proto.MessageKey key_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey Key {
+    public global::waxnet.Internal.Proto.MessageKey Key {
       get { return key_; }
       set {
         key_ = value;
@@ -14432,7 +14432,7 @@ namespace Proto {
       }
       if (other.key_ != null) {
         if (key_ == null) {
-          Key = new global::Proto.MessageKey();
+          Key = new global::waxnet.Internal.Proto.MessageKey();
         }
         Key.MergeFrom(other.Key);
       }
@@ -14452,7 +14452,7 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
@@ -14473,7 +14473,7 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
@@ -14497,7 +14497,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[35]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14525,9 +14525,9 @@ namespace Proto {
 
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
-    private global::Proto.MessageKey key_;
+    private global::waxnet.Internal.Proto.MessageKey key_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey Key {
+    public global::waxnet.Internal.Proto.MessageKey Key {
       get { return key_; }
       set {
         key_ = value;
@@ -14613,7 +14613,7 @@ namespace Proto {
       }
       if (other.key_ != null) {
         if (key_ == null) {
-          Key = new global::Proto.MessageKey();
+          Key = new global::waxnet.Internal.Proto.MessageKey();
         }
         Key.MergeFrom(other.Key);
       }
@@ -14633,7 +14633,7 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
@@ -14654,7 +14654,7 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
@@ -14679,7 +14679,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[36]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14931,9 +14931,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -15163,7 +15163,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -15219,7 +15219,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -15276,7 +15276,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -15301,7 +15301,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[37]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15672,9 +15672,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -15984,7 +15984,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -16060,7 +16060,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -16137,7 +16137,7 @@ namespace Proto {
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -16161,7 +16161,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[38]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[38]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16209,9 +16209,9 @@ namespace Proto {
 
     /// <summary>Field number for the "content" field.</summary>
     public const int ContentFieldNumber = 6;
-    private global::Proto.HighlyStructuredMessage content_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage content_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage Content {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage Content {
       get { return content_; }
       set {
         content_ = value;
@@ -16220,9 +16220,9 @@ namespace Proto {
 
     /// <summary>Field number for the "footer" field.</summary>
     public const int FooterFieldNumber = 7;
-    private global::Proto.HighlyStructuredMessage footer_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage footer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage Footer {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage Footer {
       get { return footer_; }
       set {
         footer_ = value;
@@ -16231,19 +16231,19 @@ namespace Proto {
 
     /// <summary>Field number for the "buttons" field.</summary>
     public const int ButtonsFieldNumber = 8;
-    private static readonly pb::FieldCodec<global::Proto.TemplateButton> _repeated_buttons_codec
-        = pb::FieldCodec.ForMessage(66, global::Proto.TemplateButton.Parser);
-    private readonly pbc::RepeatedField<global::Proto.TemplateButton> buttons_ = new pbc::RepeatedField<global::Proto.TemplateButton>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.TemplateButton> _repeated_buttons_codec
+        = pb::FieldCodec.ForMessage(66, global::waxnet.Internal.Proto.TemplateButton.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.TemplateButton> buttons_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.TemplateButton>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.TemplateButton> Buttons {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.TemplateButton> Buttons {
       get { return buttons_; }
     }
 
     /// <summary>Field number for the "documentMessage" field.</summary>
     public const int DocumentMessageFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DocumentMessage DocumentMessage {
-      get { return titleCase_ == TitleOneofCase.DocumentMessage ? (global::Proto.DocumentMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.DocumentMessage DocumentMessage {
+      get { return titleCase_ == TitleOneofCase.DocumentMessage ? (global::waxnet.Internal.Proto.DocumentMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.DocumentMessage;
@@ -16253,8 +16253,8 @@ namespace Proto {
     /// <summary>Field number for the "highlyStructuredMessage" field.</summary>
     public const int HighlyStructuredMessageFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage HighlyStructuredMessage {
-      get { return titleCase_ == TitleOneofCase.HighlyStructuredMessage ? (global::Proto.HighlyStructuredMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage HighlyStructuredMessage {
+      get { return titleCase_ == TitleOneofCase.HighlyStructuredMessage ? (global::waxnet.Internal.Proto.HighlyStructuredMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.HighlyStructuredMessage;
@@ -16264,8 +16264,8 @@ namespace Proto {
     /// <summary>Field number for the "imageMessage" field.</summary>
     public const int ImageMessageFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ImageMessage ImageMessage {
-      get { return titleCase_ == TitleOneofCase.ImageMessage ? (global::Proto.ImageMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.ImageMessage ImageMessage {
+      get { return titleCase_ == TitleOneofCase.ImageMessage ? (global::waxnet.Internal.Proto.ImageMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.ImageMessage;
@@ -16275,8 +16275,8 @@ namespace Proto {
     /// <summary>Field number for the "videoMessage" field.</summary>
     public const int VideoMessageFieldNumber = 4;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.VideoMessage VideoMessage {
-      get { return titleCase_ == TitleOneofCase.VideoMessage ? (global::Proto.VideoMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.VideoMessage VideoMessage {
+      get { return titleCase_ == TitleOneofCase.VideoMessage ? (global::waxnet.Internal.Proto.VideoMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.VideoMessage;
@@ -16286,8 +16286,8 @@ namespace Proto {
     /// <summary>Field number for the "locationMessage" field.</summary>
     public const int LocationMessageFieldNumber = 5;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.LocationMessage LocationMessage {
-      get { return titleCase_ == TitleOneofCase.LocationMessage ? (global::Proto.LocationMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.LocationMessage LocationMessage {
+      get { return titleCase_ == TitleOneofCase.LocationMessage ? (global::waxnet.Internal.Proto.LocationMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.LocationMessage;
@@ -16480,13 +16480,13 @@ namespace Proto {
       }
       if (other.content_ != null) {
         if (content_ == null) {
-          Content = new global::Proto.HighlyStructuredMessage();
+          Content = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         Content.MergeFrom(other.Content);
       }
       if (other.footer_ != null) {
         if (footer_ == null) {
-          Footer = new global::Proto.HighlyStructuredMessage();
+          Footer = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         Footer.MergeFrom(other.Footer);
       }
@@ -16494,31 +16494,31 @@ namespace Proto {
       switch (other.TitleCase) {
         case TitleOneofCase.DocumentMessage:
           if (DocumentMessage == null) {
-            DocumentMessage = new global::Proto.DocumentMessage();
+            DocumentMessage = new global::waxnet.Internal.Proto.DocumentMessage();
           }
           DocumentMessage.MergeFrom(other.DocumentMessage);
           break;
         case TitleOneofCase.HighlyStructuredMessage:
           if (HighlyStructuredMessage == null) {
-            HighlyStructuredMessage = new global::Proto.HighlyStructuredMessage();
+            HighlyStructuredMessage = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
           }
           HighlyStructuredMessage.MergeFrom(other.HighlyStructuredMessage);
           break;
         case TitleOneofCase.ImageMessage:
           if (ImageMessage == null) {
-            ImageMessage = new global::Proto.ImageMessage();
+            ImageMessage = new global::waxnet.Internal.Proto.ImageMessage();
           }
           ImageMessage.MergeFrom(other.ImageMessage);
           break;
         case TitleOneofCase.VideoMessage:
           if (VideoMessage == null) {
-            VideoMessage = new global::Proto.VideoMessage();
+            VideoMessage = new global::waxnet.Internal.Proto.VideoMessage();
           }
           VideoMessage.MergeFrom(other.VideoMessage);
           break;
         case TitleOneofCase.LocationMessage:
           if (LocationMessage == null) {
-            LocationMessage = new global::Proto.LocationMessage();
+            LocationMessage = new global::waxnet.Internal.Proto.LocationMessage();
           }
           LocationMessage.MergeFrom(other.LocationMessage);
           break;
@@ -16539,7 +16539,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.DocumentMessage subBuilder = new global::Proto.DocumentMessage();
+            global::waxnet.Internal.Proto.DocumentMessage subBuilder = new global::waxnet.Internal.Proto.DocumentMessage();
             if (titleCase_ == TitleOneofCase.DocumentMessage) {
               subBuilder.MergeFrom(DocumentMessage);
             }
@@ -16548,7 +16548,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HighlyStructuredMessage subBuilder = new global::Proto.HighlyStructuredMessage();
+            global::waxnet.Internal.Proto.HighlyStructuredMessage subBuilder = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             if (titleCase_ == TitleOneofCase.HighlyStructuredMessage) {
               subBuilder.MergeFrom(HighlyStructuredMessage);
             }
@@ -16557,7 +16557,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.ImageMessage subBuilder = new global::Proto.ImageMessage();
+            global::waxnet.Internal.Proto.ImageMessage subBuilder = new global::waxnet.Internal.Proto.ImageMessage();
             if (titleCase_ == TitleOneofCase.ImageMessage) {
               subBuilder.MergeFrom(ImageMessage);
             }
@@ -16566,7 +16566,7 @@ namespace Proto {
             break;
           }
           case 34: {
-            global::Proto.VideoMessage subBuilder = new global::Proto.VideoMessage();
+            global::waxnet.Internal.Proto.VideoMessage subBuilder = new global::waxnet.Internal.Proto.VideoMessage();
             if (titleCase_ == TitleOneofCase.VideoMessage) {
               subBuilder.MergeFrom(VideoMessage);
             }
@@ -16575,7 +16575,7 @@ namespace Proto {
             break;
           }
           case 42: {
-            global::Proto.LocationMessage subBuilder = new global::Proto.LocationMessage();
+            global::waxnet.Internal.Proto.LocationMessage subBuilder = new global::waxnet.Internal.Proto.LocationMessage();
             if (titleCase_ == TitleOneofCase.LocationMessage) {
               subBuilder.MergeFrom(LocationMessage);
             }
@@ -16585,14 +16585,14 @@ namespace Proto {
           }
           case 50: {
             if (content_ == null) {
-              Content = new global::Proto.HighlyStructuredMessage();
+              Content = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Content);
             break;
           }
           case 58: {
             if (footer_ == null) {
-              Footer = new global::Proto.HighlyStructuredMessage();
+              Footer = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Footer);
             break;
@@ -16616,7 +16616,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.DocumentMessage subBuilder = new global::Proto.DocumentMessage();
+            global::waxnet.Internal.Proto.DocumentMessage subBuilder = new global::waxnet.Internal.Proto.DocumentMessage();
             if (titleCase_ == TitleOneofCase.DocumentMessage) {
               subBuilder.MergeFrom(DocumentMessage);
             }
@@ -16625,7 +16625,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HighlyStructuredMessage subBuilder = new global::Proto.HighlyStructuredMessage();
+            global::waxnet.Internal.Proto.HighlyStructuredMessage subBuilder = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             if (titleCase_ == TitleOneofCase.HighlyStructuredMessage) {
               subBuilder.MergeFrom(HighlyStructuredMessage);
             }
@@ -16634,7 +16634,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.ImageMessage subBuilder = new global::Proto.ImageMessage();
+            global::waxnet.Internal.Proto.ImageMessage subBuilder = new global::waxnet.Internal.Proto.ImageMessage();
             if (titleCase_ == TitleOneofCase.ImageMessage) {
               subBuilder.MergeFrom(ImageMessage);
             }
@@ -16643,7 +16643,7 @@ namespace Proto {
             break;
           }
           case 34: {
-            global::Proto.VideoMessage subBuilder = new global::Proto.VideoMessage();
+            global::waxnet.Internal.Proto.VideoMessage subBuilder = new global::waxnet.Internal.Proto.VideoMessage();
             if (titleCase_ == TitleOneofCase.VideoMessage) {
               subBuilder.MergeFrom(VideoMessage);
             }
@@ -16652,7 +16652,7 @@ namespace Proto {
             break;
           }
           case 42: {
-            global::Proto.LocationMessage subBuilder = new global::Proto.LocationMessage();
+            global::waxnet.Internal.Proto.LocationMessage subBuilder = new global::waxnet.Internal.Proto.LocationMessage();
             if (titleCase_ == TitleOneofCase.LocationMessage) {
               subBuilder.MergeFrom(LocationMessage);
             }
@@ -16662,14 +16662,14 @@ namespace Proto {
           }
           case 50: {
             if (content_ == null) {
-              Content = new global::Proto.HighlyStructuredMessage();
+              Content = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Content);
             break;
           }
           case 58: {
             if (footer_ == null) {
-              Footer = new global::Proto.HighlyStructuredMessage();
+              Footer = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(Footer);
             break;
@@ -16697,7 +16697,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[39]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[39]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16792,11 +16792,11 @@ namespace Proto {
 
     /// <summary>Field number for the "hydratedButtons" field.</summary>
     public const int HydratedButtonsFieldNumber = 8;
-    private static readonly pb::FieldCodec<global::Proto.HydratedTemplateButton> _repeated_hydratedButtons_codec
-        = pb::FieldCodec.ForMessage(66, global::Proto.HydratedTemplateButton.Parser);
-    private readonly pbc::RepeatedField<global::Proto.HydratedTemplateButton> hydratedButtons_ = new pbc::RepeatedField<global::Proto.HydratedTemplateButton>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.HydratedTemplateButton> _repeated_hydratedButtons_codec
+        = pb::FieldCodec.ForMessage(66, global::waxnet.Internal.Proto.HydratedTemplateButton.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.HydratedTemplateButton> hydratedButtons_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.HydratedTemplateButton>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.HydratedTemplateButton> HydratedButtons {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.HydratedTemplateButton> HydratedButtons {
       get { return hydratedButtons_; }
     }
 
@@ -16826,8 +16826,8 @@ namespace Proto {
     /// <summary>Field number for the "documentMessage" field.</summary>
     public const int DocumentMessageFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DocumentMessage DocumentMessage {
-      get { return titleCase_ == TitleOneofCase.DocumentMessage ? (global::Proto.DocumentMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.DocumentMessage DocumentMessage {
+      get { return titleCase_ == TitleOneofCase.DocumentMessage ? (global::waxnet.Internal.Proto.DocumentMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.DocumentMessage;
@@ -16860,8 +16860,8 @@ namespace Proto {
     /// <summary>Field number for the "imageMessage" field.</summary>
     public const int ImageMessageFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ImageMessage ImageMessage {
-      get { return titleCase_ == TitleOneofCase.ImageMessage ? (global::Proto.ImageMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.ImageMessage ImageMessage {
+      get { return titleCase_ == TitleOneofCase.ImageMessage ? (global::waxnet.Internal.Proto.ImageMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.ImageMessage;
@@ -16871,8 +16871,8 @@ namespace Proto {
     /// <summary>Field number for the "videoMessage" field.</summary>
     public const int VideoMessageFieldNumber = 4;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.VideoMessage VideoMessage {
-      get { return titleCase_ == TitleOneofCase.VideoMessage ? (global::Proto.VideoMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.VideoMessage VideoMessage {
+      get { return titleCase_ == TitleOneofCase.VideoMessage ? (global::waxnet.Internal.Proto.VideoMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.VideoMessage;
@@ -16882,8 +16882,8 @@ namespace Proto {
     /// <summary>Field number for the "locationMessage" field.</summary>
     public const int LocationMessageFieldNumber = 5;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.LocationMessage LocationMessage {
-      get { return titleCase_ == TitleOneofCase.LocationMessage ? (global::Proto.LocationMessage) title_ : null; }
+    public global::waxnet.Internal.Proto.LocationMessage LocationMessage {
+      get { return titleCase_ == TitleOneofCase.LocationMessage ? (global::waxnet.Internal.Proto.LocationMessage) title_ : null; }
       set {
         title_ = value;
         titleCase_ = value == null ? TitleOneofCase.None : TitleOneofCase.LocationMessage;
@@ -17100,7 +17100,7 @@ namespace Proto {
       switch (other.TitleCase) {
         case TitleOneofCase.DocumentMessage:
           if (DocumentMessage == null) {
-            DocumentMessage = new global::Proto.DocumentMessage();
+            DocumentMessage = new global::waxnet.Internal.Proto.DocumentMessage();
           }
           DocumentMessage.MergeFrom(other.DocumentMessage);
           break;
@@ -17109,19 +17109,19 @@ namespace Proto {
           break;
         case TitleOneofCase.ImageMessage:
           if (ImageMessage == null) {
-            ImageMessage = new global::Proto.ImageMessage();
+            ImageMessage = new global::waxnet.Internal.Proto.ImageMessage();
           }
           ImageMessage.MergeFrom(other.ImageMessage);
           break;
         case TitleOneofCase.VideoMessage:
           if (VideoMessage == null) {
-            VideoMessage = new global::Proto.VideoMessage();
+            VideoMessage = new global::waxnet.Internal.Proto.VideoMessage();
           }
           VideoMessage.MergeFrom(other.VideoMessage);
           break;
         case TitleOneofCase.LocationMessage:
           if (LocationMessage == null) {
-            LocationMessage = new global::Proto.LocationMessage();
+            LocationMessage = new global::waxnet.Internal.Proto.LocationMessage();
           }
           LocationMessage.MergeFrom(other.LocationMessage);
           break;
@@ -17142,7 +17142,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.DocumentMessage subBuilder = new global::Proto.DocumentMessage();
+            global::waxnet.Internal.Proto.DocumentMessage subBuilder = new global::waxnet.Internal.Proto.DocumentMessage();
             if (titleCase_ == TitleOneofCase.DocumentMessage) {
               subBuilder.MergeFrom(DocumentMessage);
             }
@@ -17155,7 +17155,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.ImageMessage subBuilder = new global::Proto.ImageMessage();
+            global::waxnet.Internal.Proto.ImageMessage subBuilder = new global::waxnet.Internal.Proto.ImageMessage();
             if (titleCase_ == TitleOneofCase.ImageMessage) {
               subBuilder.MergeFrom(ImageMessage);
             }
@@ -17164,7 +17164,7 @@ namespace Proto {
             break;
           }
           case 34: {
-            global::Proto.VideoMessage subBuilder = new global::Proto.VideoMessage();
+            global::waxnet.Internal.Proto.VideoMessage subBuilder = new global::waxnet.Internal.Proto.VideoMessage();
             if (titleCase_ == TitleOneofCase.VideoMessage) {
               subBuilder.MergeFrom(VideoMessage);
             }
@@ -17173,7 +17173,7 @@ namespace Proto {
             break;
           }
           case 42: {
-            global::Proto.LocationMessage subBuilder = new global::Proto.LocationMessage();
+            global::waxnet.Internal.Proto.LocationMessage subBuilder = new global::waxnet.Internal.Proto.LocationMessage();
             if (titleCase_ == TitleOneofCase.LocationMessage) {
               subBuilder.MergeFrom(LocationMessage);
             }
@@ -17212,7 +17212,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.DocumentMessage subBuilder = new global::Proto.DocumentMessage();
+            global::waxnet.Internal.Proto.DocumentMessage subBuilder = new global::waxnet.Internal.Proto.DocumentMessage();
             if (titleCase_ == TitleOneofCase.DocumentMessage) {
               subBuilder.MergeFrom(DocumentMessage);
             }
@@ -17225,7 +17225,7 @@ namespace Proto {
             break;
           }
           case 26: {
-            global::Proto.ImageMessage subBuilder = new global::Proto.ImageMessage();
+            global::waxnet.Internal.Proto.ImageMessage subBuilder = new global::waxnet.Internal.Proto.ImageMessage();
             if (titleCase_ == TitleOneofCase.ImageMessage) {
               subBuilder.MergeFrom(ImageMessage);
             }
@@ -17234,7 +17234,7 @@ namespace Proto {
             break;
           }
           case 34: {
-            global::Proto.VideoMessage subBuilder = new global::Proto.VideoMessage();
+            global::waxnet.Internal.Proto.VideoMessage subBuilder = new global::waxnet.Internal.Proto.VideoMessage();
             if (titleCase_ == TitleOneofCase.VideoMessage) {
               subBuilder.MergeFrom(VideoMessage);
             }
@@ -17243,7 +17243,7 @@ namespace Proto {
             break;
           }
           case 42: {
-            global::Proto.LocationMessage subBuilder = new global::Proto.LocationMessage();
+            global::waxnet.Internal.Proto.LocationMessage subBuilder = new global::waxnet.Internal.Proto.LocationMessage();
             if (titleCase_ == TitleOneofCase.LocationMessage) {
               subBuilder.MergeFrom(LocationMessage);
             }
@@ -17286,7 +17286,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[40]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17324,9 +17324,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 3;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -17335,9 +17335,9 @@ namespace Proto {
 
     /// <summary>Field number for the "hydratedTemplate" field.</summary>
     public const int HydratedTemplateFieldNumber = 4;
-    private global::Proto.HydratedFourRowTemplate hydratedTemplate_;
+    private global::waxnet.Internal.Proto.HydratedFourRowTemplate hydratedTemplate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HydratedFourRowTemplate HydratedTemplate {
+    public global::waxnet.Internal.Proto.HydratedFourRowTemplate HydratedTemplate {
       get { return hydratedTemplate_; }
       set {
         hydratedTemplate_ = value;
@@ -17347,8 +17347,8 @@ namespace Proto {
     /// <summary>Field number for the "fourRowTemplate" field.</summary>
     public const int FourRowTemplateFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.FourRowTemplate FourRowTemplate {
-      get { return formatCase_ == FormatOneofCase.FourRowTemplate ? (global::Proto.FourRowTemplate) format_ : null; }
+    public global::waxnet.Internal.Proto.FourRowTemplate FourRowTemplate {
+      get { return formatCase_ == FormatOneofCase.FourRowTemplate ? (global::waxnet.Internal.Proto.FourRowTemplate) format_ : null; }
       set {
         format_ = value;
         formatCase_ = value == null ? FormatOneofCase.None : FormatOneofCase.FourRowTemplate;
@@ -17358,8 +17358,8 @@ namespace Proto {
     /// <summary>Field number for the "hydratedFourRowTemplate" field.</summary>
     public const int HydratedFourRowTemplateFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HydratedFourRowTemplate HydratedFourRowTemplate {
-      get { return formatCase_ == FormatOneofCase.HydratedFourRowTemplate ? (global::Proto.HydratedFourRowTemplate) format_ : null; }
+    public global::waxnet.Internal.Proto.HydratedFourRowTemplate HydratedFourRowTemplate {
+      get { return formatCase_ == FormatOneofCase.HydratedFourRowTemplate ? (global::waxnet.Internal.Proto.HydratedFourRowTemplate) format_ : null; }
       set {
         format_ = value;
         formatCase_ = value == null ? FormatOneofCase.None : FormatOneofCase.HydratedFourRowTemplate;
@@ -17505,26 +17505,26 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
       if (other.hydratedTemplate_ != null) {
         if (hydratedTemplate_ == null) {
-          HydratedTemplate = new global::Proto.HydratedFourRowTemplate();
+          HydratedTemplate = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
         }
         HydratedTemplate.MergeFrom(other.HydratedTemplate);
       }
       switch (other.FormatCase) {
         case FormatOneofCase.FourRowTemplate:
           if (FourRowTemplate == null) {
-            FourRowTemplate = new global::Proto.FourRowTemplate();
+            FourRowTemplate = new global::waxnet.Internal.Proto.FourRowTemplate();
           }
           FourRowTemplate.MergeFrom(other.FourRowTemplate);
           break;
         case FormatOneofCase.HydratedFourRowTemplate:
           if (HydratedFourRowTemplate == null) {
-            HydratedFourRowTemplate = new global::Proto.HydratedFourRowTemplate();
+            HydratedFourRowTemplate = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
           }
           HydratedFourRowTemplate.MergeFrom(other.HydratedFourRowTemplate);
           break;
@@ -17545,7 +17545,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Proto.FourRowTemplate subBuilder = new global::Proto.FourRowTemplate();
+            global::waxnet.Internal.Proto.FourRowTemplate subBuilder = new global::waxnet.Internal.Proto.FourRowTemplate();
             if (formatCase_ == FormatOneofCase.FourRowTemplate) {
               subBuilder.MergeFrom(FourRowTemplate);
             }
@@ -17554,7 +17554,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HydratedFourRowTemplate subBuilder = new global::Proto.HydratedFourRowTemplate();
+            global::waxnet.Internal.Proto.HydratedFourRowTemplate subBuilder = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
             if (formatCase_ == FormatOneofCase.HydratedFourRowTemplate) {
               subBuilder.MergeFrom(HydratedFourRowTemplate);
             }
@@ -17564,14 +17564,14 @@ namespace Proto {
           }
           case 26: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
           }
           case 34: {
             if (hydratedTemplate_ == null) {
-              HydratedTemplate = new global::Proto.HydratedFourRowTemplate();
+              HydratedTemplate = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
             }
             input.ReadMessage(HydratedTemplate);
             break;
@@ -17591,7 +17591,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Proto.FourRowTemplate subBuilder = new global::Proto.FourRowTemplate();
+            global::waxnet.Internal.Proto.FourRowTemplate subBuilder = new global::waxnet.Internal.Proto.FourRowTemplate();
             if (formatCase_ == FormatOneofCase.FourRowTemplate) {
               subBuilder.MergeFrom(FourRowTemplate);
             }
@@ -17600,7 +17600,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            global::Proto.HydratedFourRowTemplate subBuilder = new global::Proto.HydratedFourRowTemplate();
+            global::waxnet.Internal.Proto.HydratedFourRowTemplate subBuilder = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
             if (formatCase_ == FormatOneofCase.HydratedFourRowTemplate) {
               subBuilder.MergeFrom(HydratedFourRowTemplate);
             }
@@ -17610,14 +17610,14 @@ namespace Proto {
           }
           case 26: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
           }
           case 34: {
             if (hydratedTemplate_ == null) {
-              HydratedTemplate = new global::Proto.HydratedFourRowTemplate();
+              HydratedTemplate = new global::waxnet.Internal.Proto.HydratedFourRowTemplate();
             }
             input.ReadMessage(HydratedTemplate);
             break;
@@ -17642,7 +17642,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[41]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[41]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17720,9 +17720,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 3;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -17877,7 +17877,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -17908,7 +17908,7 @@ namespace Proto {
           }
           case 26: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -17941,7 +17941,7 @@ namespace Proto {
           }
           case 26: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -17969,7 +17969,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[42]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[42]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17999,9 +17999,9 @@ namespace Proto {
 
     /// <summary>Field number for the "catalogImage" field.</summary>
     public const int CatalogImageFieldNumber = 1;
-    private global::Proto.ImageMessage catalogImage_;
+    private global::waxnet.Internal.Proto.ImageMessage catalogImage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ImageMessage CatalogImage {
+    public global::waxnet.Internal.Proto.ImageMessage CatalogImage {
       get { return catalogImage_; }
       set {
         catalogImage_ = value;
@@ -18159,7 +18159,7 @@ namespace Proto {
       }
       if (other.catalogImage_ != null) {
         if (catalogImage_ == null) {
-          CatalogImage = new global::Proto.ImageMessage();
+          CatalogImage = new global::waxnet.Internal.Proto.ImageMessage();
         }
         CatalogImage.MergeFrom(other.CatalogImage);
       }
@@ -18185,7 +18185,7 @@ namespace Proto {
             break;
           case 10: {
             if (catalogImage_ == null) {
-              CatalogImage = new global::Proto.ImageMessage();
+              CatalogImage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(CatalogImage);
             break;
@@ -18214,7 +18214,7 @@ namespace Proto {
             break;
           case 10: {
             if (catalogImage_ == null) {
-              CatalogImage = new global::Proto.ImageMessage();
+              CatalogImage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(CatalogImage);
             break;
@@ -18247,7 +18247,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[43]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[43]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18285,9 +18285,9 @@ namespace Proto {
 
     /// <summary>Field number for the "productImage" field.</summary>
     public const int ProductImageFieldNumber = 1;
-    private global::Proto.ImageMessage productImage_;
+    private global::waxnet.Internal.Proto.ImageMessage productImage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ImageMessage ProductImage {
+    public global::waxnet.Internal.Proto.ImageMessage ProductImage {
       get { return productImage_; }
       set {
         productImage_ = value;
@@ -18699,7 +18699,7 @@ namespace Proto {
       }
       if (other.productImage_ != null) {
         if (productImage_ == null) {
-          ProductImage = new global::Proto.ImageMessage();
+          ProductImage = new global::waxnet.Internal.Proto.ImageMessage();
         }
         ProductImage.MergeFrom(other.ProductImage);
       }
@@ -18746,7 +18746,7 @@ namespace Proto {
             break;
           case 10: {
             if (productImage_ == null) {
-              ProductImage = new global::Proto.ImageMessage();
+              ProductImage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(ProductImage);
             break;
@@ -18803,7 +18803,7 @@ namespace Proto {
             break;
           case 10: {
             if (productImage_ == null) {
-              ProductImage = new global::Proto.ImageMessage();
+              ProductImage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(ProductImage);
             break;
@@ -18863,7 +18863,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[44]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[44]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18894,9 +18894,9 @@ namespace Proto {
 
     /// <summary>Field number for the "product" field.</summary>
     public const int ProductFieldNumber = 1;
-    private global::Proto.ProductSnapshot product_;
+    private global::waxnet.Internal.Proto.ProductSnapshot product_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ProductSnapshot Product {
+    public global::waxnet.Internal.Proto.ProductSnapshot Product {
       get { return product_; }
       set {
         product_ = value;
@@ -18928,9 +18928,9 @@ namespace Proto {
 
     /// <summary>Field number for the "catalog" field.</summary>
     public const int CatalogFieldNumber = 4;
-    private global::Proto.CatalogSnapshot catalog_;
+    private global::waxnet.Internal.Proto.CatalogSnapshot catalog_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.CatalogSnapshot Catalog {
+    public global::waxnet.Internal.Proto.CatalogSnapshot Catalog {
       get { return catalog_; }
       set {
         catalog_ = value;
@@ -18939,9 +18939,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 17;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -19066,7 +19066,7 @@ namespace Proto {
       }
       if (other.product_ != null) {
         if (product_ == null) {
-          Product = new global::Proto.ProductSnapshot();
+          Product = new global::waxnet.Internal.Proto.ProductSnapshot();
         }
         Product.MergeFrom(other.Product);
       }
@@ -19075,13 +19075,13 @@ namespace Proto {
       }
       if (other.catalog_ != null) {
         if (catalog_ == null) {
-          Catalog = new global::Proto.CatalogSnapshot();
+          Catalog = new global::waxnet.Internal.Proto.CatalogSnapshot();
         }
         Catalog.MergeFrom(other.Catalog);
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -19101,7 +19101,7 @@ namespace Proto {
             break;
           case 10: {
             if (product_ == null) {
-              Product = new global::Proto.ProductSnapshot();
+              Product = new global::waxnet.Internal.Proto.ProductSnapshot();
             }
             input.ReadMessage(Product);
             break;
@@ -19112,14 +19112,14 @@ namespace Proto {
           }
           case 34: {
             if (catalog_ == null) {
-              Catalog = new global::Proto.CatalogSnapshot();
+              Catalog = new global::waxnet.Internal.Proto.CatalogSnapshot();
             }
             input.ReadMessage(Catalog);
             break;
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -19140,7 +19140,7 @@ namespace Proto {
             break;
           case 10: {
             if (product_ == null) {
-              Product = new global::Proto.ProductSnapshot();
+              Product = new global::waxnet.Internal.Proto.ProductSnapshot();
             }
             input.ReadMessage(Product);
             break;
@@ -19151,14 +19151,14 @@ namespace Proto {
           }
           case 34: {
             if (catalog_ == null) {
-              Catalog = new global::Proto.CatalogSnapshot();
+              Catalog = new global::waxnet.Internal.Proto.CatalogSnapshot();
             }
             input.ReadMessage(Catalog);
             break;
           }
           case 138: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -19183,7 +19183,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[45]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[45]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19357,9 +19357,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contextInfo" field.</summary>
     public const int ContextInfoFieldNumber = 7;
-    private global::Proto.ContextInfo contextInfo_;
+    private global::waxnet.Internal.Proto.ContextInfo contextInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContextInfo ContextInfo {
+    public global::waxnet.Internal.Proto.ContextInfo ContextInfo {
       get { return contextInfo_; }
       set {
         contextInfo_ = value;
@@ -19541,7 +19541,7 @@ namespace Proto {
       }
       if (other.contextInfo_ != null) {
         if (contextInfo_ == null) {
-          ContextInfo = new global::Proto.ContextInfo();
+          ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
         }
         ContextInfo.MergeFrom(other.ContextInfo);
       }
@@ -19585,7 +19585,7 @@ namespace Proto {
           }
           case 58: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -19630,7 +19630,7 @@ namespace Proto {
           }
           case 58: {
             if (contextInfo_ == null) {
-              ContextInfo = new global::Proto.ContextInfo();
+              ContextInfo = new global::waxnet.Internal.Proto.ContextInfo();
             }
             input.ReadMessage(ContextInfo);
             break;
@@ -19654,7 +19654,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[46]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[46]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19706,9 +19706,9 @@ namespace Proto {
 
     /// <summary>Field number for the "message" field.</summary>
     public const int MessageFieldNumber = 2;
-    private global::Proto.Message message_;
+    private global::waxnet.Internal.Proto.Message message_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message Message {
+    public global::waxnet.Internal.Proto.Message Message {
       get { return message_; }
       set {
         message_ = value;
@@ -19810,7 +19810,7 @@ namespace Proto {
       }
       if (other.message_ != null) {
         if (message_ == null) {
-          Message = new global::Proto.Message();
+          Message = new global::waxnet.Internal.Proto.Message();
         }
         Message.MergeFrom(other.Message);
       }
@@ -19834,7 +19834,7 @@ namespace Proto {
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -19859,7 +19859,7 @@ namespace Proto {
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -19883,7 +19883,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[47]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[47]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20067,7 +20067,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[48]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[48]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20144,9 +20144,9 @@ namespace Proto {
 
     /// <summary>Field number for the "senderKeyDistributionMessage" field.</summary>
     public const int SenderKeyDistributionMessageFieldNumber = 2;
-    private global::Proto.SenderKeyDistributionMessage senderKeyDistributionMessage_;
+    private global::waxnet.Internal.Proto.SenderKeyDistributionMessage senderKeyDistributionMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.SenderKeyDistributionMessage SenderKeyDistributionMessage {
+    public global::waxnet.Internal.Proto.SenderKeyDistributionMessage SenderKeyDistributionMessage {
       get { return senderKeyDistributionMessage_; }
       set {
         senderKeyDistributionMessage_ = value;
@@ -20155,9 +20155,9 @@ namespace Proto {
 
     /// <summary>Field number for the "imageMessage" field.</summary>
     public const int ImageMessageFieldNumber = 3;
-    private global::Proto.ImageMessage imageMessage_;
+    private global::waxnet.Internal.Proto.ImageMessage imageMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ImageMessage ImageMessage {
+    public global::waxnet.Internal.Proto.ImageMessage ImageMessage {
       get { return imageMessage_; }
       set {
         imageMessage_ = value;
@@ -20166,9 +20166,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contactMessage" field.</summary>
     public const int ContactMessageFieldNumber = 4;
-    private global::Proto.ContactMessage contactMessage_;
+    private global::waxnet.Internal.Proto.ContactMessage contactMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContactMessage ContactMessage {
+    public global::waxnet.Internal.Proto.ContactMessage ContactMessage {
       get { return contactMessage_; }
       set {
         contactMessage_ = value;
@@ -20177,9 +20177,9 @@ namespace Proto {
 
     /// <summary>Field number for the "locationMessage" field.</summary>
     public const int LocationMessageFieldNumber = 5;
-    private global::Proto.LocationMessage locationMessage_;
+    private global::waxnet.Internal.Proto.LocationMessage locationMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.LocationMessage LocationMessage {
+    public global::waxnet.Internal.Proto.LocationMessage LocationMessage {
       get { return locationMessage_; }
       set {
         locationMessage_ = value;
@@ -20188,9 +20188,9 @@ namespace Proto {
 
     /// <summary>Field number for the "extendedTextMessage" field.</summary>
     public const int ExtendedTextMessageFieldNumber = 6;
-    private global::Proto.ExtendedTextMessage extendedTextMessage_;
+    private global::waxnet.Internal.Proto.ExtendedTextMessage extendedTextMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ExtendedTextMessage ExtendedTextMessage {
+    public global::waxnet.Internal.Proto.ExtendedTextMessage ExtendedTextMessage {
       get { return extendedTextMessage_; }
       set {
         extendedTextMessage_ = value;
@@ -20199,9 +20199,9 @@ namespace Proto {
 
     /// <summary>Field number for the "documentMessage" field.</summary>
     public const int DocumentMessageFieldNumber = 7;
-    private global::Proto.DocumentMessage documentMessage_;
+    private global::waxnet.Internal.Proto.DocumentMessage documentMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DocumentMessage DocumentMessage {
+    public global::waxnet.Internal.Proto.DocumentMessage DocumentMessage {
       get { return documentMessage_; }
       set {
         documentMessage_ = value;
@@ -20210,9 +20210,9 @@ namespace Proto {
 
     /// <summary>Field number for the "audioMessage" field.</summary>
     public const int AudioMessageFieldNumber = 8;
-    private global::Proto.AudioMessage audioMessage_;
+    private global::waxnet.Internal.Proto.AudioMessage audioMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.AudioMessage AudioMessage {
+    public global::waxnet.Internal.Proto.AudioMessage AudioMessage {
       get { return audioMessage_; }
       set {
         audioMessage_ = value;
@@ -20221,9 +20221,9 @@ namespace Proto {
 
     /// <summary>Field number for the "videoMessage" field.</summary>
     public const int VideoMessageFieldNumber = 9;
-    private global::Proto.VideoMessage videoMessage_;
+    private global::waxnet.Internal.Proto.VideoMessage videoMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.VideoMessage VideoMessage {
+    public global::waxnet.Internal.Proto.VideoMessage VideoMessage {
       get { return videoMessage_; }
       set {
         videoMessage_ = value;
@@ -20232,9 +20232,9 @@ namespace Proto {
 
     /// <summary>Field number for the "call" field.</summary>
     public const int CallFieldNumber = 10;
-    private global::Proto.Call call_;
+    private global::waxnet.Internal.Proto.Call call_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Call Call {
+    public global::waxnet.Internal.Proto.Call Call {
       get { return call_; }
       set {
         call_ = value;
@@ -20243,9 +20243,9 @@ namespace Proto {
 
     /// <summary>Field number for the "chat" field.</summary>
     public const int ChatFieldNumber = 11;
-    private global::Proto.Chat chat_;
+    private global::waxnet.Internal.Proto.Chat chat_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Chat Chat {
+    public global::waxnet.Internal.Proto.Chat Chat {
       get { return chat_; }
       set {
         chat_ = value;
@@ -20254,9 +20254,9 @@ namespace Proto {
 
     /// <summary>Field number for the "protocolMessage" field.</summary>
     public const int ProtocolMessageFieldNumber = 12;
-    private global::Proto.ProtocolMessage protocolMessage_;
+    private global::waxnet.Internal.Proto.ProtocolMessage protocolMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ProtocolMessage ProtocolMessage {
+    public global::waxnet.Internal.Proto.ProtocolMessage ProtocolMessage {
       get { return protocolMessage_; }
       set {
         protocolMessage_ = value;
@@ -20265,9 +20265,9 @@ namespace Proto {
 
     /// <summary>Field number for the "contactsArrayMessage" field.</summary>
     public const int ContactsArrayMessageFieldNumber = 13;
-    private global::Proto.ContactsArrayMessage contactsArrayMessage_;
+    private global::waxnet.Internal.Proto.ContactsArrayMessage contactsArrayMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ContactsArrayMessage ContactsArrayMessage {
+    public global::waxnet.Internal.Proto.ContactsArrayMessage ContactsArrayMessage {
       get { return contactsArrayMessage_; }
       set {
         contactsArrayMessage_ = value;
@@ -20276,9 +20276,9 @@ namespace Proto {
 
     /// <summary>Field number for the "highlyStructuredMessage" field.</summary>
     public const int HighlyStructuredMessageFieldNumber = 14;
-    private global::Proto.HighlyStructuredMessage highlyStructuredMessage_;
+    private global::waxnet.Internal.Proto.HighlyStructuredMessage highlyStructuredMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.HighlyStructuredMessage HighlyStructuredMessage {
+    public global::waxnet.Internal.Proto.HighlyStructuredMessage HighlyStructuredMessage {
       get { return highlyStructuredMessage_; }
       set {
         highlyStructuredMessage_ = value;
@@ -20287,9 +20287,9 @@ namespace Proto {
 
     /// <summary>Field number for the "fastRatchetKeySenderKeyDistributionMessage" field.</summary>
     public const int FastRatchetKeySenderKeyDistributionMessageFieldNumber = 15;
-    private global::Proto.SenderKeyDistributionMessage fastRatchetKeySenderKeyDistributionMessage_;
+    private global::waxnet.Internal.Proto.SenderKeyDistributionMessage fastRatchetKeySenderKeyDistributionMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.SenderKeyDistributionMessage FastRatchetKeySenderKeyDistributionMessage {
+    public global::waxnet.Internal.Proto.SenderKeyDistributionMessage FastRatchetKeySenderKeyDistributionMessage {
       get { return fastRatchetKeySenderKeyDistributionMessage_; }
       set {
         fastRatchetKeySenderKeyDistributionMessage_ = value;
@@ -20298,9 +20298,9 @@ namespace Proto {
 
     /// <summary>Field number for the "sendPaymentMessage" field.</summary>
     public const int SendPaymentMessageFieldNumber = 16;
-    private global::Proto.SendPaymentMessage sendPaymentMessage_;
+    private global::waxnet.Internal.Proto.SendPaymentMessage sendPaymentMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.SendPaymentMessage SendPaymentMessage {
+    public global::waxnet.Internal.Proto.SendPaymentMessage SendPaymentMessage {
       get { return sendPaymentMessage_; }
       set {
         sendPaymentMessage_ = value;
@@ -20309,9 +20309,9 @@ namespace Proto {
 
     /// <summary>Field number for the "liveLocationMessage" field.</summary>
     public const int LiveLocationMessageFieldNumber = 18;
-    private global::Proto.LiveLocationMessage liveLocationMessage_;
+    private global::waxnet.Internal.Proto.LiveLocationMessage liveLocationMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.LiveLocationMessage LiveLocationMessage {
+    public global::waxnet.Internal.Proto.LiveLocationMessage LiveLocationMessage {
       get { return liveLocationMessage_; }
       set {
         liveLocationMessage_ = value;
@@ -20320,9 +20320,9 @@ namespace Proto {
 
     /// <summary>Field number for the "requestPaymentMessage" field.</summary>
     public const int RequestPaymentMessageFieldNumber = 22;
-    private global::Proto.RequestPaymentMessage requestPaymentMessage_;
+    private global::waxnet.Internal.Proto.RequestPaymentMessage requestPaymentMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.RequestPaymentMessage RequestPaymentMessage {
+    public global::waxnet.Internal.Proto.RequestPaymentMessage RequestPaymentMessage {
       get { return requestPaymentMessage_; }
       set {
         requestPaymentMessage_ = value;
@@ -20331,9 +20331,9 @@ namespace Proto {
 
     /// <summary>Field number for the "declinePaymentRequestMessage" field.</summary>
     public const int DeclinePaymentRequestMessageFieldNumber = 23;
-    private global::Proto.DeclinePaymentRequestMessage declinePaymentRequestMessage_;
+    private global::waxnet.Internal.Proto.DeclinePaymentRequestMessage declinePaymentRequestMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DeclinePaymentRequestMessage DeclinePaymentRequestMessage {
+    public global::waxnet.Internal.Proto.DeclinePaymentRequestMessage DeclinePaymentRequestMessage {
       get { return declinePaymentRequestMessage_; }
       set {
         declinePaymentRequestMessage_ = value;
@@ -20342,9 +20342,9 @@ namespace Proto {
 
     /// <summary>Field number for the "cancelPaymentRequestMessage" field.</summary>
     public const int CancelPaymentRequestMessageFieldNumber = 24;
-    private global::Proto.CancelPaymentRequestMessage cancelPaymentRequestMessage_;
+    private global::waxnet.Internal.Proto.CancelPaymentRequestMessage cancelPaymentRequestMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.CancelPaymentRequestMessage CancelPaymentRequestMessage {
+    public global::waxnet.Internal.Proto.CancelPaymentRequestMessage CancelPaymentRequestMessage {
       get { return cancelPaymentRequestMessage_; }
       set {
         cancelPaymentRequestMessage_ = value;
@@ -20353,9 +20353,9 @@ namespace Proto {
 
     /// <summary>Field number for the "templateMessage" field.</summary>
     public const int TemplateMessageFieldNumber = 25;
-    private global::Proto.TemplateMessage templateMessage_;
+    private global::waxnet.Internal.Proto.TemplateMessage templateMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.TemplateMessage TemplateMessage {
+    public global::waxnet.Internal.Proto.TemplateMessage TemplateMessage {
       get { return templateMessage_; }
       set {
         templateMessage_ = value;
@@ -20364,9 +20364,9 @@ namespace Proto {
 
     /// <summary>Field number for the "stickerMessage" field.</summary>
     public const int StickerMessageFieldNumber = 26;
-    private global::Proto.StickerMessage stickerMessage_;
+    private global::waxnet.Internal.Proto.StickerMessage stickerMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.StickerMessage StickerMessage {
+    public global::waxnet.Internal.Proto.StickerMessage StickerMessage {
       get { return stickerMessage_; }
       set {
         stickerMessage_ = value;
@@ -20375,9 +20375,9 @@ namespace Proto {
 
     /// <summary>Field number for the "groupInviteMessage" field.</summary>
     public const int GroupInviteMessageFieldNumber = 28;
-    private global::Proto.GroupInviteMessage groupInviteMessage_;
+    private global::waxnet.Internal.Proto.GroupInviteMessage groupInviteMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.GroupInviteMessage GroupInviteMessage {
+    public global::waxnet.Internal.Proto.GroupInviteMessage GroupInviteMessage {
       get { return groupInviteMessage_; }
       set {
         groupInviteMessage_ = value;
@@ -20386,9 +20386,9 @@ namespace Proto {
 
     /// <summary>Field number for the "templateButtonReplyMessage" field.</summary>
     public const int TemplateButtonReplyMessageFieldNumber = 29;
-    private global::Proto.TemplateButtonReplyMessage templateButtonReplyMessage_;
+    private global::waxnet.Internal.Proto.TemplateButtonReplyMessage templateButtonReplyMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.TemplateButtonReplyMessage TemplateButtonReplyMessage {
+    public global::waxnet.Internal.Proto.TemplateButtonReplyMessage TemplateButtonReplyMessage {
       get { return templateButtonReplyMessage_; }
       set {
         templateButtonReplyMessage_ = value;
@@ -20397,9 +20397,9 @@ namespace Proto {
 
     /// <summary>Field number for the "productMessage" field.</summary>
     public const int ProductMessageFieldNumber = 30;
-    private global::Proto.ProductMessage productMessage_;
+    private global::waxnet.Internal.Proto.ProductMessage productMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.ProductMessage ProductMessage {
+    public global::waxnet.Internal.Proto.ProductMessage ProductMessage {
       get { return productMessage_; }
       set {
         productMessage_ = value;
@@ -20408,9 +20408,9 @@ namespace Proto {
 
     /// <summary>Field number for the "deviceSentMessage" field.</summary>
     public const int DeviceSentMessageFieldNumber = 31;
-    private global::Proto.DeviceSentMessage deviceSentMessage_;
+    private global::waxnet.Internal.Proto.DeviceSentMessage deviceSentMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DeviceSentMessage DeviceSentMessage {
+    public global::waxnet.Internal.Proto.DeviceSentMessage DeviceSentMessage {
       get { return deviceSentMessage_; }
       set {
         deviceSentMessage_ = value;
@@ -20419,9 +20419,9 @@ namespace Proto {
 
     /// <summary>Field number for the "deviceSyncMessage" field.</summary>
     public const int DeviceSyncMessageFieldNumber = 32;
-    private global::Proto.DeviceSyncMessage deviceSyncMessage_;
+    private global::waxnet.Internal.Proto.DeviceSyncMessage deviceSyncMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DeviceSyncMessage DeviceSyncMessage {
+    public global::waxnet.Internal.Proto.DeviceSyncMessage DeviceSyncMessage {
       get { return deviceSyncMessage_; }
       set {
         deviceSyncMessage_ = value;
@@ -20848,157 +20848,157 @@ namespace Proto {
       }
       if (other.senderKeyDistributionMessage_ != null) {
         if (senderKeyDistributionMessage_ == null) {
-          SenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+          SenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
         }
         SenderKeyDistributionMessage.MergeFrom(other.SenderKeyDistributionMessage);
       }
       if (other.imageMessage_ != null) {
         if (imageMessage_ == null) {
-          ImageMessage = new global::Proto.ImageMessage();
+          ImageMessage = new global::waxnet.Internal.Proto.ImageMessage();
         }
         ImageMessage.MergeFrom(other.ImageMessage);
       }
       if (other.contactMessage_ != null) {
         if (contactMessage_ == null) {
-          ContactMessage = new global::Proto.ContactMessage();
+          ContactMessage = new global::waxnet.Internal.Proto.ContactMessage();
         }
         ContactMessage.MergeFrom(other.ContactMessage);
       }
       if (other.locationMessage_ != null) {
         if (locationMessage_ == null) {
-          LocationMessage = new global::Proto.LocationMessage();
+          LocationMessage = new global::waxnet.Internal.Proto.LocationMessage();
         }
         LocationMessage.MergeFrom(other.LocationMessage);
       }
       if (other.extendedTextMessage_ != null) {
         if (extendedTextMessage_ == null) {
-          ExtendedTextMessage = new global::Proto.ExtendedTextMessage();
+          ExtendedTextMessage = new global::waxnet.Internal.Proto.ExtendedTextMessage();
         }
         ExtendedTextMessage.MergeFrom(other.ExtendedTextMessage);
       }
       if (other.documentMessage_ != null) {
         if (documentMessage_ == null) {
-          DocumentMessage = new global::Proto.DocumentMessage();
+          DocumentMessage = new global::waxnet.Internal.Proto.DocumentMessage();
         }
         DocumentMessage.MergeFrom(other.DocumentMessage);
       }
       if (other.audioMessage_ != null) {
         if (audioMessage_ == null) {
-          AudioMessage = new global::Proto.AudioMessage();
+          AudioMessage = new global::waxnet.Internal.Proto.AudioMessage();
         }
         AudioMessage.MergeFrom(other.AudioMessage);
       }
       if (other.videoMessage_ != null) {
         if (videoMessage_ == null) {
-          VideoMessage = new global::Proto.VideoMessage();
+          VideoMessage = new global::waxnet.Internal.Proto.VideoMessage();
         }
         VideoMessage.MergeFrom(other.VideoMessage);
       }
       if (other.call_ != null) {
         if (call_ == null) {
-          Call = new global::Proto.Call();
+          Call = new global::waxnet.Internal.Proto.Call();
         }
         Call.MergeFrom(other.Call);
       }
       if (other.chat_ != null) {
         if (chat_ == null) {
-          Chat = new global::Proto.Chat();
+          Chat = new global::waxnet.Internal.Proto.Chat();
         }
         Chat.MergeFrom(other.Chat);
       }
       if (other.protocolMessage_ != null) {
         if (protocolMessage_ == null) {
-          ProtocolMessage = new global::Proto.ProtocolMessage();
+          ProtocolMessage = new global::waxnet.Internal.Proto.ProtocolMessage();
         }
         ProtocolMessage.MergeFrom(other.ProtocolMessage);
       }
       if (other.contactsArrayMessage_ != null) {
         if (contactsArrayMessage_ == null) {
-          ContactsArrayMessage = new global::Proto.ContactsArrayMessage();
+          ContactsArrayMessage = new global::waxnet.Internal.Proto.ContactsArrayMessage();
         }
         ContactsArrayMessage.MergeFrom(other.ContactsArrayMessage);
       }
       if (other.highlyStructuredMessage_ != null) {
         if (highlyStructuredMessage_ == null) {
-          HighlyStructuredMessage = new global::Proto.HighlyStructuredMessage();
+          HighlyStructuredMessage = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
         }
         HighlyStructuredMessage.MergeFrom(other.HighlyStructuredMessage);
       }
       if (other.fastRatchetKeySenderKeyDistributionMessage_ != null) {
         if (fastRatchetKeySenderKeyDistributionMessage_ == null) {
-          FastRatchetKeySenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+          FastRatchetKeySenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
         }
         FastRatchetKeySenderKeyDistributionMessage.MergeFrom(other.FastRatchetKeySenderKeyDistributionMessage);
       }
       if (other.sendPaymentMessage_ != null) {
         if (sendPaymentMessage_ == null) {
-          SendPaymentMessage = new global::Proto.SendPaymentMessage();
+          SendPaymentMessage = new global::waxnet.Internal.Proto.SendPaymentMessage();
         }
         SendPaymentMessage.MergeFrom(other.SendPaymentMessage);
       }
       if (other.liveLocationMessage_ != null) {
         if (liveLocationMessage_ == null) {
-          LiveLocationMessage = new global::Proto.LiveLocationMessage();
+          LiveLocationMessage = new global::waxnet.Internal.Proto.LiveLocationMessage();
         }
         LiveLocationMessage.MergeFrom(other.LiveLocationMessage);
       }
       if (other.requestPaymentMessage_ != null) {
         if (requestPaymentMessage_ == null) {
-          RequestPaymentMessage = new global::Proto.RequestPaymentMessage();
+          RequestPaymentMessage = new global::waxnet.Internal.Proto.RequestPaymentMessage();
         }
         RequestPaymentMessage.MergeFrom(other.RequestPaymentMessage);
       }
       if (other.declinePaymentRequestMessage_ != null) {
         if (declinePaymentRequestMessage_ == null) {
-          DeclinePaymentRequestMessage = new global::Proto.DeclinePaymentRequestMessage();
+          DeclinePaymentRequestMessage = new global::waxnet.Internal.Proto.DeclinePaymentRequestMessage();
         }
         DeclinePaymentRequestMessage.MergeFrom(other.DeclinePaymentRequestMessage);
       }
       if (other.cancelPaymentRequestMessage_ != null) {
         if (cancelPaymentRequestMessage_ == null) {
-          CancelPaymentRequestMessage = new global::Proto.CancelPaymentRequestMessage();
+          CancelPaymentRequestMessage = new global::waxnet.Internal.Proto.CancelPaymentRequestMessage();
         }
         CancelPaymentRequestMessage.MergeFrom(other.CancelPaymentRequestMessage);
       }
       if (other.templateMessage_ != null) {
         if (templateMessage_ == null) {
-          TemplateMessage = new global::Proto.TemplateMessage();
+          TemplateMessage = new global::waxnet.Internal.Proto.TemplateMessage();
         }
         TemplateMessage.MergeFrom(other.TemplateMessage);
       }
       if (other.stickerMessage_ != null) {
         if (stickerMessage_ == null) {
-          StickerMessage = new global::Proto.StickerMessage();
+          StickerMessage = new global::waxnet.Internal.Proto.StickerMessage();
         }
         StickerMessage.MergeFrom(other.StickerMessage);
       }
       if (other.groupInviteMessage_ != null) {
         if (groupInviteMessage_ == null) {
-          GroupInviteMessage = new global::Proto.GroupInviteMessage();
+          GroupInviteMessage = new global::waxnet.Internal.Proto.GroupInviteMessage();
         }
         GroupInviteMessage.MergeFrom(other.GroupInviteMessage);
       }
       if (other.templateButtonReplyMessage_ != null) {
         if (templateButtonReplyMessage_ == null) {
-          TemplateButtonReplyMessage = new global::Proto.TemplateButtonReplyMessage();
+          TemplateButtonReplyMessage = new global::waxnet.Internal.Proto.TemplateButtonReplyMessage();
         }
         TemplateButtonReplyMessage.MergeFrom(other.TemplateButtonReplyMessage);
       }
       if (other.productMessage_ != null) {
         if (productMessage_ == null) {
-          ProductMessage = new global::Proto.ProductMessage();
+          ProductMessage = new global::waxnet.Internal.Proto.ProductMessage();
         }
         ProductMessage.MergeFrom(other.ProductMessage);
       }
       if (other.deviceSentMessage_ != null) {
         if (deviceSentMessage_ == null) {
-          DeviceSentMessage = new global::Proto.DeviceSentMessage();
+          DeviceSentMessage = new global::waxnet.Internal.Proto.DeviceSentMessage();
         }
         DeviceSentMessage.MergeFrom(other.DeviceSentMessage);
       }
       if (other.deviceSyncMessage_ != null) {
         if (deviceSyncMessage_ == null) {
-          DeviceSyncMessage = new global::Proto.DeviceSyncMessage();
+          DeviceSyncMessage = new global::waxnet.Internal.Proto.DeviceSyncMessage();
         }
         DeviceSyncMessage.MergeFrom(other.DeviceSyncMessage);
       }
@@ -21022,182 +21022,182 @@ namespace Proto {
           }
           case 18: {
             if (senderKeyDistributionMessage_ == null) {
-              SenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+              SenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
             }
             input.ReadMessage(SenderKeyDistributionMessage);
             break;
           }
           case 26: {
             if (imageMessage_ == null) {
-              ImageMessage = new global::Proto.ImageMessage();
+              ImageMessage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(ImageMessage);
             break;
           }
           case 34: {
             if (contactMessage_ == null) {
-              ContactMessage = new global::Proto.ContactMessage();
+              ContactMessage = new global::waxnet.Internal.Proto.ContactMessage();
             }
             input.ReadMessage(ContactMessage);
             break;
           }
           case 42: {
             if (locationMessage_ == null) {
-              LocationMessage = new global::Proto.LocationMessage();
+              LocationMessage = new global::waxnet.Internal.Proto.LocationMessage();
             }
             input.ReadMessage(LocationMessage);
             break;
           }
           case 50: {
             if (extendedTextMessage_ == null) {
-              ExtendedTextMessage = new global::Proto.ExtendedTextMessage();
+              ExtendedTextMessage = new global::waxnet.Internal.Proto.ExtendedTextMessage();
             }
             input.ReadMessage(ExtendedTextMessage);
             break;
           }
           case 58: {
             if (documentMessage_ == null) {
-              DocumentMessage = new global::Proto.DocumentMessage();
+              DocumentMessage = new global::waxnet.Internal.Proto.DocumentMessage();
             }
             input.ReadMessage(DocumentMessage);
             break;
           }
           case 66: {
             if (audioMessage_ == null) {
-              AudioMessage = new global::Proto.AudioMessage();
+              AudioMessage = new global::waxnet.Internal.Proto.AudioMessage();
             }
             input.ReadMessage(AudioMessage);
             break;
           }
           case 74: {
             if (videoMessage_ == null) {
-              VideoMessage = new global::Proto.VideoMessage();
+              VideoMessage = new global::waxnet.Internal.Proto.VideoMessage();
             }
             input.ReadMessage(VideoMessage);
             break;
           }
           case 82: {
             if (call_ == null) {
-              Call = new global::Proto.Call();
+              Call = new global::waxnet.Internal.Proto.Call();
             }
             input.ReadMessage(Call);
             break;
           }
           case 90: {
             if (chat_ == null) {
-              Chat = new global::Proto.Chat();
+              Chat = new global::waxnet.Internal.Proto.Chat();
             }
             input.ReadMessage(Chat);
             break;
           }
           case 98: {
             if (protocolMessage_ == null) {
-              ProtocolMessage = new global::Proto.ProtocolMessage();
+              ProtocolMessage = new global::waxnet.Internal.Proto.ProtocolMessage();
             }
             input.ReadMessage(ProtocolMessage);
             break;
           }
           case 106: {
             if (contactsArrayMessage_ == null) {
-              ContactsArrayMessage = new global::Proto.ContactsArrayMessage();
+              ContactsArrayMessage = new global::waxnet.Internal.Proto.ContactsArrayMessage();
             }
             input.ReadMessage(ContactsArrayMessage);
             break;
           }
           case 114: {
             if (highlyStructuredMessage_ == null) {
-              HighlyStructuredMessage = new global::Proto.HighlyStructuredMessage();
+              HighlyStructuredMessage = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(HighlyStructuredMessage);
             break;
           }
           case 122: {
             if (fastRatchetKeySenderKeyDistributionMessage_ == null) {
-              FastRatchetKeySenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+              FastRatchetKeySenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
             }
             input.ReadMessage(FastRatchetKeySenderKeyDistributionMessage);
             break;
           }
           case 130: {
             if (sendPaymentMessage_ == null) {
-              SendPaymentMessage = new global::Proto.SendPaymentMessage();
+              SendPaymentMessage = new global::waxnet.Internal.Proto.SendPaymentMessage();
             }
             input.ReadMessage(SendPaymentMessage);
             break;
           }
           case 146: {
             if (liveLocationMessage_ == null) {
-              LiveLocationMessage = new global::Proto.LiveLocationMessage();
+              LiveLocationMessage = new global::waxnet.Internal.Proto.LiveLocationMessage();
             }
             input.ReadMessage(LiveLocationMessage);
             break;
           }
           case 178: {
             if (requestPaymentMessage_ == null) {
-              RequestPaymentMessage = new global::Proto.RequestPaymentMessage();
+              RequestPaymentMessage = new global::waxnet.Internal.Proto.RequestPaymentMessage();
             }
             input.ReadMessage(RequestPaymentMessage);
             break;
           }
           case 186: {
             if (declinePaymentRequestMessage_ == null) {
-              DeclinePaymentRequestMessage = new global::Proto.DeclinePaymentRequestMessage();
+              DeclinePaymentRequestMessage = new global::waxnet.Internal.Proto.DeclinePaymentRequestMessage();
             }
             input.ReadMessage(DeclinePaymentRequestMessage);
             break;
           }
           case 194: {
             if (cancelPaymentRequestMessage_ == null) {
-              CancelPaymentRequestMessage = new global::Proto.CancelPaymentRequestMessage();
+              CancelPaymentRequestMessage = new global::waxnet.Internal.Proto.CancelPaymentRequestMessage();
             }
             input.ReadMessage(CancelPaymentRequestMessage);
             break;
           }
           case 202: {
             if (templateMessage_ == null) {
-              TemplateMessage = new global::Proto.TemplateMessage();
+              TemplateMessage = new global::waxnet.Internal.Proto.TemplateMessage();
             }
             input.ReadMessage(TemplateMessage);
             break;
           }
           case 210: {
             if (stickerMessage_ == null) {
-              StickerMessage = new global::Proto.StickerMessage();
+              StickerMessage = new global::waxnet.Internal.Proto.StickerMessage();
             }
             input.ReadMessage(StickerMessage);
             break;
           }
           case 226: {
             if (groupInviteMessage_ == null) {
-              GroupInviteMessage = new global::Proto.GroupInviteMessage();
+              GroupInviteMessage = new global::waxnet.Internal.Proto.GroupInviteMessage();
             }
             input.ReadMessage(GroupInviteMessage);
             break;
           }
           case 234: {
             if (templateButtonReplyMessage_ == null) {
-              TemplateButtonReplyMessage = new global::Proto.TemplateButtonReplyMessage();
+              TemplateButtonReplyMessage = new global::waxnet.Internal.Proto.TemplateButtonReplyMessage();
             }
             input.ReadMessage(TemplateButtonReplyMessage);
             break;
           }
           case 242: {
             if (productMessage_ == null) {
-              ProductMessage = new global::Proto.ProductMessage();
+              ProductMessage = new global::waxnet.Internal.Proto.ProductMessage();
             }
             input.ReadMessage(ProductMessage);
             break;
           }
           case 250: {
             if (deviceSentMessage_ == null) {
-              DeviceSentMessage = new global::Proto.DeviceSentMessage();
+              DeviceSentMessage = new global::waxnet.Internal.Proto.DeviceSentMessage();
             }
             input.ReadMessage(DeviceSentMessage);
             break;
           }
           case 258: {
             if (deviceSyncMessage_ == null) {
-              DeviceSyncMessage = new global::Proto.DeviceSyncMessage();
+              DeviceSyncMessage = new global::waxnet.Internal.Proto.DeviceSyncMessage();
             }
             input.ReadMessage(DeviceSyncMessage);
             break;
@@ -21222,182 +21222,182 @@ namespace Proto {
           }
           case 18: {
             if (senderKeyDistributionMessage_ == null) {
-              SenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+              SenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
             }
             input.ReadMessage(SenderKeyDistributionMessage);
             break;
           }
           case 26: {
             if (imageMessage_ == null) {
-              ImageMessage = new global::Proto.ImageMessage();
+              ImageMessage = new global::waxnet.Internal.Proto.ImageMessage();
             }
             input.ReadMessage(ImageMessage);
             break;
           }
           case 34: {
             if (contactMessage_ == null) {
-              ContactMessage = new global::Proto.ContactMessage();
+              ContactMessage = new global::waxnet.Internal.Proto.ContactMessage();
             }
             input.ReadMessage(ContactMessage);
             break;
           }
           case 42: {
             if (locationMessage_ == null) {
-              LocationMessage = new global::Proto.LocationMessage();
+              LocationMessage = new global::waxnet.Internal.Proto.LocationMessage();
             }
             input.ReadMessage(LocationMessage);
             break;
           }
           case 50: {
             if (extendedTextMessage_ == null) {
-              ExtendedTextMessage = new global::Proto.ExtendedTextMessage();
+              ExtendedTextMessage = new global::waxnet.Internal.Proto.ExtendedTextMessage();
             }
             input.ReadMessage(ExtendedTextMessage);
             break;
           }
           case 58: {
             if (documentMessage_ == null) {
-              DocumentMessage = new global::Proto.DocumentMessage();
+              DocumentMessage = new global::waxnet.Internal.Proto.DocumentMessage();
             }
             input.ReadMessage(DocumentMessage);
             break;
           }
           case 66: {
             if (audioMessage_ == null) {
-              AudioMessage = new global::Proto.AudioMessage();
+              AudioMessage = new global::waxnet.Internal.Proto.AudioMessage();
             }
             input.ReadMessage(AudioMessage);
             break;
           }
           case 74: {
             if (videoMessage_ == null) {
-              VideoMessage = new global::Proto.VideoMessage();
+              VideoMessage = new global::waxnet.Internal.Proto.VideoMessage();
             }
             input.ReadMessage(VideoMessage);
             break;
           }
           case 82: {
             if (call_ == null) {
-              Call = new global::Proto.Call();
+              Call = new global::waxnet.Internal.Proto.Call();
             }
             input.ReadMessage(Call);
             break;
           }
           case 90: {
             if (chat_ == null) {
-              Chat = new global::Proto.Chat();
+              Chat = new global::waxnet.Internal.Proto.Chat();
             }
             input.ReadMessage(Chat);
             break;
           }
           case 98: {
             if (protocolMessage_ == null) {
-              ProtocolMessage = new global::Proto.ProtocolMessage();
+              ProtocolMessage = new global::waxnet.Internal.Proto.ProtocolMessage();
             }
             input.ReadMessage(ProtocolMessage);
             break;
           }
           case 106: {
             if (contactsArrayMessage_ == null) {
-              ContactsArrayMessage = new global::Proto.ContactsArrayMessage();
+              ContactsArrayMessage = new global::waxnet.Internal.Proto.ContactsArrayMessage();
             }
             input.ReadMessage(ContactsArrayMessage);
             break;
           }
           case 114: {
             if (highlyStructuredMessage_ == null) {
-              HighlyStructuredMessage = new global::Proto.HighlyStructuredMessage();
+              HighlyStructuredMessage = new global::waxnet.Internal.Proto.HighlyStructuredMessage();
             }
             input.ReadMessage(HighlyStructuredMessage);
             break;
           }
           case 122: {
             if (fastRatchetKeySenderKeyDistributionMessage_ == null) {
-              FastRatchetKeySenderKeyDistributionMessage = new global::Proto.SenderKeyDistributionMessage();
+              FastRatchetKeySenderKeyDistributionMessage = new global::waxnet.Internal.Proto.SenderKeyDistributionMessage();
             }
             input.ReadMessage(FastRatchetKeySenderKeyDistributionMessage);
             break;
           }
           case 130: {
             if (sendPaymentMessage_ == null) {
-              SendPaymentMessage = new global::Proto.SendPaymentMessage();
+              SendPaymentMessage = new global::waxnet.Internal.Proto.SendPaymentMessage();
             }
             input.ReadMessage(SendPaymentMessage);
             break;
           }
           case 146: {
             if (liveLocationMessage_ == null) {
-              LiveLocationMessage = new global::Proto.LiveLocationMessage();
+              LiveLocationMessage = new global::waxnet.Internal.Proto.LiveLocationMessage();
             }
             input.ReadMessage(LiveLocationMessage);
             break;
           }
           case 178: {
             if (requestPaymentMessage_ == null) {
-              RequestPaymentMessage = new global::Proto.RequestPaymentMessage();
+              RequestPaymentMessage = new global::waxnet.Internal.Proto.RequestPaymentMessage();
             }
             input.ReadMessage(RequestPaymentMessage);
             break;
           }
           case 186: {
             if (declinePaymentRequestMessage_ == null) {
-              DeclinePaymentRequestMessage = new global::Proto.DeclinePaymentRequestMessage();
+              DeclinePaymentRequestMessage = new global::waxnet.Internal.Proto.DeclinePaymentRequestMessage();
             }
             input.ReadMessage(DeclinePaymentRequestMessage);
             break;
           }
           case 194: {
             if (cancelPaymentRequestMessage_ == null) {
-              CancelPaymentRequestMessage = new global::Proto.CancelPaymentRequestMessage();
+              CancelPaymentRequestMessage = new global::waxnet.Internal.Proto.CancelPaymentRequestMessage();
             }
             input.ReadMessage(CancelPaymentRequestMessage);
             break;
           }
           case 202: {
             if (templateMessage_ == null) {
-              TemplateMessage = new global::Proto.TemplateMessage();
+              TemplateMessage = new global::waxnet.Internal.Proto.TemplateMessage();
             }
             input.ReadMessage(TemplateMessage);
             break;
           }
           case 210: {
             if (stickerMessage_ == null) {
-              StickerMessage = new global::Proto.StickerMessage();
+              StickerMessage = new global::waxnet.Internal.Proto.StickerMessage();
             }
             input.ReadMessage(StickerMessage);
             break;
           }
           case 226: {
             if (groupInviteMessage_ == null) {
-              GroupInviteMessage = new global::Proto.GroupInviteMessage();
+              GroupInviteMessage = new global::waxnet.Internal.Proto.GroupInviteMessage();
             }
             input.ReadMessage(GroupInviteMessage);
             break;
           }
           case 234: {
             if (templateButtonReplyMessage_ == null) {
-              TemplateButtonReplyMessage = new global::Proto.TemplateButtonReplyMessage();
+              TemplateButtonReplyMessage = new global::waxnet.Internal.Proto.TemplateButtonReplyMessage();
             }
             input.ReadMessage(TemplateButtonReplyMessage);
             break;
           }
           case 242: {
             if (productMessage_ == null) {
-              ProductMessage = new global::Proto.ProductMessage();
+              ProductMessage = new global::waxnet.Internal.Proto.ProductMessage();
             }
             input.ReadMessage(ProductMessage);
             break;
           }
           case 250: {
             if (deviceSentMessage_ == null) {
-              DeviceSentMessage = new global::Proto.DeviceSentMessage();
+              DeviceSentMessage = new global::waxnet.Internal.Proto.DeviceSentMessage();
             }
             input.ReadMessage(DeviceSentMessage);
             break;
           }
           case 258: {
             if (deviceSyncMessage_ == null) {
-              DeviceSyncMessage = new global::Proto.DeviceSyncMessage();
+              DeviceSyncMessage = new global::waxnet.Internal.Proto.DeviceSyncMessage();
             }
             input.ReadMessage(DeviceSyncMessage);
             break;
@@ -21422,7 +21422,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[49]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[49]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21754,7 +21754,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[50]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[50]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21815,11 +21815,11 @@ namespace Proto {
 
     /// <summary>Field number for the "labelsDisplay" field.</summary>
     public const int LabelsDisplayFieldNumber = 1;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsDisplayDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsDisplayDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG labelsDisplay_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG labelsDisplay_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsDisplay {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsDisplay {
       get { if ((_hasBits0 & 1) != 0) { return labelsDisplay_; } else { return LabelsDisplayDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -21839,11 +21839,11 @@ namespace Proto {
 
     /// <summary>Field number for the "voipIndividualOutgoing" field.</summary>
     public const int VoipIndividualOutgoingFieldNumber = 2;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualOutgoingDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualOutgoingDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualOutgoing_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualOutgoing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualOutgoing {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualOutgoing {
       get { if ((_hasBits0 & 2) != 0) { return voipIndividualOutgoing_; } else { return VoipIndividualOutgoingDefaultValue; } }
       set {
         _hasBits0 |= 2;
@@ -21863,11 +21863,11 @@ namespace Proto {
 
     /// <summary>Field number for the "groupsV3" field.</summary>
     public const int GroupsV3FieldNumber = 3;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3DefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3DefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV3_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV3_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3 {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3 {
       get { if ((_hasBits0 & 4) != 0) { return groupsV3_; } else { return GroupsV3DefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -21887,11 +21887,11 @@ namespace Proto {
 
     /// <summary>Field number for the "groupsV3Create" field.</summary>
     public const int GroupsV3CreateFieldNumber = 4;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3CreateDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3CreateDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV3Create_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV3Create_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3Create {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV3Create {
       get { if ((_hasBits0 & 8) != 0) { return groupsV3Create_; } else { return GroupsV3CreateDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -21911,11 +21911,11 @@ namespace Proto {
 
     /// <summary>Field number for the "changeNumberV2" field.</summary>
     public const int ChangeNumberV2FieldNumber = 5;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG ChangeNumberV2DefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG ChangeNumberV2DefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG changeNumberV2_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG changeNumberV2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG ChangeNumberV2 {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG ChangeNumberV2 {
       get { if ((_hasBits0 & 16) != 0) { return changeNumberV2_; } else { return ChangeNumberV2DefaultValue; } }
       set {
         _hasBits0 |= 16;
@@ -21935,11 +21935,11 @@ namespace Proto {
 
     /// <summary>Field number for the "queryStatusV3Thumbnail" field.</summary>
     public const int QueryStatusV3ThumbnailFieldNumber = 6;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryStatusV3ThumbnailDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryStatusV3ThumbnailDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG queryStatusV3Thumbnail_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG queryStatusV3Thumbnail_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryStatusV3Thumbnail {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryStatusV3Thumbnail {
       get { if ((_hasBits0 & 32) != 0) { return queryStatusV3Thumbnail_; } else { return QueryStatusV3ThumbnailDefaultValue; } }
       set {
         _hasBits0 |= 32;
@@ -21959,11 +21959,11 @@ namespace Proto {
 
     /// <summary>Field number for the "liveLocations" field.</summary>
     public const int LiveLocationsFieldNumber = 7;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG liveLocations_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG liveLocations_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocations {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocations {
       get { if ((_hasBits0 & 64) != 0) { return liveLocations_; } else { return LiveLocationsDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -21983,11 +21983,11 @@ namespace Proto {
 
     /// <summary>Field number for the "queryVname" field.</summary>
     public const int QueryVnameFieldNumber = 8;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryVnameDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryVnameDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG queryVname_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG queryVname_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryVname {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QueryVname {
       get { if ((_hasBits0 & 128) != 0) { return queryVname_; } else { return QueryVnameDefaultValue; } }
       set {
         _hasBits0 |= 128;
@@ -22007,11 +22007,11 @@ namespace Proto {
 
     /// <summary>Field number for the "voipIndividualIncoming" field.</summary>
     public const int VoipIndividualIncomingFieldNumber = 9;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualIncomingDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualIncomingDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualIncoming_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualIncoming_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualIncoming {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualIncoming {
       get { if ((_hasBits0 & 256) != 0) { return voipIndividualIncoming_; } else { return VoipIndividualIncomingDefaultValue; } }
       set {
         _hasBits0 |= 256;
@@ -22031,11 +22031,11 @@ namespace Proto {
 
     /// <summary>Field number for the "quickRepliesQuery" field.</summary>
     public const int QuickRepliesQueryFieldNumber = 10;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QuickRepliesQueryDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QuickRepliesQueryDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG quickRepliesQuery_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG quickRepliesQuery_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG QuickRepliesQuery {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG QuickRepliesQuery {
       get { if ((_hasBits0 & 512) != 0) { return quickRepliesQuery_; } else { return QuickRepliesQueryDefaultValue; } }
       set {
         _hasBits0 |= 512;
@@ -22055,11 +22055,11 @@ namespace Proto {
 
     /// <summary>Field number for the "payments" field.</summary>
     public const int PaymentsFieldNumber = 11;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG PaymentsDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG PaymentsDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG payments_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG payments_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG Payments {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG Payments {
       get { if ((_hasBits0 & 1024) != 0) { return payments_; } else { return PaymentsDefaultValue; } }
       set {
         _hasBits0 |= 1024;
@@ -22079,11 +22079,11 @@ namespace Proto {
 
     /// <summary>Field number for the "stickerPackQuery" field.</summary>
     public const int StickerPackQueryFieldNumber = 12;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StickerPackQueryDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StickerPackQueryDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG stickerPackQuery_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG stickerPackQuery_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StickerPackQuery {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StickerPackQuery {
       get { if ((_hasBits0 & 2048) != 0) { return stickerPackQuery_; } else { return StickerPackQueryDefaultValue; } }
       set {
         _hasBits0 |= 2048;
@@ -22103,11 +22103,11 @@ namespace Proto {
 
     /// <summary>Field number for the "liveLocationsFinal" field.</summary>
     public const int LiveLocationsFinalFieldNumber = 13;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsFinalDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsFinalDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG liveLocationsFinal_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG liveLocationsFinal_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsFinal {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LiveLocationsFinal {
       get { if ((_hasBits0 & 4096) != 0) { return liveLocationsFinal_; } else { return LiveLocationsFinalDefaultValue; } }
       set {
         _hasBits0 |= 4096;
@@ -22127,11 +22127,11 @@ namespace Proto {
 
     /// <summary>Field number for the "labelsEdit" field.</summary>
     public const int LabelsEditFieldNumber = 14;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsEditDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsEditDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG labelsEdit_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG labelsEdit_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsEdit {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG LabelsEdit {
       get { if ((_hasBits0 & 8192) != 0) { return labelsEdit_; } else { return LabelsEditDefaultValue; } }
       set {
         _hasBits0 |= 8192;
@@ -22151,11 +22151,11 @@ namespace Proto {
 
     /// <summary>Field number for the "mediaUpload" field.</summary>
     public const int MediaUploadFieldNumber = 15;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG mediaUpload_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG mediaUpload_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUpload {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUpload {
       get { if ((_hasBits0 & 16384) != 0) { return mediaUpload_; } else { return MediaUploadDefaultValue; } }
       set {
         _hasBits0 |= 16384;
@@ -22175,11 +22175,11 @@ namespace Proto {
 
     /// <summary>Field number for the "mediaUploadRichQuickReplies" field.</summary>
     public const int MediaUploadRichQuickRepliesFieldNumber = 18;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadRichQuickRepliesDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadRichQuickRepliesDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG mediaUploadRichQuickReplies_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG mediaUploadRichQuickReplies_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadRichQuickReplies {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG MediaUploadRichQuickReplies {
       get { if ((_hasBits0 & 32768) != 0) { return mediaUploadRichQuickReplies_; } else { return MediaUploadRichQuickRepliesDefaultValue; } }
       set {
         _hasBits0 |= 32768;
@@ -22199,11 +22199,11 @@ namespace Proto {
 
     /// <summary>Field number for the "vnameV2" field.</summary>
     public const int VnameV2FieldNumber = 19;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VnameV2DefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VnameV2DefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG vnameV2_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG vnameV2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VnameV2 {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VnameV2 {
       get { if ((_hasBits0 & 65536) != 0) { return vnameV2_; } else { return VnameV2DefaultValue; } }
       set {
         _hasBits0 |= 65536;
@@ -22223,11 +22223,11 @@ namespace Proto {
 
     /// <summary>Field number for the "videoPlaybackUrl" field.</summary>
     public const int VideoPlaybackUrlFieldNumber = 20;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VideoPlaybackUrlDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VideoPlaybackUrlDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG videoPlaybackUrl_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG videoPlaybackUrl_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VideoPlaybackUrl {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VideoPlaybackUrl {
       get { if ((_hasBits0 & 131072) != 0) { return videoPlaybackUrl_; } else { return VideoPlaybackUrlDefaultValue; } }
       set {
         _hasBits0 |= 131072;
@@ -22247,11 +22247,11 @@ namespace Proto {
 
     /// <summary>Field number for the "statusRanking" field.</summary>
     public const int StatusRankingFieldNumber = 21;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StatusRankingDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StatusRankingDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG statusRanking_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG statusRanking_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StatusRanking {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StatusRanking {
       get { if ((_hasBits0 & 262144) != 0) { return statusRanking_; } else { return StatusRankingDefaultValue; } }
       set {
         _hasBits0 |= 262144;
@@ -22271,11 +22271,11 @@ namespace Proto {
 
     /// <summary>Field number for the "voipIndividualVideo" field.</summary>
     public const int VoipIndividualVideoFieldNumber = 22;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualVideoDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualVideoDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualVideo_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipIndividualVideo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualVideo {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipIndividualVideo {
       get { if ((_hasBits0 & 524288) != 0) { return voipIndividualVideo_; } else { return VoipIndividualVideoDefaultValue; } }
       set {
         _hasBits0 |= 524288;
@@ -22295,11 +22295,11 @@ namespace Proto {
 
     /// <summary>Field number for the "thirdPartyStickers" field.</summary>
     public const int ThirdPartyStickersFieldNumber = 23;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG ThirdPartyStickersDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG ThirdPartyStickersDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG thirdPartyStickers_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG thirdPartyStickers_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG ThirdPartyStickers {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG ThirdPartyStickers {
       get { if ((_hasBits0 & 1048576) != 0) { return thirdPartyStickers_; } else { return ThirdPartyStickersDefaultValue; } }
       set {
         _hasBits0 |= 1048576;
@@ -22319,11 +22319,11 @@ namespace Proto {
 
     /// <summary>Field number for the "frequentlyForwardedSetting" field.</summary>
     public const int FrequentlyForwardedSettingFieldNumber = 24;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG FrequentlyForwardedSettingDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG FrequentlyForwardedSettingDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG frequentlyForwardedSetting_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG frequentlyForwardedSetting_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG FrequentlyForwardedSetting {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG FrequentlyForwardedSetting {
       get { if ((_hasBits0 & 2097152) != 0) { return frequentlyForwardedSetting_; } else { return FrequentlyForwardedSettingDefaultValue; } }
       set {
         _hasBits0 |= 2097152;
@@ -22343,11 +22343,11 @@ namespace Proto {
 
     /// <summary>Field number for the "groupsV4JoinPermission" field.</summary>
     public const int GroupsV4JoinPermissionFieldNumber = 25;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV4JoinPermissionDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV4JoinPermissionDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV4JoinPermission_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG groupsV4JoinPermission_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV4JoinPermission {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG GroupsV4JoinPermission {
       get { if ((_hasBits0 & 4194304) != 0) { return groupsV4JoinPermission_; } else { return GroupsV4JoinPermissionDefaultValue; } }
       set {
         _hasBits0 |= 4194304;
@@ -22367,11 +22367,11 @@ namespace Proto {
 
     /// <summary>Field number for the "recentStickers" field.</summary>
     public const int RecentStickersFieldNumber = 26;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG recentStickers_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG recentStickers_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickers {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickers {
       get { if ((_hasBits0 & 8388608) != 0) { return recentStickers_; } else { return RecentStickersDefaultValue; } }
       set {
         _hasBits0 |= 8388608;
@@ -22391,11 +22391,11 @@ namespace Proto {
 
     /// <summary>Field number for the "catalog" field.</summary>
     public const int CatalogFieldNumber = 27;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG CatalogDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG CatalogDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG catalog_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG catalog_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG Catalog {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG Catalog {
       get { if ((_hasBits0 & 16777216) != 0) { return catalog_; } else { return CatalogDefaultValue; } }
       set {
         _hasBits0 |= 16777216;
@@ -22415,11 +22415,11 @@ namespace Proto {
 
     /// <summary>Field number for the "starredStickers" field.</summary>
     public const int StarredStickersFieldNumber = 28;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StarredStickersDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StarredStickersDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG starredStickers_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG starredStickers_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG StarredStickers {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG StarredStickers {
       get { if ((_hasBits0 & 33554432) != 0) { return starredStickers_; } else { return StarredStickersDefaultValue; } }
       set {
         _hasBits0 |= 33554432;
@@ -22439,11 +22439,11 @@ namespace Proto {
 
     /// <summary>Field number for the "voipGroupCall" field.</summary>
     public const int VoipGroupCallFieldNumber = 29;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipGroupCallDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipGroupCallDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipGroupCall_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG voipGroupCall_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipGroupCall {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG VoipGroupCall {
       get { if ((_hasBits0 & 67108864) != 0) { return voipGroupCall_; } else { return VoipGroupCallDefaultValue; } }
       set {
         _hasBits0 |= 67108864;
@@ -22463,11 +22463,11 @@ namespace Proto {
 
     /// <summary>Field number for the "templateMessage" field.</summary>
     public const int TemplateMessageFieldNumber = 30;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG templateMessage_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG templateMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessage {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessage {
       get { if ((_hasBits0 & 134217728) != 0) { return templateMessage_; } else { return TemplateMessageDefaultValue; } }
       set {
         _hasBits0 |= 134217728;
@@ -22487,11 +22487,11 @@ namespace Proto {
 
     /// <summary>Field number for the "templateMessageInteractivity" field.</summary>
     public const int TemplateMessageInteractivityFieldNumber = 31;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageInteractivityDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageInteractivityDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG templateMessageInteractivity_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG templateMessageInteractivity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageInteractivity {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG TemplateMessageInteractivity {
       get { if ((_hasBits0 & 268435456) != 0) { return templateMessageInteractivity_; } else { return TemplateMessageInteractivityDefaultValue; } }
       set {
         _hasBits0 |= 268435456;
@@ -22511,11 +22511,11 @@ namespace Proto {
 
     /// <summary>Field number for the "ephemeralMessages" field.</summary>
     public const int EphemeralMessagesFieldNumber = 32;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG EphemeralMessagesDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG EphemeralMessagesDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG ephemeralMessages_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG ephemeralMessages_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG EphemeralMessages {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG EphemeralMessages {
       get { if ((_hasBits0 & 536870912) != 0) { return ephemeralMessages_; } else { return EphemeralMessagesDefaultValue; } }
       set {
         _hasBits0 |= 536870912;
@@ -22535,11 +22535,11 @@ namespace Proto {
 
     /// <summary>Field number for the "e2ENotificationSync" field.</summary>
     public const int E2ENotificationSyncFieldNumber = 33;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG E2ENotificationSyncDefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG E2ENotificationSyncDefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG e2ENotificationSync_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG e2ENotificationSync_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG E2ENotificationSync {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG E2ENotificationSync {
       get { if ((_hasBits0 & 1073741824) != 0) { return e2ENotificationSync_; } else { return E2ENotificationSyncDefaultValue; } }
       set {
         _hasBits0 |= 1073741824;
@@ -22559,11 +22559,11 @@ namespace Proto {
 
     /// <summary>Field number for the "recentStickersV2" field.</summary>
     public const int RecentStickersV2FieldNumber = 34;
-    private readonly static global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersV2DefaultValue = global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
+    private readonly static global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersV2DefaultValue = global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG.NotStarted;
 
-    private global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG recentStickersV2_;
+    private global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG recentStickersV2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersV2 {
+    public global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG RecentStickersV2 {
       get { if ((_hasBits0 & -2147483648) != 0) { return recentStickersV2_; } else { return RecentStickersV2DefaultValue; } }
       set {
         _hasBits0 |= -2147483648;
@@ -23172,131 +23172,131 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            LabelsDisplay = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LabelsDisplay = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 16: {
-            VoipIndividualOutgoing = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualOutgoing = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 24: {
-            GroupsV3 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV3 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 32: {
-            GroupsV3Create = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV3Create = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 40: {
-            ChangeNumberV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            ChangeNumberV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 48: {
-            QueryStatusV3Thumbnail = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QueryStatusV3Thumbnail = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 56: {
-            LiveLocations = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LiveLocations = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 64: {
-            QueryVname = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QueryVname = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 72: {
-            VoipIndividualIncoming = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualIncoming = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 80: {
-            QuickRepliesQuery = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QuickRepliesQuery = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 88: {
-            Payments = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            Payments = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 96: {
-            StickerPackQuery = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StickerPackQuery = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 104: {
-            LiveLocationsFinal = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LiveLocationsFinal = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 112: {
-            LabelsEdit = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LabelsEdit = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 120: {
-            MediaUpload = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            MediaUpload = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 144: {
-            MediaUploadRichQuickReplies = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            MediaUploadRichQuickReplies = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 152: {
-            VnameV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VnameV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 160: {
-            VideoPlaybackUrl = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VideoPlaybackUrl = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 168: {
-            StatusRanking = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StatusRanking = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 176: {
-            VoipIndividualVideo = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualVideo = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 184: {
-            ThirdPartyStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            ThirdPartyStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 192: {
-            FrequentlyForwardedSetting = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            FrequentlyForwardedSetting = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 200: {
-            GroupsV4JoinPermission = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV4JoinPermission = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 208: {
-            RecentStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            RecentStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 216: {
-            Catalog = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            Catalog = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 224: {
-            StarredStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StarredStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 232: {
-            VoipGroupCall = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipGroupCall = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 240: {
-            TemplateMessage = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            TemplateMessage = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 248: {
-            TemplateMessageInteractivity = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            TemplateMessageInteractivity = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 256: {
-            EphemeralMessages = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            EphemeralMessages = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 264: {
-            E2ENotificationSync = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            E2ENotificationSync = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 272: {
-            RecentStickersV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            RecentStickersV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
         }
@@ -23314,131 +23314,131 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            LabelsDisplay = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LabelsDisplay = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 16: {
-            VoipIndividualOutgoing = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualOutgoing = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 24: {
-            GroupsV3 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV3 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 32: {
-            GroupsV3Create = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV3Create = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 40: {
-            ChangeNumberV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            ChangeNumberV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 48: {
-            QueryStatusV3Thumbnail = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QueryStatusV3Thumbnail = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 56: {
-            LiveLocations = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LiveLocations = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 64: {
-            QueryVname = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QueryVname = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 72: {
-            VoipIndividualIncoming = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualIncoming = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 80: {
-            QuickRepliesQuery = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            QuickRepliesQuery = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 88: {
-            Payments = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            Payments = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 96: {
-            StickerPackQuery = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StickerPackQuery = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 104: {
-            LiveLocationsFinal = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LiveLocationsFinal = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 112: {
-            LabelsEdit = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            LabelsEdit = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 120: {
-            MediaUpload = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            MediaUpload = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 144: {
-            MediaUploadRichQuickReplies = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            MediaUploadRichQuickReplies = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 152: {
-            VnameV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VnameV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 160: {
-            VideoPlaybackUrl = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VideoPlaybackUrl = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 168: {
-            StatusRanking = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StatusRanking = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 176: {
-            VoipIndividualVideo = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipIndividualVideo = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 184: {
-            ThirdPartyStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            ThirdPartyStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 192: {
-            FrequentlyForwardedSetting = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            FrequentlyForwardedSetting = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 200: {
-            GroupsV4JoinPermission = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            GroupsV4JoinPermission = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 208: {
-            RecentStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            RecentStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 216: {
-            Catalog = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            Catalog = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 224: {
-            StarredStickers = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            StarredStickers = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 232: {
-            VoipGroupCall = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            VoipGroupCall = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 240: {
-            TemplateMessage = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            TemplateMessage = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 248: {
-            TemplateMessageInteractivity = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            TemplateMessageInteractivity = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 256: {
-            EphemeralMessages = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            EphemeralMessages = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 264: {
-            E2ENotificationSync = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            E2ENotificationSync = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
           case 272: {
-            RecentStickersV2 = (global::Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
+            RecentStickersV2 = (global::waxnet.Internal.Proto.WebFeatures.Types.WEB_FEATURES_FLAG) input.ReadEnum();
             break;
           }
         }
@@ -23475,7 +23475,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[51]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[51]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23579,11 +23579,11 @@ namespace Proto {
 
     /// <summary>Field number for the "notifyMessage" field.</summary>
     public const int NotifyMessageFieldNumber = 5;
-    private static readonly pb::FieldCodec<global::Proto.NotificationMessageInfo> _repeated_notifyMessage_codec
-        = pb::FieldCodec.ForMessage(42, global::Proto.NotificationMessageInfo.Parser);
-    private readonly pbc::RepeatedField<global::Proto.NotificationMessageInfo> notifyMessage_ = new pbc::RepeatedField<global::Proto.NotificationMessageInfo>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.NotificationMessageInfo> _repeated_notifyMessage_codec
+        = pb::FieldCodec.ForMessage(42, global::waxnet.Internal.Proto.NotificationMessageInfo.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.NotificationMessageInfo> notifyMessage_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.NotificationMessageInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.NotificationMessageInfo> NotifyMessage {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.NotificationMessageInfo> NotifyMessage {
       get { return notifyMessage_; }
     }
 
@@ -23785,7 +23785,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[52]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[52]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23817,9 +23817,9 @@ namespace Proto {
 
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
-    private global::Proto.MessageKey key_;
+    private global::waxnet.Internal.Proto.MessageKey key_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey Key {
+    public global::waxnet.Internal.Proto.MessageKey Key {
       get { return key_; }
       set {
         key_ = value;
@@ -23828,9 +23828,9 @@ namespace Proto {
 
     /// <summary>Field number for the "message" field.</summary>
     public const int MessageFieldNumber = 2;
-    private global::Proto.Message message_;
+    private global::waxnet.Internal.Proto.Message message_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message Message {
+    public global::waxnet.Internal.Proto.Message Message {
       get { return message_; }
       set {
         message_ = value;
@@ -24002,13 +24002,13 @@ namespace Proto {
       }
       if (other.key_ != null) {
         if (key_ == null) {
-          Key = new global::Proto.MessageKey();
+          Key = new global::waxnet.Internal.Proto.MessageKey();
         }
         Key.MergeFrom(other.Key);
       }
       if (other.message_ != null) {
         if (message_ == null) {
-          Message = new global::Proto.Message();
+          Message = new global::waxnet.Internal.Proto.Message();
         }
         Message.MergeFrom(other.Message);
       }
@@ -24034,14 +24034,14 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -24070,14 +24070,14 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -24110,7 +24110,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[53]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[53]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24214,11 +24214,11 @@ namespace Proto {
 
     /// <summary>Field number for the "notifyMessages" field.</summary>
     public const int NotifyMessagesFieldNumber = 5;
-    private static readonly pb::FieldCodec<global::Proto.WebMessageInfo> _repeated_notifyMessages_codec
-        = pb::FieldCodec.ForMessage(42, global::Proto.WebMessageInfo.Parser);
-    private readonly pbc::RepeatedField<global::Proto.WebMessageInfo> notifyMessages_ = new pbc::RepeatedField<global::Proto.WebMessageInfo>();
+    private static readonly pb::FieldCodec<global::waxnet.Internal.Proto.WebMessageInfo> _repeated_notifyMessages_codec
+        = pb::FieldCodec.ForMessage(42, global::waxnet.Internal.Proto.WebMessageInfo.Parser);
+    private readonly pbc::RepeatedField<global::waxnet.Internal.Proto.WebMessageInfo> notifyMessages_ = new pbc::RepeatedField<global::waxnet.Internal.Proto.WebMessageInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.WebMessageInfo> NotifyMessages {
+    public pbc::RepeatedField<global::waxnet.Internal.Proto.WebMessageInfo> NotifyMessages {
       get { return notifyMessages_; }
     }
 
@@ -24420,7 +24420,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[54]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[54]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24458,11 +24458,11 @@ namespace Proto {
 
     /// <summary>Field number for the "currencyDeprecated" field.</summary>
     public const int CurrencyDeprecatedFieldNumber = 1;
-    private readonly static global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY CurrencyDeprecatedDefaultValue = global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY.UnknownCurrency;
+    private readonly static global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY CurrencyDeprecatedDefaultValue = global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY.UnknownCurrency;
 
-    private global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY currencyDeprecated_;
+    private global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY currencyDeprecated_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY CurrencyDeprecated {
+    public global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY CurrencyDeprecated {
       get { if ((_hasBits0 & 1) != 0) { return currencyDeprecated_; } else { return CurrencyDeprecatedDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -24529,11 +24529,11 @@ namespace Proto {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 4;
-    private readonly static global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS StatusDefaultValue = global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS.UnknownStatus;
+    private readonly static global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS StatusDefaultValue = global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS.UnknownStatus;
 
-    private global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS status_;
+    private global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS status_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS Status {
+    public global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS Status {
       get { if ((_hasBits0 & 4) != 0) { return status_; } else { return StatusDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -24577,9 +24577,9 @@ namespace Proto {
 
     /// <summary>Field number for the "requestMessageKey" field.</summary>
     public const int RequestMessageKeyFieldNumber = 6;
-    private global::Proto.MessageKey requestMessageKey_;
+    private global::waxnet.Internal.Proto.MessageKey requestMessageKey_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey RequestMessageKey {
+    public global::waxnet.Internal.Proto.MessageKey RequestMessageKey {
       get { return requestMessageKey_; }
       set {
         requestMessageKey_ = value;
@@ -24659,11 +24659,11 @@ namespace Proto {
 
     /// <summary>Field number for the "txnStatus" field.</summary>
     public const int TxnStatusFieldNumber = 10;
-    private readonly static global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS TxnStatusDefaultValue = global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS.Unknown;
+    private readonly static global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS TxnStatusDefaultValue = global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS.Unknown;
 
-    private global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS txnStatus_;
+    private global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS txnStatus_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS TxnStatus {
+    public global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS TxnStatus {
       get { if ((_hasBits0 & 64) != 0) { return txnStatus_; } else { return TxnStatusDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -24892,7 +24892,7 @@ namespace Proto {
       }
       if (other.requestMessageKey_ != null) {
         if (requestMessageKey_ == null) {
-          RequestMessageKey = new global::Proto.MessageKey();
+          RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
         }
         RequestMessageKey.MergeFrom(other.RequestMessageKey);
       }
@@ -24923,7 +24923,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            CurrencyDeprecated = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY) input.ReadEnum();
+            CurrencyDeprecated = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY) input.ReadEnum();
             break;
           }
           case 16: {
@@ -24935,7 +24935,7 @@ namespace Proto {
             break;
           }
           case 32: {
-            Status = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS) input.ReadEnum();
+            Status = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS) input.ReadEnum();
             break;
           }
           case 40: {
@@ -24944,7 +24944,7 @@ namespace Proto {
           }
           case 50: {
             if (requestMessageKey_ == null) {
-              RequestMessageKey = new global::Proto.MessageKey();
+              RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(RequestMessageKey);
             break;
@@ -24962,7 +24962,7 @@ namespace Proto {
             break;
           }
           case 80: {
-            TxnStatus = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) input.ReadEnum();
+            TxnStatus = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) input.ReadEnum();
             break;
           }
         }
@@ -24980,7 +24980,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            CurrencyDeprecated = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY) input.ReadEnum();
+            CurrencyDeprecated = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_CURRENCY) input.ReadEnum();
             break;
           }
           case 16: {
@@ -24992,7 +24992,7 @@ namespace Proto {
             break;
           }
           case 32: {
-            Status = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS) input.ReadEnum();
+            Status = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_STATUS) input.ReadEnum();
             break;
           }
           case 40: {
@@ -25001,7 +25001,7 @@ namespace Proto {
           }
           case 50: {
             if (requestMessageKey_ == null) {
-              RequestMessageKey = new global::Proto.MessageKey();
+              RequestMessageKey = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(RequestMessageKey);
             break;
@@ -25019,7 +25019,7 @@ namespace Proto {
             break;
           }
           case 80: {
-            TxnStatus = (global::Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) input.ReadEnum();
+            TxnStatus = (global::waxnet.Internal.Proto.PaymentInfo.Types.PAYMENT_INFO_TXNSTATUS) input.ReadEnum();
             break;
           }
         }
@@ -25100,7 +25100,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DefReflection.Descriptor.MessageTypes[55]; }
+      get { return global::waxnet.Internal.Proto.DefReflection.Descriptor.MessageTypes[55]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25151,9 +25151,9 @@ namespace Proto {
 
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
-    private global::Proto.MessageKey key_;
+    private global::waxnet.Internal.Proto.MessageKey key_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MessageKey Key {
+    public global::waxnet.Internal.Proto.MessageKey Key {
       get { return key_; }
       set {
         key_ = value;
@@ -25162,9 +25162,9 @@ namespace Proto {
 
     /// <summary>Field number for the "message" field.</summary>
     public const int MessageFieldNumber = 2;
-    private global::Proto.Message message_;
+    private global::waxnet.Internal.Proto.Message message_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Message Message {
+    public global::waxnet.Internal.Proto.Message Message {
       get { return message_; }
       set {
         message_ = value;
@@ -25197,11 +25197,11 @@ namespace Proto {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 4;
-    private readonly static global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS StatusDefaultValue = global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Error;
+    private readonly static global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS StatusDefaultValue = global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Error;
 
-    private global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS status_;
+    private global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS status_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS Status {
+    public global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS Status {
       get { if ((_hasBits0 & 2) != 0) { return status_; } else { return StatusDefaultValue; } }
       set {
         _hasBits0 |= 2;
@@ -25434,11 +25434,11 @@ namespace Proto {
 
     /// <summary>Field number for the "messageStubType" field.</summary>
     public const int MessageStubTypeFieldNumber = 24;
-    private readonly static global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE MessageStubTypeDefaultValue = global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE.Unknown;
+    private readonly static global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE MessageStubTypeDefaultValue = global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE.Unknown;
 
-    private global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE messageStubType_;
+    private global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE messageStubType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE MessageStubType {
+    public global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE MessageStubType {
       get { if ((_hasBits0 & 256) != 0) { return messageStubType_; } else { return MessageStubTypeDefaultValue; } }
       set {
         _hasBits0 |= 256;
@@ -25526,9 +25526,9 @@ namespace Proto {
 
     /// <summary>Field number for the "paymentInfo" field.</summary>
     public const int PaymentInfoFieldNumber = 29;
-    private global::Proto.PaymentInfo paymentInfo_;
+    private global::waxnet.Internal.Proto.PaymentInfo paymentInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PaymentInfo PaymentInfo {
+    public global::waxnet.Internal.Proto.PaymentInfo PaymentInfo {
       get { return paymentInfo_; }
       set {
         paymentInfo_ = value;
@@ -25537,9 +25537,9 @@ namespace Proto {
 
     /// <summary>Field number for the "finalLiveLocation" field.</summary>
     public const int FinalLiveLocationFieldNumber = 30;
-    private global::Proto.LiveLocationMessage finalLiveLocation_;
+    private global::waxnet.Internal.Proto.LiveLocationMessage finalLiveLocation_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.LiveLocationMessage FinalLiveLocation {
+    public global::waxnet.Internal.Proto.LiveLocationMessage FinalLiveLocation {
       get { return finalLiveLocation_; }
       set {
         finalLiveLocation_ = value;
@@ -25548,9 +25548,9 @@ namespace Proto {
 
     /// <summary>Field number for the "quotedPaymentInfo" field.</summary>
     public const int QuotedPaymentInfoFieldNumber = 31;
-    private global::Proto.PaymentInfo quotedPaymentInfo_;
+    private global::waxnet.Internal.Proto.PaymentInfo quotedPaymentInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PaymentInfo QuotedPaymentInfo {
+    public global::waxnet.Internal.Proto.PaymentInfo QuotedPaymentInfo {
       get { return quotedPaymentInfo_; }
       set {
         quotedPaymentInfo_ = value;
@@ -25954,13 +25954,13 @@ namespace Proto {
       }
       if (other.key_ != null) {
         if (key_ == null) {
-          Key = new global::Proto.MessageKey();
+          Key = new global::waxnet.Internal.Proto.MessageKey();
         }
         Key.MergeFrom(other.Key);
       }
       if (other.message_ != null) {
         if (message_ == null) {
-          Message = new global::Proto.Message();
+          Message = new global::waxnet.Internal.Proto.Message();
         }
         Message.MergeFrom(other.Message);
       }
@@ -26010,19 +26010,19 @@ namespace Proto {
       labels_.Add(other.labels_);
       if (other.paymentInfo_ != null) {
         if (paymentInfo_ == null) {
-          PaymentInfo = new global::Proto.PaymentInfo();
+          PaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
         }
         PaymentInfo.MergeFrom(other.PaymentInfo);
       }
       if (other.finalLiveLocation_ != null) {
         if (finalLiveLocation_ == null) {
-          FinalLiveLocation = new global::Proto.LiveLocationMessage();
+          FinalLiveLocation = new global::waxnet.Internal.Proto.LiveLocationMessage();
         }
         FinalLiveLocation.MergeFrom(other.FinalLiveLocation);
       }
       if (other.quotedPaymentInfo_ != null) {
         if (quotedPaymentInfo_ == null) {
-          QuotedPaymentInfo = new global::Proto.PaymentInfo();
+          QuotedPaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
         }
         QuotedPaymentInfo.MergeFrom(other.QuotedPaymentInfo);
       }
@@ -26048,14 +26048,14 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -26065,7 +26065,7 @@ namespace Proto {
             break;
           }
           case 32: {
-            Status = (global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS) input.ReadEnum();
+            Status = (global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS) input.ReadEnum();
             break;
           }
           case 42: {
@@ -26105,7 +26105,7 @@ namespace Proto {
             break;
           }
           case 192: {
-            MessageStubType = (global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) input.ReadEnum();
+            MessageStubType = (global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) input.ReadEnum();
             break;
           }
           case 200: {
@@ -26126,21 +26126,21 @@ namespace Proto {
           }
           case 234: {
             if (paymentInfo_ == null) {
-              PaymentInfo = new global::Proto.PaymentInfo();
+              PaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
             }
             input.ReadMessage(PaymentInfo);
             break;
           }
           case 242: {
             if (finalLiveLocation_ == null) {
-              FinalLiveLocation = new global::Proto.LiveLocationMessage();
+              FinalLiveLocation = new global::waxnet.Internal.Proto.LiveLocationMessage();
             }
             input.ReadMessage(FinalLiveLocation);
             break;
           }
           case 250: {
             if (quotedPaymentInfo_ == null) {
-              QuotedPaymentInfo = new global::Proto.PaymentInfo();
+              QuotedPaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
             }
             input.ReadMessage(QuotedPaymentInfo);
             break;
@@ -26169,14 +26169,14 @@ namespace Proto {
             break;
           case 10: {
             if (key_ == null) {
-              Key = new global::Proto.MessageKey();
+              Key = new global::waxnet.Internal.Proto.MessageKey();
             }
             input.ReadMessage(Key);
             break;
           }
           case 18: {
             if (message_ == null) {
-              Message = new global::Proto.Message();
+              Message = new global::waxnet.Internal.Proto.Message();
             }
             input.ReadMessage(Message);
             break;
@@ -26186,7 +26186,7 @@ namespace Proto {
             break;
           }
           case 32: {
-            Status = (global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS) input.ReadEnum();
+            Status = (global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS) input.ReadEnum();
             break;
           }
           case 42: {
@@ -26226,7 +26226,7 @@ namespace Proto {
             break;
           }
           case 192: {
-            MessageStubType = (global::Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) input.ReadEnum();
+            MessageStubType = (global::waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STUBTYPE) input.ReadEnum();
             break;
           }
           case 200: {
@@ -26247,21 +26247,21 @@ namespace Proto {
           }
           case 234: {
             if (paymentInfo_ == null) {
-              PaymentInfo = new global::Proto.PaymentInfo();
+              PaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
             }
             input.ReadMessage(PaymentInfo);
             break;
           }
           case 242: {
             if (finalLiveLocation_ == null) {
-              FinalLiveLocation = new global::Proto.LiveLocationMessage();
+              FinalLiveLocation = new global::waxnet.Internal.Proto.LiveLocationMessage();
             }
             input.ReadMessage(FinalLiveLocation);
             break;
           }
           case 250: {
             if (quotedPaymentInfo_ == null) {
-              QuotedPaymentInfo = new global::Proto.PaymentInfo();
+              QuotedPaymentInfo = new global::waxnet.Internal.Proto.PaymentInfo();
             }
             input.ReadMessage(QuotedPaymentInfo);
             break;

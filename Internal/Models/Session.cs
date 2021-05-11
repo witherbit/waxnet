@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WAX.Models
+namespace waxnet.Internal.Models
 {
-    public class Session
+    class Session
     {
         public string ClientId { get; set; }
 

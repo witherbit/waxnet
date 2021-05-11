@@ -1,9 +1,9 @@
-﻿using Proto;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using WAX.Serialization;
+using waxnet.Internal.Proto;
+using waxnet.Internal.Serialization;
 
-namespace WAX.Models
+namespace waxnet.Internal.Models
 {
     internal class Node
     {

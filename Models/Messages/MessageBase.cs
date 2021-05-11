@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using WAX.Enum;
 
-namespace WAX.Messages
+namespace WAX.Models.Messages
 {
     public abstract class MessageBase
     {
         public DateTime TimeStamp { get; set; }
-        public string ChatId { get; set; }
+        public long ChatId { get; set; }
 
-        public string Text { get; set; }
+        public string Body { get; set; }
 
         public string MessageId { get; set; }
 
@@ -21,5 +21,7 @@ namespace WAX.Messages
         public int Status { get; set; }
 
         public ChatType Type { get; set; }
+
+        public byte[] ImageData { set; get; }
     }
 }

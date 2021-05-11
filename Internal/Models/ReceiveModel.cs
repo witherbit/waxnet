@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace WAX.Models
+namespace waxnet.Internal.Models
 {
-    public class ReceiveModel
+    class ReceiveModel
     {
         public byte[] ByteData { private set; get; }
         public string StringData { private set; get; }
