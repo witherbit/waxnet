@@ -58,7 +58,7 @@ namespace WAX
             _engine.CallEvent += CallEvent;
         }
 
-        private void CallEvent(object sender, CallEventArgs e)
+        internal void CallEvent(object sender, CallEventArgs e)
         {
             if (e.Type == CallEventType.Handle) _handler.Controller(e.Content as ReceiveModel);
             if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(()=>OnCodeUpdate?.Invoke(this, e.Content as string));
@@ -69,6 +69,9 @@ namespace WAX
             }
             if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
             if (e.Type == CallEventType.AccountDropped) Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
+            if (e.Type == CallEventType.Stop) Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
+            if (e.Type == CallEventType.Message) Task.Factory.StartNew(() => OnChatMessage?.Invoke(this, e.Content as ChatMessage));
+            if (e.Type == CallEventType.GroupMessage) Task.Factory.StartNew(() => OnGroupMessage?.Invoke(this, e.Content as GroupMessage));
         }
 
         public void Start()
@@ -78,7 +81,6 @@ namespace WAX
         }
         public void Stop()
         {
-            Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
             _engine.Stop();
         }
         public void Dispose()

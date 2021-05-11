@@ -12,7 +12,7 @@ namespace waxnet.Internal.Core
         internal Api api;
         internal void Controller(ReceiveModel rm)
         {
-            Console.WriteLine(rm);
+            Console.WriteLine(rm.ToString());
         }
 
         internal async Task Message()

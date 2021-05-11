@@ -16,6 +16,9 @@ namespace waxnet.Internal.Models
         Login,
         AccountDropped,
         Exception,
-        Handle
+        Handle,
+        Message,
+        GroupMessage,
+        Stop
     }
 }
