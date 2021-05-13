@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WAX.Methods;
-using WAX.Models;
 using WAX.Models.Messages;
+using WAX.Models.Parameters;
 using waxnet.Internal.Core;
 using waxnet.Internal.Models;
 
@@ -31,13 +31,13 @@ namespace WAX
         }
 
         private Handler _handler;
-        internal Engine _engine;
+        internal Engine Engine;
 
         public CancellationToken CancellationToken 
         { 
             get 
             { 
-                return _engine.CancellationToken; 
+                return Engine.CancellationToken; 
             } 
         }
         public bool IsAuthorized { get; private set; }
@@ -50,21 +50,21 @@ namespace WAX
         public Api()
         {
             Initialize();
-            _engine.SessionManager = new SessionManager();
+            Engine.SessionManager = new SessionManager();
         }
         public Api(SessionManagerParameters parameters)
         {
             Initialize();
-            _engine.SessionManager = new SessionManager(parameters);
-            _engine.SessionManager.Read();
+            Engine.SessionManager = new SessionManager(parameters);
+            Engine.SessionManager.Read();
         }
 
         private void Initialize()
         {
-            _engine = new Engine();
+            Engine = new Engine();
             _handler = new Handler { _api = this };
-            _engine.Initialize();
-            _engine.CallEvent += CallEvent;
+            Engine.Initialize();
+            Engine.CallEvent += CallEvent;
             Messages = new Messages { _api = this };
             User = new User { _api = this };
             Profile = new Profile { _api = this };
@@ -78,7 +78,7 @@ namespace WAX
             if (e.Type == CallEventType.Login)
             {
                 IsAuthorized = true;
-                _engine.SessionManager.Save();
+                Engine.SessionManager.Save();
                 Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
             }
             if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
@@ -99,16 +99,16 @@ namespace WAX
         public void Start()
         {
             Task.Factory.StartNew(() => OnStart?.Invoke(this, CancellationToken));
-            _engine.Start();
+            Engine.Start();
         }
         public void Stop()
         {
-            _engine.Stop();
+            Engine.Stop();
         }
         public void Dispose()
         {
             Task.Factory.StartNew(() => OnDispose?.Invoke(this, CancellationToken));
-            _engine.Dispose();
+            Engine.Dispose();
             GC.Collect();
         }
     }

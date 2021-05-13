@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using WAX;
-using WAX.Models;
+using WAX.Models.Parameters;
 using waxnet.Internal.Models;
 using waxnet.Internal.Utils;
 

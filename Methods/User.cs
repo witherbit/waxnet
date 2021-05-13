@@ -18,33 +18,38 @@ namespace WAX.Methods
 
         public string GetStatus(long userId)
         {
-            return _api._engine.SendJsonGet($"[\"query\",\"Status\",\"{userId.GetId()}\"]").Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
+            if (!_api.CheckLock()) return null;
+            return _api.Engine.SendJsonGet($"[\"query\",\"Status\",\"{userId.GetId()}\"]").Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
         }
 
         public JToken IsExist(long userId)
         {
-            return JToken.Parse(_api._engine.SendJsonGet($"[\"query\",\"exist\",\"{userId.GetId()}\"]").Body);
+            if (!_api.CheckLock()) return null;
+            return JToken.Parse(_api.Engine.SendJsonGet($"[\"query\",\"exist\",\"{userId.GetId()}\"]").Body);
         }
 
         public JToken Contacts()
         {
-            var rm = _api._engine.SendQueryGet("contacts", "", "", "", "", "", 0, 0);
-            var n = _api._engine.GetDecryptNode(rm);
+            if (!_api.CheckLock()) return null;
+            var rm = _api.Engine.SendQueryGet("contacts", "", "", "", "", "", 0, 0);
+            var n = _api.Engine.GetDecryptNode(rm);
             return JToken.Parse(JsonConvert.SerializeObject(n));
         }
 
         public JToken Chats()
         {
-            var rm = _api._engine.SendQueryGet("chat", "", "", "", "", "", 0, 0);
-            var n = _api._engine.GetDecryptNode(rm);
+            if (!_api.CheckLock()) return null;
+            var rm = _api.Engine.SendQueryGet("chat", "", "", "", "", "", 0, 0);
+            var n = _api.Engine.GetDecryptNode(rm);
             return JToken.Parse(JsonConvert.SerializeObject(n));
         }
 
-        public async void SetPresence(string chatId, PresenceType type)
+        public async void SetPresence(long userId, PresenceType type)
         {
             await Task.Run(() =>
             {
-                var tag = _api._engine.Tag;
+                if (!_api.CheckLock()) return;
+                var tag = _api.Engine.Tag;
                 var content = new Node()
                 {
                     Description = "presence",
@@ -55,26 +60,27 @@ namespace WAX.Methods
                 };
                 if (type == PresenceType.Composing || type == PresenceType.Recording || type == PresenceType.Paused)
                 {
-                    content.Attributes.Add("to", chatId);
+                    content.Attributes.Add("to", userId.GetId());
                 }
                 var n = new Node()
                 {
                     Description = "action",
                     Attributes = new Dictionary<string, string> {
                     { "type", "set" },
-                    { "epoch", _api._engine._msgCount.ToString() },
+                    { "epoch", _api.Engine._msgCount.ToString() },
                 },
                     Content = new List<Node> {
                     content
                 }
                 };
-                _api._engine.SendBinary(n, WriteBinaryType.Profile, tag);
+                _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });
         }
 
-        public string SubscribePresence(string chatId)
+        public string SubscribePresence(string userId)
         {
-            return _api._engine.SendJsonGet($"[\"action\",\"presence\",\"subscribe\",\"{chatId}\"]").Body;
+            if (!_api.CheckLock()) return null;
+            return _api.Engine.SendJsonGet($"[\"action\",\"presence\",\"subscribe\",\"{userId.GetId()}\"]").Body;
         }
     }
 }

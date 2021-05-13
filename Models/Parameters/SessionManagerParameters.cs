@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WAX.Models
+namespace WAX.Models.Parameters
 {
     public struct SessionManagerParameters
     {

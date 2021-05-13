@@ -16,13 +16,13 @@ namespace WAX.Methods
         {
             await Task.Run(() =>
             {
-                var tag = _api._engine.Tag;
+                var tag = _api.Engine.Tag;
                 var n = new Node()
                 {
                     Description = "action",
                     Attributes = new Dictionary<string, string> {
                     { "type", "set" },
-                    { "epoch", _api._engine.ToString() },
+                    { "epoch", _api.Engine.ToString() },
                 },
                     Content = new List<Node> {
                     new Node
@@ -33,7 +33,7 @@ namespace WAX.Methods
                     }
                 }
                 };
-                _api._engine.SendBinary(n, WriteBinaryType.Profile, tag);
+                _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });
         }
 
@@ -41,13 +41,13 @@ namespace WAX.Methods
         {
             await Task.Run(() =>
             {
-                var tag = _api._engine.Tag;
+                var tag = _api.Engine.Tag;
                 var n = new Node()
                 {
                     Description = "action",
                     Attributes = new Dictionary<string, string> {
                     { "type", "set" },
-                    { "epoch", _api._engine._msgCount.ToString() },
+                    { "epoch", _api.Engine._msgCount.ToString() },
                 },
                     Content = new List<Node> {
                     new Node
@@ -58,7 +58,7 @@ namespace WAX.Methods
                     }
                 }
                 };
-                _api._engine.SendBinary(n, WriteBinaryType.Profile, tag);
+                _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });
         }
     }

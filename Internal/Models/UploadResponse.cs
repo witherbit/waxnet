@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace waxnet.Internal.Models
 {
-    internal class UploadResponse
+    class UploadResponse
     {
         public string DownloadUrl { set; get; }
         public byte[] MediaKey { set; get; }

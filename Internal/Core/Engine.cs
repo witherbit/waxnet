@@ -1,6 +1,4 @@
-﻿using AronParker.Hkdf;
-using Elliptic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -315,11 +313,11 @@ namespace waxnet.Internal.Core
             _snapReceiveDictionary.Add(tag, func);
         }
 
-        internal async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
+        public async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
         {
-            return await Download(url, mediaKey, MediaTypeConst.MediaImage);
+            return await Download(url, mediaKey, MediaType.Image);
         }
-        private async Task<byte[]> Download(string url, byte[] mediaKey, string info)
+        public async Task<byte[]> Download(string url, byte[] mediaKey, string info)
         {
             var memory = await url.GetStream();
             var mk = GetMediaKeys(mediaKey, info);
@@ -348,7 +346,7 @@ namespace waxnet.Internal.Core
                 var uploadResponse = new UploadResponse();
                 uploadResponse.FileLength = (ulong)data.Length;
                 uploadResponse.MediaKey = 32.GetRandomByte();
-                var mk = GetMediaKeys(uploadResponse.MediaKey, MediaTypeConst.MediaImage);
+                var mk = GetMediaKeys(uploadResponse.MediaKey, MediaType.Image);
                 var enc = data.AesCbcEncrypt(mk.CipherKey, mk.Iv);
                 var mac = (mk.Iv.Concat(enc).ToArray()).HMACSHA256_Encrypt(mk.MacKey).Take(10);
                 uploadResponse.FileSha256 = data.SHA256_Encrypt();
@@ -360,7 +358,7 @@ namespace waxnet.Internal.Core
                     return null;
                 }
                 var token = Convert.ToBase64String(uploadResponse.FileEncSha256).Replace("+", "-").Replace("/", "_");
-                var url = $"https://{mediaConnResponse.MediaConn.Hosts[0].Hostname}{MediaTypeConst.MediaTypeMap[info]}/{token}?auth={mediaConnResponse.MediaConn.Auth}&token={token}";
+                var url = $"https://{mediaConnResponse.MediaConn.Hosts[0].Hostname}{MediaType.Map[info]}/{token}?auth={mediaConnResponse.MediaConn.Auth}&token={token}";
                 var response = await url.PostHtml(joinData, new Dictionary<string, string> {
                     { "Origin","https://web.whatsapp.com" },
                     { "Referer","https://web.whatsapp.com/"}
