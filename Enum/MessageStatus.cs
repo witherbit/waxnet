@@ -8,7 +8,11 @@ namespace WAX.Enum
 {
     public enum MessageStatus
     {
-        Unread,
-        Read
+        Error,
+        Pending,
+        ServerAck,
+        DeliveryAck,
+        Read,
+        Played
     }
 }

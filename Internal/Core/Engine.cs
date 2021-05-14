@@ -24,6 +24,7 @@ namespace waxnet.Internal.Core
         public CancellationToken CancellationToken;
 
         public string Tag { get { return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref _msgCount) - 1}"; } }
+        public ReceiveManager ReceiveManager;
 
         public SessionManager SessionManager;
         internal ClientWebSocket _socket;
@@ -35,6 +36,7 @@ namespace waxnet.Internal.Core
 
         public void Initialize()
         {
+            ReceiveManager = new ReceiveManager();
             _socket = new ClientWebSocket();
             _socket.Options.SetRequestHeader("Origin", "https://web.whatsapp.com");
         }
@@ -266,7 +268,7 @@ namespace waxnet.Internal.Core
         }
         private async Task CallHandle(ReceiveModel rm)
         {
-            DataBus.Send(rm.Tag, rm);
+            ReceiveManager.Send(rm);
             if (rm.Tag != null && _snapReceiveDictionary.ContainsKey(rm.Tag))
             {
                 var result = await Task.Factory.StartNew(() => _snapReceiveDictionary[rm.Tag](rm));
@@ -291,6 +293,7 @@ namespace waxnet.Internal.Core
                     return;
                 }
             }
+            Console.WriteLine(_msgCount);
             await Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs { Content = rm, Type = CallEventType.Handle }));
         }
         public void AddCallback(string tag, Action<ReceiveModel> action = null, int count = 0)
@@ -339,7 +342,11 @@ namespace waxnet.Internal.Core
             var sharedSecretExpand = new Hkdf(HashAlgorithmName.SHA256).Expand(sharedSecretExtract, 112, Encoding.UTF8.GetBytes(info));
             return new MediaKeys(sharedSecretExpand);
         }
-        internal async Task<UploadResponse> Upload(byte[] data, string info)
+        public string LoadMediaInfo(string jid, string messageId, string owner)
+        {
+            return this.SendQuery("media", jid, messageId, "", owner, "", 0, 0);
+        }
+        public async Task<UploadResponse> Upload(byte[] data, string info)
         {
             return await await Task.Factory.StartNew(async () =>
             {

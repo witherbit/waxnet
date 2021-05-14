@@ -13,32 +13,6 @@ namespace waxnet.Internal.Core
 {
     static class Write
     {
-        public static ReceiveModel SendProtoGet(this Engine engine, WebMessageInfo webMessage, int passedCount = 0, int timeout = 5000)
-        {
-            var tag = SendProto(engine, webMessage);
-            var rm = DataBus.WaitResult<ReceiveModel>(tag, passedCount, timeout);
-            return rm;
-        }
-        public static ReceiveModel SendBinaryGet(this Engine engine, Node node, WriteBinaryType binaryType, string tag, int passedCount = 0, int timeout = 5000)
-        {
-            engine.AddCallback(tag);
-            SendBinary(engine, node, binaryType, tag);
-            var rm = DataBus.WaitResult<ReceiveModel>(tag, passedCount, timeout);
-            return rm;
-        }
-        public static ReceiveModel SendQueryGet(this Engine engine, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0, int passedCount = 0, int timeout = 5000)
-        {
-            var tag = SendQuery(engine, t, jid, messageId, kind, owner, search, count, page, removeCount);
-            var rm = DataBus.WaitResult<ReceiveModel>(tag, passedCount, timeout);
-            return rm;
-        }
-        public static ReceiveModel SendJsonGet(this Engine engine, string json, int passedCount = 0, int timeout = 5000)
-        {
-            var tag = SendJson(engine, json);
-            var rm = DataBus.WaitResult<ReceiveModel>(tag, passedCount, timeout);
-            return rm;
-        }
-
         public static string SendProto(this Engine engine, WebMessageInfo webMessage, Action<ReceiveModel> action = null)
         {
             if (webMessage.Key.Id.IsNullOrWhiteSpace())

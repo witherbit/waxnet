@@ -48,7 +48,7 @@ namespace WAX.Models.Messages
                 };
                 if (ReplyMessage != null)
                 {
-                    ci.QuotedMessage = ReplyMessage.Source;
+                    ci.QuotedMessage = ReplyMessage.Source.Message;
                     ci.StanzaId = ReplyMessage.MessageId;
                 }
                 if (Participant != null) ci.Participant = Participant;

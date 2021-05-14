@@ -27,6 +27,12 @@ namespace waxnet.Internal.Utils
 
         private static WebMessageInfo Text(WAX.Models.Messages.TextMessage mp)
         {
+            var etm = new ExtendedTextMessage
+            {
+                Text = mp.Text,
+                ContextInfo = mp.ContextInfo
+            };
+            if (mp.Title != null) etm.Title = mp.Title;
             return new WebMessageInfo
             {
                 Key = new MessageKey
@@ -35,12 +41,7 @@ namespace waxnet.Internal.Utils
                 },
                 Message = new Message
                 {
-                    ExtendedTextMessage = new ExtendedTextMessage
-                    {
-                        Title = mp.Title,
-                        Text = mp.Text,
-                        ContextInfo = mp.ContextInfo
-                    }
+                    ExtendedTextMessage = etm
                 }
             };
         }
