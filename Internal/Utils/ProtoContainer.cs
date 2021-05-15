@@ -30,14 +30,14 @@ namespace waxnet.Internal.Utils
             var etm = new ExtendedTextMessage
             {
                 Text = mp.Text,
-                ContextInfo = mp.ContextInfo
+                ContextInfo = (mp as WAX.Models.Messages.IMessage).ContextInfo
             };
             if (mp.Title != null) etm.Title = mp.Title;
             return new WebMessageInfo
             {
                 Key = new MessageKey
                 {
-                    RemoteJid = mp.Jid
+                    RemoteJid = (mp as WAX.Models.Messages.IMessage).Jid
                 },
                 Message = new Message
                 {
@@ -53,7 +53,7 @@ namespace waxnet.Internal.Utils
             {
                 Key = new MessageKey
                 {
-                    RemoteJid = mp.Jid
+                    RemoteJid = (mp as WAX.Models.Messages.IMessage).Jid
                 },
                 Message = new Message
                 {
@@ -66,7 +66,7 @@ namespace waxnet.Internal.Utils
                         FileEncSha256 = ByteString.CopyFrom(mp.UploadResponse.FileEncSha256),
                         FileSha256 = ByteString.CopyFrom(mp.UploadResponse.FileSha256),
                         FileLength = mp.UploadResponse.FileLength,
-                        ContextInfo = mp.ContextInfo
+                        ContextInfo = (mp as WAX.Models.Messages.IMessage).ContextInfo
                     }
                 }
             };
@@ -79,7 +79,7 @@ namespace waxnet.Internal.Utils
             {
                 Key = new MessageKey
                 {
-                    RemoteJid = mp.Jid
+                    RemoteJid = (mp as WAX.Models.Messages.IMessage).Jid
                 },
                 Message = new Message
                 {
@@ -92,7 +92,7 @@ namespace waxnet.Internal.Utils
                         FileEncSha256 = ByteString.CopyFrom(mp.UploadResponse.FileEncSha256),
                         FileSha256 = ByteString.CopyFrom(mp.UploadResponse.FileSha256),
                         FileLength = mp.UploadResponse.FileLength,
-                        ContextInfo = mp.ContextInfo,
+                        ContextInfo = (mp as WAX.Models.Messages.IMessage).ContextInfo,
                         JpegThumbnail = ByteString.CopyFrom(mp.JpegThumbnail),
                         GifPlayback = mp.GifPlayback,
                         Seconds = mp.Seconds
@@ -108,7 +108,7 @@ namespace waxnet.Internal.Utils
             {
                 Key = new MessageKey
                 {
-                    RemoteJid = mp.Jid
+                    RemoteJid = (mp as WAX.Models.Messages.IMessage).Jid
                 },
                 Message = new Message
                 {
@@ -120,7 +120,7 @@ namespace waxnet.Internal.Utils
                         FileEncSha256 = ByteString.CopyFrom(mp.UploadResponse.FileEncSha256),
                         FileSha256 = ByteString.CopyFrom(mp.UploadResponse.FileSha256),
                         FileLength = mp.UploadResponse.FileLength,
-                        ContextInfo = mp.ContextInfo,
+                        ContextInfo = (mp as WAX.Models.Messages.IMessage).ContextInfo,
                         Ptt = mp.Ptt,
                         Seconds = mp.Seconds
                     }

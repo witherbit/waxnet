@@ -13,27 +13,57 @@ namespace WAX.Methods
     public sealed class Messages
     {
         internal Api _api;
-        public async void Send(IMessage message)
+        public MessageBase Send(IMessage message)
         {
-            await Task.Run(()=>
+            if (!_api.CheckLock()) return null;
+            var proto = message.GetProto(_api);
+            if (proto == null)
             {
-                if (!_api.CheckLock()) return;
-                var proto = message.GetProto(_api);
-                if(proto == null)
+                Api.CallException(_api, new Exception("Couldn't send message"));
+                return null;
+            }
+            var id = $"true_{message.Jid}_{_api.Engine.SendProto(proto)}";
+            if (message.OwnerId == null)
+            {
+                var cm = new ChatMessage
                 {
-                    Api.CallException(_api, new Exception("Couldn't send message"));
-                    return;
-                }
-                try
+                    Source = proto,
+                    TimeStamp = DateTime.Now,
+                    MessageId = id,
+                    IsIncoming = false,
+                    Status = MessageStatus.DeliveryAck,
+                    ChatId = message.ChatId,
+                    Text = proto.Message.Conversation,
+                };
+                if (message is ImageMessage)
                 {
-                    var node = _api.Engine.GetDecryptNode(_api.Engine.ReceiveManager.WaitResult(_api.Engine.SendProto(proto), ignoreCount: 1));
-                    Console.WriteLine(JsonConvert.SerializeObject(node));
+                    cm.Text = proto.Message.ImageMessage.Caption;
+                    cm.ImageData = (message as ImageMessage).Content;
                 }
-                catch (Exception e)
+                else if (message is VideoMessage) cm.Text = proto.Message.VideoMessage.Caption;
+                return cm;
+            }
+            else
+            {
+                var gm = new GroupMessage
                 {
-                    Api.CallException(_api, e);
+                    Source = proto,
+                    TimeStamp = DateTime.Now,
+                    MessageId = id,
+                    IsIncoming = false,
+                    Status = MessageStatus.DeliveryAck,
+                    ChatId = message.ChatId,
+                    OwnerId = (long)message.OwnerId,
+                    Text = proto.Message.Conversation
+                };
+                if (message is ImageMessage)
+                {
+                    gm.Text = proto.Message.ImageMessage.Caption;
+                    gm.ImageData = (message as ImageMessage).Content;
                 }
-            });
+                else if (message is VideoMessage) gm.Text = proto.Message.VideoMessage.Caption;
+                return gm;
+            }
         }
         public void Delete(MessageBase message)
         {

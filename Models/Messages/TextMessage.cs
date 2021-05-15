@@ -15,37 +15,5 @@ namespace WAX.Models.Messages
         public MessageBase ReplyMessage { get; set; }
         public bool IsForwarded { get; set; }
         public string Participant { get; set; }
-
-        internal string Jid
-        {
-            get
-            {
-                if (OwnerId == null)
-                {
-                    return ChatId.GetId();
-                }
-                else
-                {
-                    return ChatId.GetGroupId((long)OwnerId);
-                }
-            }
-        }
-        internal ContextInfo ContextInfo
-        {
-            get
-            {
-                var ci = new ContextInfo
-                {
-                    IsForwarded = IsForwarded
-                };
-                if (ReplyMessage != null)
-                {
-                    ci.QuotedMessage = ReplyMessage.Source.Message;
-                    ci.StanzaId = ReplyMessage.MessageId;
-                }
-                if (Participant != null) ci.Participant = Participant;
-                return ci;
-            }
-        }
     }
 }
