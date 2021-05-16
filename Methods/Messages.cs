@@ -22,7 +22,7 @@ namespace WAX.Methods
                 Api.CallException(_api, new Exception("Couldn't send message"));
                 return null;
             }
-            var id = $"true_{message.Jid}_{_api.Engine.SendProto(proto)}";
+            var id = _api.Engine.SendProto(proto);
             if (message.OwnerId == null)
             {
                 var cm = new ChatMessage
@@ -71,7 +71,6 @@ namespace WAX.Methods
             try
             {
                 var tag = _api.Engine.Tag;
-                string owner = message.IsIncoming ? "false" : "true";
                 var n = new Node
                 {
                     Description = "action",
@@ -95,7 +94,7 @@ namespace WAX.Methods
                             Description = "item",
                             Attributes = new Dictionary<string, string>
                             {
-                                { "owner", owner },
+                                { "owner", message.IsIncoming ? "false" : "true" },
                                 { "index", message.MessageId }
                             }
                         }

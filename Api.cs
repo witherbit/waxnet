@@ -74,7 +74,7 @@ namespace WAX
         internal void CallEvent(object sender, CallEventArgs e)
         {
             if (e.Type == CallEventType.Handle) _handler.Controller(e.Content as ReceiveModel);
-            if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(()=>OnCodeUpdate?.Invoke(this, e.Content as string));
+            if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(() => OnCodeUpdate?.Invoke(this, e.Content as string));
             if (e.Type == CallEventType.Login)
             {
                 IsAuthorized = true;
@@ -82,10 +82,10 @@ namespace WAX
                 Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
             }
             if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
-            if (e.Type == CallEventType.AccountDropped) 
+            if (e.Type == CallEventType.AccountDropped)
             {
                 IsAuthorized = false;
-                Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception)); 
+                Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
             }
             if (e.Type == CallEventType.Stop)
             {

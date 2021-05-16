@@ -293,7 +293,6 @@ namespace waxnet.Internal.Core
                     return;
                 }
             }
-            Console.WriteLine(_msgCount);
             await Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs { Content = rm, Type = CallEventType.Handle }));
         }
         public void AddCallback(string tag, Action<ReceiveModel> action = null, int count = 0)

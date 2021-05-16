@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using waxnet.Internal.Models;
 
-namespace waxnet.Internal.Utils
+namespace waxnet.Internal.Core
 {
     class ReceiveManager : Dictionary<string, ReceiveModel>
     {
