@@ -65,44 +65,76 @@ namespace WAX.Methods
                 return gm;
             }
         }
-        public void Delete(MessageBase message)
+        public void Delete(MessageBase message, bool forEveryone = false)
         {
             if (!_api.CheckLock()) return;
             try
             {
                 var tag = _api.Engine.Tag;
-                var n = new Node
+                if (!forEveryone)
                 {
-                    Description = "action",
-                    Attributes = new Dictionary<string, string> {
-                    { "epoch", _api.Engine._msgCount.ToString() },
-                    { "type", "set" },
-                },
-                    Content = new List<Node>
-                {
-                    new Node {
-                    Description = "chat",
-                    Attributes = new Dictionary<string, string>
+                    var n = new Node
                     {
-                        { "type", "clear"},
-                        { "jid", message.Source.Key.RemoteJid },
-                        { "media", "true"}
-                    },
-                    Content =  new List<Node>
-                    {
-                        new Node {
-                            Description = "item",
-                            Attributes = new Dictionary<string, string>
+                        Description = "action",
+                        Attributes = new Dictionary<string, string>
+                        {
+                            { "epoch", _api.Engine._msgCount.ToString() },
+                            { "type", "set" },
+                        },
+                        Content = new List<Node>
+                        {
+                            new Node 
                             {
-                                { "owner", message.IsIncoming ? "false" : "true" },
-                                { "index", message.MessageId }
+                                Description = "chat",
+                                Attributes = new Dictionary<string, string>
+                                {
+                                    { "type", "clear"},
+                                    { "jid", message.Source.Key.RemoteJid },
+                                    { "media", "true"}
+                                },
+                                Content =  new List<Node>
+                                {
+                                    new Node {
+                                        Description = "item",
+                                        Attributes = new Dictionary<string, string>
+                                        {
+                                            { "owner", message.IsIncoming ? "false" : "true" },
+                                            { "index", message.MessageId }
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
+                    };
+                    _api.Engine.SendBinary(n, WriteBinaryType.Chat, tag);
                 }
+                else
+                {
+                    _api.Engine.SendProto(new waxnet.Internal.Proto.WebMessageInfo
+                    {
+                        Key = new waxnet.Internal.Proto.MessageKey
+                        {
+                            FromMe = !message.IsIncoming,
+                            Id = message.MessageId,
+                            RemoteJid = message.Source.Key.RemoteJid
+                        },
+                        MessageTimestamp = (ulong)message.TimeStamp.GetTimeStampLong(),
+                        Message = new waxnet.Internal.Proto.Message
+                        {
+                            ProtocolMessage = new waxnet.Internal.Proto.ProtocolMessage
+                            {
+                                Type = waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE.Revoke,
+                                Key = new waxnet.Internal.Proto.MessageKey
+                                {
+                                    FromMe = !message.IsIncoming,
+                                    Id = message.MessageId,
+                                    RemoteJid = message.Source.Key.RemoteJid
+                                }
+                            }
+                        },
+                        Status = waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.ServerAck
+                    });
                 }
-                };
-                _api.Engine.SendBinary(n, WriteBinaryType.Chat, tag);
             }
             catch
             {
@@ -144,5 +176,6 @@ namespace WAX.Methods
                 Api.CallException(_api, new Exception("The instance of the message object is invalid"));
             }
         }
+
     }
 }

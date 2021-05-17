@@ -6,6 +6,7 @@ using WAX;
 using WAX.Enum;
 using waxnet.Internal.Core;
 using waxnet.Internal.Models;
+using waxnet.Internal.Utils;
 
 namespace WAX.Methods
 {
@@ -16,6 +17,7 @@ namespace WAX.Methods
         {
             await Task.Run(() =>
             {
+                if (!_api.CheckLock()) return;
                 var tag = _api.Engine.Tag;
                 var n = new Node()
                 {
@@ -41,6 +43,7 @@ namespace WAX.Methods
         {
             await Task.Run(() =>
             {
+                if (!_api.CheckLock()) return;
                 var tag = _api.Engine.Tag;
                 var n = new Node()
                 {
@@ -57,6 +60,49 @@ namespace WAX.Methods
                         Content = Encoding.UTF8.GetBytes(name)
                     }
                 }
+                };
+                _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
+            });
+        }
+
+        public async void UpdateAvatar(byte[] image)
+        {
+            await Task.Run(()=>
+            {
+                if (!_api.CheckLock()) return;
+                var tag = _api.Engine.Tag;
+                var n = new Node()
+                {
+                    Description = "action",
+                    Attributes = new Dictionary<string, string> {
+                        { "type", "set" },
+                        { "epoch", _api.Engine._msgCount.ToString() },
+                    },
+                    Content = new Node
+                    {
+                        Description = "picture",
+                        Attributes = new Dictionary<string, string>
+                        {
+                            { "id", tag },
+                            { "jid", _api.UserInfo.Id.GetId() },
+                            { "type", "set"}
+                        },
+                        Content = new List<Node>
+                        {
+                            new Node
+                            {
+                                Description = "image",
+                                Attributes = null,
+                                Content = image
+                            },
+                            new Node
+                            {
+                                Description = "preview",
+                                Attributes = null,
+                                Content = image
+                            }
+                        }
+                    }
                 };
                 _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });

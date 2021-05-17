@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WAX.Methods;
+using WAX.Models;
 using WAX.Models.Messages;
 using WAX.Models.Parameters;
 using waxnet.Internal.Core;
@@ -33,12 +34,12 @@ namespace WAX
         private Handler _handler;
         internal Engine Engine;
 
-        public CancellationToken CancellationToken 
-        { 
-            get 
-            { 
-                return Engine.CancellationToken; 
-            } 
+        public CancellationToken CancellationToken
+        {
+            get
+            {
+                return Engine.CancellationToken;
+            }
         }
         public bool IsAuthorized { get; private set; }
 
@@ -46,6 +47,10 @@ namespace WAX
         public User User { get; private set; }
         public Profile Profile { get; private set; }
         public Group Group { get; private set; }
+        public Chat Chat { get; private set; }
+
+        public UserInfo UserInfo { get; internal set; }
+        public DeviceInfo DeviceInfo { get; internal set; }
 
         public Api()
         {
@@ -69,6 +74,7 @@ namespace WAX
             User = new User { _api = this };
             Profile = new Profile { _api = this };
             Group = new Group { _api = this };
+            Chat = new Chat { _api = this };
         }
 
         internal void CallEvent(object sender, CallEventArgs e)

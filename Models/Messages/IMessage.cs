@@ -34,7 +34,7 @@ namespace WAX.Models.Messages
             {
                 var ci = new ContextInfo
                 {
-                    IsForwarded = IsForwarded,
+                    IsForwarded = IsForwarded
                 };
                 if (ReplyMessage != null)
                 {
