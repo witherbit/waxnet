@@ -176,6 +176,5 @@ namespace WAX.Methods
                 Api.CallException(_api, new Exception("The instance of the message object is invalid"));
             }
         }
-
     }
 }
