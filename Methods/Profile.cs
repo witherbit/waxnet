@@ -104,7 +104,14 @@ namespace WAX.Methods
                         }
                     }
                 };
-                _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
+                try
+                {
+                    _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
+                }
+                catch
+                {
+                    Api.CallException(_api, new Exception("Image size is too large"));
+                }
             });
         }
     }

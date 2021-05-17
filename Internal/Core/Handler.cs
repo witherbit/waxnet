@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using WAX;
+using WAX.Models;
 using WAX.Models.Messages;
 using waxnet.Internal.Models;
 using waxnet.Internal.Proto;
+using waxnet.Internal.Utils;
 
 namespace waxnet.Internal.Core
 {
@@ -64,7 +67,23 @@ namespace waxnet.Internal.Core
         {
             await Task.Run(() =>
             {
-
+                var json = JArray.Parse(rm.Body)[1];
+                _api.UserInfo = new UserInfo
+                {
+                    PushName = json["pushname"].ToString(),
+                    Id = _api.Engine.SessionManager.Session.Id.GetId(),
+                    Version = json["phone"]["wa_version"].ToString()
+                };
+                _api.DeviceInfo = new DeviceInfo
+                {
+                    Battery = Convert.ToInt32(json["battery"]),
+                    Plugged = Convert.ToBoolean(json["plugged"]),
+                    Connect = Convert.ToBoolean(json["connected"]),
+                    OsVersion = json["phone"]["os_version"].ToString(),
+                    Manufacturer = json["phone"]["device_manufacturer"].ToString(),
+                    Model = json["phone"]["device_model"].ToString(),
+                    Platform = json["platform"].ToString()
+                };
             });
         }
     }
