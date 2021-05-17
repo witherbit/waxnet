@@ -38,7 +38,6 @@ namespace WAX.Methods
                 _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });
         }
-
         public async void SetName(string name)
         {
             await Task.Run(() =>
@@ -64,8 +63,7 @@ namespace WAX.Methods
                 _api.Engine.SendBinary(n, WriteBinaryType.Profile, tag);
             });
         }
-
-        public async void UpdateAvatar(byte[] image)
+        public async void UpdateAvatar(byte[] image, byte[] preview)
         {
             await Task.Run(()=>
             {
@@ -99,7 +97,7 @@ namespace WAX.Methods
                             {
                                 Description = "preview",
                                 Attributes = null,
-                                Content = image
+                                Content = preview
                             }
                         }
                     }
@@ -110,7 +108,7 @@ namespace WAX.Methods
                 }
                 catch
                 {
-                    Api.CallException(_api, new Exception("Image size is too large"));
+                    Api.CallException(_api, new Exception("Image size or preview size is too large"));
                 }
             });
         }

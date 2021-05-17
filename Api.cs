@@ -68,7 +68,6 @@ namespace WAX
         {
             Engine = new Engine();
             _handler = new Handler { _api = this };
-            Engine.Initialize();
             Engine.CallEvent += CallEvent;
             Messages = new Messages { _api = this };
             User = new User { _api = this };
@@ -76,35 +75,33 @@ namespace WAX
             Group = new Group { _api = this };
             Chat = new Chat { _api = this };
         }
-
         internal void CallEvent(object sender, CallEventArgs e)
         {
             if (e.Type == CallEventType.Handle) _handler.Controller(e.Content as ReceiveModel);
-            if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(() => OnCodeUpdate?.Invoke(this, e.Content as string));
-            if (e.Type == CallEventType.Login)
+            else if (e.Type == CallEventType.CodeUpdate) Task.Factory.StartNew(() => OnCodeUpdate?.Invoke(this, e.Content as string));
+            else if (e.Type == CallEventType.Login)
             {
                 IsAuthorized = true;
                 Engine.SessionManager.Save();
                 Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
             }
-            if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
-            if (e.Type == CallEventType.AccountDropped)
+            else if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
+            else if (e.Type == CallEventType.AccountDropped)
             {
                 IsAuthorized = false;
                 Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
             }
-            if (e.Type == CallEventType.Stop)
+            else if(e.Type == CallEventType.Stop)
             {
                 IsAuthorized = false;
                 Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
             }
-            if (e.Type == CallEventType.Message) Task.Factory.StartNew(() => OnChatMessage?.Invoke(this, e.Content as ChatMessage));
-            if (e.Type == CallEventType.GroupMessage) Task.Factory.StartNew(() => OnGroupMessage?.Invoke(this, e.Content as GroupMessage));
+            else if(e.Type == CallEventType.Start) Task.Factory.StartNew(() => OnStart?.Invoke(this, CancellationToken));
+            else if(e.Type == CallEventType.Message) Task.Factory.StartNew(() => OnChatMessage?.Invoke(this, e.Content as ChatMessage));
+            else if(e.Type == CallEventType.GroupMessage) Task.Factory.StartNew(() => OnGroupMessage?.Invoke(this, e.Content as GroupMessage));
         }
-
         public void Start()
         {
-            Task.Factory.StartNew(() => OnStart?.Invoke(this, CancellationToken));
             Engine.Start();
         }
         public void Stop()
@@ -113,6 +110,7 @@ namespace WAX
         }
         public void Dispose()
         {
+            IsAuthorized = false;
             Task.Factory.StartNew(() => OnDispose?.Invoke(this, CancellationToken));
             Engine.Dispose();
             GC.Collect();

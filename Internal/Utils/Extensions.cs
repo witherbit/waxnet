@@ -28,7 +28,10 @@ namespace waxnet.Internal.Utils
         }
         public static long GetId(this string id)
         {
-            return Convert.ToInt64(id.Replace("@s.whatsapp.net", ""));
+            if(id.Contains("@s.whatsapp.net"))
+                return Convert.ToInt64(id.Replace("@s.whatsapp.net", ""));
+            else
+                return Convert.ToInt64(id.Replace("@c.us", ""));
         }
 
         public static string GetId(this long id)

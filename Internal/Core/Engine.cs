@@ -46,7 +46,6 @@ namespace waxnet.Internal.Core
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
         }
 
-
         public async void Start()
         {
             if(Cts == null)
@@ -54,9 +53,16 @@ namespace waxnet.Internal.Core
                 Cts = new CancellationTokenSource();
                 CancellationToken = Cts.Token;
                 _snapReceiveDictionary.Clear();
+                Initialize();
+                Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs
+                {
+                    Type = CallEventType.Start,
+                    Content = CancellationToken
+                }));
+
                 if (!await Connect())
                 {
-                    await Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs { Content = new Exception("Connect Error!"), Type = CallEventType.Exception }));
+                    await Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = new Exception("Connect Error!"), Type = CallEventType.Exception }));
                     Stop();
                 }
                 if (SessionManager.Session == null)
@@ -80,6 +86,11 @@ namespace waxnet.Internal.Core
                 Cts.Cancel();
                 Cts.Dispose();
                 Cts = null;
+                Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs
+                {
+                    Type = CallEventType.Stop,
+                    Content = CancellationToken
+                }));
                 try
                 {
                     _socket.CloseAsync(WebSocketCloseStatus.Empty, null, CancellationToken.None);
@@ -108,6 +119,7 @@ namespace waxnet.Internal.Core
         {
             Task.Factory.StartNew(async () =>
             {
+                if (CancellationToken.IsCancellationRequested) return;
                 var clientId = 16.GetRandomByte();
                 SessionManager.Session.ClientId = Convert.ToBase64String(clientId);
                 var tag = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
@@ -123,6 +135,7 @@ namespace waxnet.Internal.Core
                 });
                 var privateKey = Curve25519.CreateRandomPrivateKey();
                 var publicKey = Curve25519.GetPublicKey(privateKey);
+                if (CancellationToken.IsCancellationRequested) return;
                 AddSnapReceive("s1", rm =>
                 {
                     var jsData = JsonConvert.DeserializeObject<dynamic>(rm.Body);
@@ -155,20 +168,22 @@ namespace waxnet.Internal.Core
                 });
                 while (refUrl.IsNullOrWhiteSpace())
                 {
+                    if (CancellationToken.IsCancellationRequested) return;
                     await Task.Delay(100);
                 }
                 var loginUrl = $"{refUrl},{Convert.ToBase64String(publicKey)},{SessionManager.Session.ClientId}";
                 _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = loginUrl, Type = CallEventType.CodeUpdate }));
-
             });
 
         }
         private void ReLogin()
         {
+            if (CancellationToken.IsCancellationRequested) return;
             AddSnapReceive("s1", LoginResponseHandle);
             this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
             Task.Delay(5000).ContinueWith(t =>
             {
+                if (CancellationToken.IsCancellationRequested) return;
                 this.SendJson($"[\"admin\",\"login\",\"{SessionManager.Session.ClientToken}\",\"{SessionManager.Session.ServerToken}\",\"{SessionManager.Session.ClientId}\",\"takeover\"]");
             });
 
@@ -194,6 +209,7 @@ namespace waxnet.Internal.Core
         }
         private void ResolveChallenge(string challenge)
         {
+            if (CancellationToken.IsCancellationRequested) return;
             var decoded = Convert.FromBase64String(challenge);
             var loginChallenge = decoded.HMACSHA256_Encrypt(SessionManager.Session.MacKey);
             this.SendJson($"[\"admin\",\"challenge\",\"{Convert.ToBase64String(loginChallenge)}\",\"{SessionManager.Session.ServerToken}\",\"{SessionManager.Session.ClientId}\"]");
@@ -297,6 +313,7 @@ namespace waxnet.Internal.Core
         }
         public void AddCallback(string tag, Action<ReceiveModel> action = null, int count = 0)
         {
+            if (CancellationToken.IsCancellationRequested) return;
             if (action != null)
             {
                 AddSnapReceive(tag, rm =>
@@ -308,6 +325,7 @@ namespace waxnet.Internal.Core
         }
         private void AddSnapReceive(string tag, Func<ReceiveModel, bool> func, int count = 0)
         {
+            if (CancellationToken.IsCancellationRequested) return;
             if (count != 0)
             {
                 _snapReceiveRemoveCountDictionary.Add(tag, count);
