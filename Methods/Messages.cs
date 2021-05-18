@@ -110,6 +110,11 @@ namespace WAX.Methods
                 }
                 else
                 {
+                    if(!message.IsIncoming)
+                    {
+                        Api.CallException(_api, new Exception("Unable to delete a message for everyone not on your behalf"));
+                        return;
+                    }
                     _api.Engine.SendProto(new waxnet.Internal.Proto.WebMessageInfo
                     {
                         Key = new waxnet.Internal.Proto.MessageKey
@@ -126,7 +131,7 @@ namespace WAX.Methods
                                 Type = waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE.Revoke,
                                 Key = new waxnet.Internal.Proto.MessageKey
                                 {
-                                    FromMe = !message.IsIncoming,
+                                    FromMe = false,
                                     Id = message.MessageId,
                                     RemoteJid = message.Source.Key.RemoteJid
                                 }
@@ -146,6 +151,10 @@ namespace WAX.Methods
             if (!_api.CheckLock()) return;
             try
             {
+                if (!message.IsIncoming)
+                {
+                    Api.CallException(_api, new Exception("You can't send a notification about reading your own message"));
+                }
                 var tag = _api.Engine.Tag;
                 var n = new Node
                 {

@@ -13,6 +13,20 @@ namespace WAX.Methods
     public sealed class Profile
     {
         internal Api _api;
+        public string Status
+        {
+            get
+            {
+                try
+                {
+                    return _api.User.GetStatus(_api.UserInfo.Id);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
         public async void SetStatus(string status)
         {
             await Task.Run(() =>

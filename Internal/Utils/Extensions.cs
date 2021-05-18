@@ -11,11 +11,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using WAX;
+using waxnet.Internal.Models;
 
 namespace waxnet.Internal.Utils
 {
     static class Extensions
     {
+        public static async Task<Node> WaitDecryptNode(this ReceiveModel rm, Api api)
+        {
+            var node = await api.Engine.GetDecryptNode(rm);
+            return node;
+        }
         public static byte[] GetRandomByte(this int length)
         {
             var random = new Random();
@@ -242,7 +248,7 @@ namespace waxnet.Internal.Utils
             }
         }
 
-        public static string EncryptAES(this string plainText, string ckey, string salt = "defaultSaltKey")
+        public static string EncryptAES(this string plainText, string ckey, string salt)
         {
             var bsalt = Encoding.ASCII.GetBytes(salt);
             if (string.IsNullOrEmpty(plainText))
@@ -278,7 +284,7 @@ namespace waxnet.Internal.Utils
             }
             return outStr;
         }
-        public static string DecryptAES(this string cipherText, string ckey, string salt = "defaultSaltKey")
+        public static string DecryptAES(this string cipherText, string ckey, string salt)
         {
             var bsalt = Encoding.ASCII.GetBytes(salt);
             if (string.IsNullOrEmpty(cipherText))
