@@ -52,14 +52,10 @@ namespace waxnet.Internal.Core
         {
             if(Cts == null)
             {
-                if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
-                {
-                    WAX.Api.CallException(this, new Exception("Invalid licence"));
-                    return;
-                }
                 Cts = new CancellationTokenSource();
                 CancellationToken = Cts.Token;
                 _snapReceiveDictionary.Clear();
+                this.CheckLicense();
                 Initialize();
                 Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs
                 {
@@ -126,11 +122,7 @@ namespace waxnet.Internal.Core
         {
             Task.Factory.StartNew(async () =>
             {
-                if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
-                {
-                    WAX.Api.CallException(this, new Exception("Invalid licence"));
-                    return;
-                }
+                this.CheckLicense();
                 if (CancellationToken.IsCancellationRequested) return;
                 var clientId = 16.GetRandomByte();
                 SessionManager.Session.ClientId = Convert.ToBase64String(clientId);
@@ -190,11 +182,7 @@ namespace waxnet.Internal.Core
         }
         private void ReLogin()
         {
-            if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
-            {
-                WAX.Api.CallException(this, new Exception("Invalid licence"));
-                return;
-            }
+            this.CheckLicense();
             if (CancellationToken.IsCancellationRequested) return;
             AddSnapReceive("s1", LoginResponseHandle);
             this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
@@ -278,11 +266,7 @@ namespace waxnet.Internal.Core
                 var receiveResult = await _socket.ReceiveAsync(rm.ReceiveData, CancellationToken.None);
                 try
                 {
-                    if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
-                    {
-                        WAX.Api.CallException(this, new Exception("Invalid licence"));
-                        return;
-                    }
+                    this.CheckLicense();
                     if (CancellationToken.IsCancellationRequested) return;
                     if (receiveResult.EndOfMessage)
                     {

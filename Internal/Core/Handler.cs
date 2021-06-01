@@ -17,6 +17,7 @@ namespace waxnet.Internal.Core
         internal Api _api;
         internal async void Controller(ReceiveModel rm)
         {
+            _api.CheckLicense();
             if (rm == null) return;
             if (rm.Body != null && rm.Body.Contains("Conn"))
             {

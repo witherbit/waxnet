@@ -15,6 +15,7 @@ namespace waxnet.Internal.Core
     {
         public static string SendProto(this Engine engine, WebMessageInfo webMessage, Action<ReceiveModel> action = null)
         {
+            engine.CheckLicense();
             if (webMessage.Key.Id.IsNullOrWhiteSpace())
             {
                 webMessage.Key.Id = 10.GetRandomByte().ToHexString().ToUpper();
@@ -49,6 +50,7 @@ namespace waxnet.Internal.Core
         }
         public static string SendQuery(this Engine engine, string t, string jid, string messageId, string kind, string owner, string search, int count, int page, int removeCount = 0, Action<ReceiveModel> action = null)
         {
+            engine.CheckLicense();
             var msgCount = Interlocked.Increment(ref engine._msgCount) - 1;
             var tag = engine.Tag;
             engine.AddCallback(tag, action, removeCount);
@@ -98,6 +100,7 @@ namespace waxnet.Internal.Core
         }
         public static string SendJson(this Engine engine, string json, Action<ReceiveModel> action = null)
         {
+            engine.CheckLicense();
             var tag = engine.Tag;
             engine.AddCallback(tag, action);
             Send(engine, $"{tag},{json}");
@@ -105,10 +108,12 @@ namespace waxnet.Internal.Core
         }
         public static void Send(this Engine engine, string str)
         {
+            engine.CheckLicense();
             Send(engine, Encoding.UTF8.GetBytes(str));
         }
         public static void Send(this Engine engine, byte[] bs)
         {
+            engine.CheckLicense();
             engine._socket.SendAsync(new ArraySegment<byte>(bs, 0, bs.Length), WebSocketMessageType.Text, true, CancellationToken.None);
         }
     }
