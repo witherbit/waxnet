@@ -16,7 +16,7 @@ namespace WAX.Methods
         public MessageBase Send(IMessage message)
         {
             if (!_api.CheckLock()) return null;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return null;
@@ -73,7 +73,7 @@ namespace WAX.Methods
         public void Delete(MessageBase message, bool forEveryone = false)
         {
             if (!_api.CheckLock()) return;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return;
@@ -154,7 +154,7 @@ namespace WAX.Methods
         public void Read(MessageBase message)
         {
             if (!_api.CheckLock()) return;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return;

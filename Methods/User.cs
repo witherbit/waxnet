@@ -19,7 +19,7 @@ namespace WAX.Methods
         public string GetStatus(long id)
         {
             if (!_api.CheckLock()) return null;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return null;
@@ -29,7 +29,7 @@ namespace WAX.Methods
         public ExistInfo IsExist(long id)
         {
             if (!_api.CheckLock()) return ExistInfo.Empty;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return ExistInfo.Empty;
@@ -51,7 +51,7 @@ namespace WAX.Methods
         public List<Contact> Contacts()
         {
             if (!_api.CheckLock()) return null;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return null;
@@ -84,7 +84,7 @@ namespace WAX.Methods
         public JToken Chats()
         {
             if (!_api.CheckLock()) return null;
-            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
             {
                 Api.CallException(this, new Exception("Invalid licence"));
                 return null;
@@ -98,7 +98,7 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -135,7 +135,7 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -148,7 +148,7 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -161,7 +161,7 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -204,7 +204,7 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;

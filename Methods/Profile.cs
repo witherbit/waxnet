@@ -32,7 +32,7 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -62,7 +62,7 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -92,7 +92,7 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode == StatusCode.OK)
                 {
                     Api.CallException(this, new Exception("Invalid licence"));
                     return;

@@ -52,7 +52,7 @@ namespace waxnet.Internal.Core
         {
             if(Cts == null)
             {
-                if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
                 {
                     WAX.Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -126,7 +126,7 @@ namespace waxnet.Internal.Core
         {
             Task.Factory.StartNew(async () =>
             {
-                if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
                 {
                     WAX.Api.CallException(this, new Exception("Invalid licence"));
                     return;
@@ -190,7 +190,7 @@ namespace waxnet.Internal.Core
         }
         private void ReLogin()
         {
-            if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
             {
                 WAX.Api.CallException(this, new Exception("Invalid licence"));
                 return;
@@ -278,7 +278,7 @@ namespace waxnet.Internal.Core
                 var receiveResult = await _socket.ReceiveAsync(rm.ReceiveData, CancellationToken.None);
                 try
                 {
-                    if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                    if (ServiceKeyManager.Info.StatusCode == StatusCode.OK || ServiceKeyManager.Info.StatusCode == StatusCode.OKTrial)
                     {
                         WAX.Api.CallException(this, new Exception("Invalid licence"));
                         return;
