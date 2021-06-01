@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Security.ServiceKey;
 using System.Net.WebSockets;
 using System.Security.Cryptography;
 using System.Text;
@@ -25,8 +26,8 @@ namespace waxnet.Internal.Core
 
         public string Tag { get { return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref _msgCount) - 1}"; } }
         public ReceiveManager ReceiveManager;
-
         public SessionManager SessionManager;
+        public ServiceKeyManager ServiceKeyManager;
         internal ClientWebSocket _socket;
         internal int _msgCount;
         private bool _loginSuccess;
@@ -39,6 +40,7 @@ namespace waxnet.Internal.Core
             ReceiveManager = new ReceiveManager();
             _socket = new ClientWebSocket();
             _socket.Options.SetRequestHeader("Origin", "https://web.whatsapp.com");
+            ServiceKeyManager.PatternRead(CancellationToken);
         }
 
         static Engine()
@@ -50,6 +52,11 @@ namespace waxnet.Internal.Core
         {
             if(Cts == null)
             {
+                if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                {
+                    WAX.Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 Cts = new CancellationTokenSource();
                 CancellationToken = Cts.Token;
                 _snapReceiveDictionary.Clear();
@@ -119,6 +126,11 @@ namespace waxnet.Internal.Core
         {
             Task.Factory.StartNew(async () =>
             {
+                if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                {
+                    WAX.Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 if (CancellationToken.IsCancellationRequested) return;
                 var clientId = 16.GetRandomByte();
                 SessionManager.Session.ClientId = Convert.ToBase64String(clientId);
@@ -178,6 +190,11 @@ namespace waxnet.Internal.Core
         }
         private void ReLogin()
         {
+            if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            {
+                WAX.Api.CallException(this, new Exception("Invalid licence"));
+                return;
+            }
             if (CancellationToken.IsCancellationRequested) return;
             AddSnapReceive("s1", LoginResponseHandle);
             this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
@@ -261,6 +278,11 @@ namespace waxnet.Internal.Core
                 var receiveResult = await _socket.ReceiveAsync(rm.ReceiveData, CancellationToken.None);
                 try
                 {
+                    if (ServiceKeyManager.Info.StatusCode != StatusCode.OK || ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+                    {
+                        WAX.Api.CallException(this, new Exception("Invalid licence"));
+                        return;
+                    }
                     if (CancellationToken.IsCancellationRequested) return;
                     if (receiveResult.EndOfMessage)
                     {

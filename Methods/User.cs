@@ -19,11 +19,21 @@ namespace WAX.Methods
         public string GetStatus(long id)
         {
             if (!_api.CheckLock()) return null;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return null;
+            }
             return _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendJson($"[\"query\",\"Status\",\"{id.GetId()}\"]")).Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
         }
         public ExistInfo IsExist(long id)
         {
             if (!_api.CheckLock()) return ExistInfo.Empty;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return ExistInfo.Empty;
+            }
             var json = JToken.Parse(_api.Engine.ReceiveManager.WaitResult(_api.Engine.SendJson($"[\"query\",\"exist\",\"{id.GetId()}\"]")).Body);
             var info = new ExistInfo
             {
@@ -41,6 +51,11 @@ namespace WAX.Methods
         public List<Contact> Contacts()
         {
             if (!_api.CheckLock()) return null;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return null;
+            }
             var list = new List<Contact>();
             var n = _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendQuery("contacts", "", "", "", "", "", 0, 0), ignoreCount: 1).WaitDecryptNode(_api).Result;
             if (n.Content is List<Node> nodeList)
@@ -69,7 +84,12 @@ namespace WAX.Methods
         public JToken Chats()
         {
             if (!_api.CheckLock()) return null;
-            var rm = _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendQuery("chat", "", "", "", "", "", 0, 0));
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return null;
+            }
+            var rm = _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendQuery("chat", "", "", "", "", "", 0, 0), ignoreCount: 1);
             var n = _api.Engine.GetDecryptNode(rm);
             return JToken.Parse(JsonConvert.SerializeObject(n));
         }
@@ -78,6 +98,11 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                {
+                    Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 var tag = _api.Engine.Tag;
                 var content = new Node()
                 {
@@ -110,6 +135,11 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                {
+                    Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 _api.Engine.SendJson($"[\"action\",\"presence\",\"subscribe\",\"{id.GetId()}\"]");
             });
         }
@@ -118,6 +148,11 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                {
+                    Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 _api.Engine.SendJson($"[\"action\",\"presence\",\"unsubscribe\",\"{id.GetId()}\"]");
             });
         }
@@ -126,6 +161,11 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                {
+                    Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 var tag = _api.Engine.Tag;
                 var n = new Node
                 {
@@ -164,6 +204,11 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
+                if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+                {
+                    Api.CallException(this, new Exception("Invalid licence"));
+                    return;
+                }
                 var tag = _api.Engine.Tag;
                 var n = new Node
                 {
@@ -197,7 +242,5 @@ namespace WAX.Methods
                 _api.Engine.SendBinary(n, WriteBinaryType.Block, tag);
             });
         }
-
-        
     }
 }

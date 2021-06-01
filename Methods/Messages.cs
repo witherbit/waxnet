@@ -16,6 +16,11 @@ namespace WAX.Methods
         public MessageBase Send(IMessage message)
         {
             if (!_api.CheckLock()) return null;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK || _api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OKTrial)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return null;
+            }
             var proto = message.GetProto(_api);
             if (proto == null)
             {
@@ -68,6 +73,11 @@ namespace WAX.Methods
         public void Delete(MessageBase message, bool forEveryone = false)
         {
             if (!_api.CheckLock()) return;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return;
+            }
             try
             {
                 var tag = _api.Engine.Tag;
@@ -110,12 +120,7 @@ namespace WAX.Methods
                 }
                 else
                 {
-                    if(!message.IsIncoming)
-                    {
-                        Api.CallException(_api, new Exception("Unable to delete a message for everyone not on your behalf"));
-                        return;
-                    }
-                    _api.Engine.SendProto(new waxnet.Internal.Proto.WebMessageInfo
+                    var receive = _api.Engine.SendProto(new waxnet.Internal.Proto.WebMessageInfo
                     {
                         Key = new waxnet.Internal.Proto.MessageKey
                         {
@@ -131,13 +136,13 @@ namespace WAX.Methods
                                 Type = waxnet.Internal.Proto.ProtocolMessage.Types.PROTOCOL_MESSAGE_TYPE.Revoke,
                                 Key = new waxnet.Internal.Proto.MessageKey
                                 {
-                                    FromMe = false,
+                                    FromMe = true,
                                     Id = message.MessageId,
                                     RemoteJid = message.Source.Key.RemoteJid
                                 }
                             }
                         },
-                        Status = waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.ServerAck
+                        Status = waxnet.Internal.Proto.WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Pending
                     });
                 }
             }
@@ -149,6 +154,11 @@ namespace WAX.Methods
         public void Read(MessageBase message)
         {
             if (!_api.CheckLock()) return;
+            if (_api.Engine.ServiceKeyManager.Info.StatusCode != StatusCode.OK)
+            {
+                Api.CallException(this, new Exception("Invalid licence"));
+                return;
+            }
             try
             {
                 if (!message.IsIncoming)
