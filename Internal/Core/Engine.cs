@@ -55,7 +55,7 @@ namespace waxnet.Internal.Core
                 Cts = new CancellationTokenSource();
                 CancellationToken = Cts.Token;
                 _snapReceiveDictionary.Clear();
-                this.CheckLicense();
+                if (this.CheckLicense()) return;
                 Initialize();
                 Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs
                 {
