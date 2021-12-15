@@ -42,7 +42,8 @@ namespace waxnet.Internal.Utils
                 Message = new Message
                 {
                     ExtendedTextMessage = etm
-                }
+                },
+                Status = WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Pending
             };
         }
         private static WebMessageInfo Image(WAX.Models.Messages.ImageMessage mp, Api api)
@@ -68,7 +69,8 @@ namespace waxnet.Internal.Utils
                         FileLength = mp.UploadResponse.FileLength,
                         ContextInfo = (mp as WAX.Models.Messages.IMessage).ContextInfo
                     }
-                }
+                },
+                Status = WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Pending
             };
         }
         private static WebMessageInfo Video(WAX.Models.Messages.VideoMessage mp, Api api)
@@ -97,7 +99,8 @@ namespace waxnet.Internal.Utils
                         GifPlayback = mp.GifPlayback,
                         Seconds = mp.Seconds
                     }
-                }
+                },
+                Status = WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Pending
             };
         }
         private static WebMessageInfo Audio(WAX.Models.Messages.AudioMessage mp, Api api)
@@ -124,7 +127,8 @@ namespace waxnet.Internal.Utils
                         Ptt = mp.Ptt,
                         Seconds = mp.Seconds
                     }
-                }
+                },
+                Status = WebMessageInfo.Types.WEB_MESSAGE_INFO_STATUS.Pending
             };
         }
     }

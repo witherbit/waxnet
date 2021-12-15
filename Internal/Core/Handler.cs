@@ -17,13 +17,7 @@ namespace waxnet.Internal.Core
         internal Api _api;
         internal async void Controller(ReceiveModel rm)
         {
-            _api.CheckLicense();
             if (rm == null) return;
-            if (rm.Body != null && rm.Body.Contains("Conn"))
-            {
-                ConnectInfo(rm);
-                return;
-            }
             var node = await _api.Engine.GetDecryptNode(rm);
             if(node != null && node.Content is List<Node> nodeList)
             {
@@ -61,30 +55,6 @@ namespace waxnet.Internal.Core
                         });
                     }
                 }
-            });
-        }
-
-        internal async Task ConnectInfo(ReceiveModel rm)
-        {
-            await Task.Run(() =>
-            {
-                var json = JArray.Parse(rm.Body)[1];
-                _api.UserInfo = new UserInfo
-                {
-                    PushName = json["pushname"].ToString(),
-                    Id = _api.Engine.SessionManager.Session.Id.GetId(),
-                    Version = json["phone"]["wa_version"].ToString()
-                };
-                _api.DeviceInfo = new DeviceInfo
-                {
-                    Battery = Convert.ToInt32(json["battery"]),
-                    Plugged = Convert.ToBoolean(json["plugged"]),
-                    Connect = Convert.ToBoolean(json["connected"]),
-                    OsVersion = json["phone"]["os_version"].ToString(),
-                    Manufacturer = json["phone"]["device_manufacturer"].ToString(),
-                    Model = json["phone"]["device_model"].ToString(),
-                    Platform = json["platform"].ToString()
-                };
             });
         }
     }

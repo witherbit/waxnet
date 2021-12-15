@@ -16,7 +16,6 @@ namespace WAX.Methods
         public MessageBase Send(IMessage message)
         {
             if (!_api.CheckLock()) return null;
-            if (_api.CheckLicense())
                 return null;
             var proto = message.GetProto(_api);
             if (proto == null)
@@ -70,7 +69,6 @@ namespace WAX.Methods
         public void Delete(MessageBase message, bool forEveryone = false)
         {
             if (!_api.CheckLock()) return;
-            if (_api.CheckLicense(true))
                 return;
             try
             {
@@ -148,7 +146,6 @@ namespace WAX.Methods
         public void Read(MessageBase message)
         {
             if (!_api.CheckLock()) return;
-            if (_api.CheckLicense(true))
                 return;
             try
             {

@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Security.ServiceKey;
 using System.Net.WebSockets;
 using System.Security.Cryptography;
 using System.Text;
@@ -26,8 +26,7 @@ namespace waxnet.Internal.Core
 
         public string Tag { get { return $"{DateTime.Now.GetTimeStampInt()}.--{Interlocked.Increment(ref _msgCount) - 1}"; } }
         public ReceiveManager ReceiveManager;
-        public SessionManager SessionManager;
-        public ServiceKeyManager ServiceKeyManager;
+        public Session Session;
         internal ClientWebSocket _socket;
         internal int _msgCount;
         private bool _loginSuccess;
@@ -40,7 +39,6 @@ namespace waxnet.Internal.Core
             ReceiveManager = new ReceiveManager();
             _socket = new ClientWebSocket();
             _socket.Options.SetRequestHeader("Origin", "https://web.whatsapp.com");
-            ServiceKeyManager.PatternRead(CancellationToken);
         }
 
         static Engine()
@@ -55,30 +53,35 @@ namespace waxnet.Internal.Core
                 Cts = new CancellationTokenSource();
                 CancellationToken = Cts.Token;
                 _snapReceiveDictionary.Clear();
-                if (this.CheckLicense()) return;
+                
                 Initialize();
                 Task.Factory.StartNew(()=>CallEvent?.Invoke(this, new CallEventArgs
                 {
                     Type = CallEventType.Start,
                     Content = CancellationToken
                 }));
-
-                if (!await Connect())
+                try
                 {
-                    await Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = new Exception("Connect Error!"), Type = CallEventType.Exception }));
-                    Stop();
+                    if (!await Connect())
+                    {
+                        await Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = new Exception("Connect Error!"), Type = CallEventType.Exception }));
+                        Stop();
+                    }
+                    if (Session == null)
+                    {
+                        Session = new Session();
+                    }
+                    if (string.IsNullOrEmpty(Session.ClientToken))
+                    {
+                        Login();
+                    }
+                    else
+                    {
+                        ReLogin();
+                    }
                 }
-                if (SessionManager.Session == null)
+                catch (Exception ex)
                 {
-                    SessionManager.Session = new Session();
-                }
-                if (string.IsNullOrEmpty(SessionManager.Session.ClientToken))
-                {
-                    Login();
-                }
-                else
-                {
-                    ReLogin();
                 }
             }
         }
@@ -107,6 +110,26 @@ namespace waxnet.Internal.Core
             GC.Collect();
         }
 
+        public async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
+        {
+            return await Download(url, mediaKey, MediaType.Image);
+        }
+        public async Task<byte[]> Download(string url, byte[] mediaKey, string info)
+        {
+            var memory = await url.GetStream();
+            var mk = GetMediaKeys(mediaKey, info);
+            var data = memory.ToArray();
+            var file = data.Take(data.Length - 10).ToArray();
+            var mac = data.Skip(file.Length).ToArray();
+            var sign = (mk.Iv.Concat(file).ToArray()).HMACSHA256_Encrypt(mk.MacKey);
+            if (!sign.Take(10).ToArray().ValueEquals(mac))
+            {
+                return null;
+            }
+            var fileData = file.AesCbcDecrypt(mk.CipherKey, mk.Iv);
+            return fileData;
+
+        }
         private async Task<bool> Connect()
         {
             if (_socket.State == WebSocketState.Open || _socket.State == WebSocketState.Connecting)
@@ -122,11 +145,11 @@ namespace waxnet.Internal.Core
         {
             Task.Factory.StartNew(async () =>
             {
-                this.CheckLicense();
+                
                 if (CancellationToken.IsCancellationRequested) return;
                 var clientId = 16.GetRandomByte();
-                SessionManager.Session.ClientId = Convert.ToBase64String(clientId);
-                var tag = this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
+                Session.ClientId = Convert.ToBase64String(clientId);
+                var tag = this.SendJson($"[\"admin\",\"init\",{WAX.ConfigApiConnection.Version},{WAX.ConfigApiConnection.ShortUA},\"{Session.ClientId}\",true]");
                 string refUrl = null;
                 AddSnapReceive(tag, rm =>
                 {
@@ -143,9 +166,9 @@ namespace waxnet.Internal.Core
                 AddSnapReceive("s1", rm =>
                 {
                     var jsData = JsonConvert.DeserializeObject<dynamic>(rm.Body);
-                    SessionManager.Session.ClientToken = jsData[1]["clientToken"];
-                    SessionManager.Session.ServerToken = jsData[1]["serverToken"];
-                    SessionManager.Session.Id = jsData[1]["wid"];
+                    Session.ClientToken = jsData[1]["clientToken"];
+                    Session.ServerToken = jsData[1]["serverToken"];
+                    Session.Id = jsData[1]["wid"];
                     string secret = jsData[1]["secret"];
                     var decodedSecret = Convert.FromBase64String(secret);
                     var pubKey = decodedSecret.Take(32).ToArray();
@@ -164,8 +187,8 @@ namespace waxnet.Internal.Core
                     Array.Copy(sharedSecretExtended, 64, keysEncrypted, 0, 16);
                     Array.Copy(decodedSecret, 64, keysEncrypted, 16, 80);
                     var keyDecrypted = decodedSecret.Skip(64).ToArray().AesCbcDecrypt(sharedSecretExtended.Take(32).ToArray(), sharedSecretExtended.Skip(64).ToArray());
-                    SessionManager.Session.EncKey = keyDecrypted.Take(32).ToArray();
-                    SessionManager.Session.MacKey = keyDecrypted.Skip(32).ToArray();
+                    Session.EncKey = keyDecrypted.Take(32).ToArray();
+                    Session.MacKey = keyDecrypted.Skip(32).ToArray();
                     _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Type = CallEventType.Login }));
                     _loginSuccess = true;
                     return true;
@@ -175,23 +198,22 @@ namespace waxnet.Internal.Core
                     if (CancellationToken.IsCancellationRequested) return;
                     await Task.Delay(100);
                 }
-                var loginUrl = $"{refUrl},{Convert.ToBase64String(publicKey)},{SessionManager.Session.ClientId}";
+                var loginUrl = $"{refUrl},{Convert.ToBase64String(publicKey)},{Session.ClientId}";
                 _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Content = loginUrl, Type = CallEventType.CodeUpdate }));
             });
 
         }
         private void ReLogin()
         {
-            this.CheckLicense();
+            
             if (CancellationToken.IsCancellationRequested) return;
             AddSnapReceive("s1", LoginResponseHandle);
-            this.SendJson($"[\"admin\",\"init\",[2,2033,7],[\"Windows\",\"Chrome\",\"10\"],\"{SessionManager.Session.ClientId}\",true]");
+            this.SendJson($"[\"admin\",\"init\",{WAX.ConfigApiConnection.Version},{WAX.ConfigApiConnection.ShortUA},\"{Session.ClientId}\",true]");
             Task.Delay(5000).ContinueWith(t =>
             {
                 if (CancellationToken.IsCancellationRequested) return;
-                this.SendJson($"[\"admin\",\"login\",\"{SessionManager.Session.ClientToken}\",\"{SessionManager.Session.ServerToken}\",\"{SessionManager.Session.ClientId}\",\"takeover\"]");
+                this.SendJson($"[\"admin\",\"login\",\"{Session.ClientToken}\",\"{Session.ServerToken}\",\"{Session.ClientId}\",\"takeover\"]");
             });
-
         }
         private bool LoginResponseHandle(ReceiveModel receive)
         {
@@ -199,9 +221,9 @@ namespace waxnet.Internal.Core
             if (challenge.IsNullOrWhiteSpace())
             {
                 var jsData = JsonConvert.DeserializeObject<dynamic>(receive.Body);
-                SessionManager.Session.ClientToken = jsData[1]["clientToken"];
-                SessionManager.Session.ServerToken = jsData[1]["serverToken"];
-                SessionManager.Session.Id = jsData[1]["wid"];
+                Session.ClientToken = jsData[1]["clientToken"];
+                Session.ServerToken = jsData[1]["serverToken"];
+                Session.Id = jsData[1]["wid"];
                 _ = Task.Factory.StartNew(() => CallEvent?.Invoke(this, new CallEventArgs { Type = CallEventType.Login }));
                 _loginSuccess = true;
             }
@@ -216,8 +238,8 @@ namespace waxnet.Internal.Core
         {
             if (CancellationToken.IsCancellationRequested) return;
             var decoded = Convert.FromBase64String(challenge);
-            var loginChallenge = decoded.HMACSHA256_Encrypt(SessionManager.Session.MacKey);
-            this.SendJson($"[\"admin\",\"challenge\",\"{Convert.ToBase64String(loginChallenge)}\",\"{SessionManager.Session.ServerToken}\",\"{SessionManager.Session.ClientId}\"]");
+            var loginChallenge = decoded.HMACSHA256_Encrypt(Session.MacKey);
+            this.SendJson($"[\"admin\",\"challenge\",\"{Convert.ToBase64String(loginChallenge)}\",\"{Session.ServerToken}\",\"{Session.ClientId}\"]");
         }
 
         public async Task<Node> GetDecryptNode(ReceiveModel rm)
@@ -235,11 +257,11 @@ namespace waxnet.Internal.Core
                 var tindex = Array.IndexOf(rm.ByteData, (byte)44, 0, rm.ByteData.Length);
                 var wd = rm.ByteData.Skip(tindex + 1).ToArray();
                 var data = wd.Skip(32).ToArray();
-                if (!wd.Take(32).ToArray().ValueEquals(data.HMACSHA256_Encrypt(SessionManager.Session.MacKey)))
+                if (!wd.Take(32).ToArray().ValueEquals(data.HMACSHA256_Encrypt(Session.MacKey)))
                 {
                     return null;
                 }
-                var decryptData = data.AesCbcDecrypt(SessionManager.Session.EncKey);
+                var decryptData = data.AesCbcDecrypt(Session.EncKey);
                 var bd = new BinaryDecoder(decryptData);
                 var node = bd.ReadNode();
                 rm.Nodes = node;
@@ -250,10 +272,10 @@ namespace waxnet.Internal.Core
         public byte[] EncryptBinaryMessage(Node node)
         {
             var b = node.Marshal();
-            var iv = Convert.FromBase64String("aKs1sBxLFMBHVkUQwS/YEg==");
-            var cipher = b.AesCbcEncrypt(SessionManager.Session.EncKey, iv);
+            var iv = Convert.FromBase64String(WAX.ConfigApiConnection.IV);
+            var cipher = b.AesCbcEncrypt(Session.EncKey, iv);
             var cipherIv = iv.Concat(cipher).ToArray();
-            var hash = cipherIv.HMACSHA256_Encrypt(SessionManager.Session.MacKey);
+            var hash = cipherIv.HMACSHA256_Encrypt(Session.MacKey);
             var data = new byte[cipherIv.Length + 32];
             Array.Copy(hash, data, 32);
             Array.Copy(cipherIv, 0, data, 32, cipherIv.Length);
@@ -266,7 +288,7 @@ namespace waxnet.Internal.Core
                 var receiveResult = await _socket.ReceiveAsync(rm.ReceiveData, CancellationToken.None);
                 try
                 {
-                    this.CheckLicense();
+                    
                     if (CancellationToken.IsCancellationRequested) return;
                     if (receiveResult.EndOfMessage)
                     {
@@ -339,26 +361,6 @@ namespace waxnet.Internal.Core
             _snapReceiveDictionary.Add(tag, func);
         }
 
-        public async Task<byte[]> DownloadImage(string url, byte[] mediaKey)
-        {
-            return await Download(url, mediaKey, MediaType.Image);
-        }
-        public async Task<byte[]> Download(string url, byte[] mediaKey, string info)
-        {
-            var memory = await url.GetStream();
-            var mk = GetMediaKeys(mediaKey, info);
-            var data = memory.ToArray();
-            var file = data.Take(data.Length - 10).ToArray();
-            var mac = data.Skip(file.Length).ToArray();
-            var sign = (mk.Iv.Concat(file).ToArray()).HMACSHA256_Encrypt(mk.MacKey);
-            if (!sign.Take(10).ToArray().ValueEquals(mac))
-            {
-                return null;
-            }
-            var fileData = file.AesCbcDecrypt(mk.CipherKey, mk.Iv);
-            return fileData;
-
-        }
         private MediaKeys GetMediaKeys(byte[] mediaKey, string info)
         {
             var sharedSecretExtract = new Hkdf(HashAlgorithmName.SHA256).Extract(mediaKey);

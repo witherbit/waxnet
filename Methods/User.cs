@@ -19,14 +19,12 @@ namespace WAX.Methods
         public string GetStatus(long id)
         {
             if (!_api.CheckLock()) return null;
-            if (_api.CheckLicense(true))
                 return null;
             return _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendJson($"[\"query\",\"Status\",\"{id.GetId()}\"]")).Body.RegexGetString("\"status\":\"([^\"]*)\"").ConverFromUnicode();
         }
         public ExistInfo IsExist(long id)
         {
             if (!_api.CheckLock()) return ExistInfo.Empty;
-            if (_api.CheckLicense(true))
                 return ExistInfo.Empty;
             var json = JToken.Parse(_api.Engine.ReceiveManager.WaitResult(_api.Engine.SendJson($"[\"query\",\"exist\",\"{id.GetId()}\"]")).Body);
             var info = new ExistInfo
@@ -45,7 +43,6 @@ namespace WAX.Methods
         public List<Contact> Contacts()
         {
             if (!_api.CheckLock()) return null;
-            if (_api.CheckLicense())
                 return null;
             var list = new List<Contact>();
             var n = _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendQuery("contacts", "", "", "", "", "", 0, 0), ignoreCount: 1).WaitDecryptNode(_api).Result;
@@ -75,7 +72,6 @@ namespace WAX.Methods
         public JToken Chats()
         {
             if (!_api.CheckLock()) return null;
-            if (_api.CheckLicense())
                 return null;
             var rm = _api.Engine.ReceiveManager.WaitResult(_api.Engine.SendQuery("chat", "", "", "", "", "", 0, 0), ignoreCount: 1);
             var n = _api.Engine.GetDecryptNode(rm);
@@ -86,7 +82,6 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var content = new Node()
@@ -120,7 +115,6 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 _api.Engine.SendJson($"[\"action\",\"presence\",\"subscribe\",\"{id.GetId()}\"]");
             });
@@ -130,7 +124,6 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 _api.Engine.SendJson($"[\"action\",\"presence\",\"unsubscribe\",\"{id.GetId()}\"]");
             });
@@ -140,7 +133,6 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var n = new Node
@@ -180,7 +172,6 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var n = new Node

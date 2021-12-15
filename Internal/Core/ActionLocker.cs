@@ -16,20 +16,5 @@ namespace waxnet.Internal.Core
                 return false;
             }
         }
-
-        public static bool CheckLicense(this Api api, bool checkTrial = false)
-        {
-            var flag = !api.Engine.ServiceKeyManager.Info.Active;
-            if (flag) api.Stop();
-            if (checkTrial && api.Engine.ServiceKeyManager.Info.Trial) flag = true;
-            return flag;
-        }
-        public static bool CheckLicense(this Engine eng, bool checkTrial = false)
-        {
-            var flag = !eng.ServiceKeyManager.Info.Active;
-            if (flag) eng.Stop();
-            if (checkTrial && eng.ServiceKeyManager.Info.Trial) flag = true;
-            return flag;
-        }
     }
 }

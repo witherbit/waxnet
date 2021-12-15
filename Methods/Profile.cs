@@ -32,7 +32,6 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var n = new Node()
@@ -59,7 +58,6 @@ namespace WAX.Methods
             await Task.Run(() =>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var n = new Node()
@@ -86,7 +84,6 @@ namespace WAX.Methods
             await Task.Run(()=>
             {
                 if (!_api.CheckLock()) return;
-                if (_api.CheckLicense(true))
                     return;
                 var tag = _api.Engine.Tag;
                 var n = new Node()

@@ -20,6 +20,7 @@ namespace waxnet.Internal.Models
         Message,
         GroupMessage,
         Stop,
-        Start
+        Start,
+        Connection
     }
 }

@@ -1,30 +1,31 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Net.Security.ServiceKey;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WAX.Methods;
 using WAX.Models;
 using WAX.Models.Messages;
-using WAX.Models.Parameters;
 using waxnet.Internal.Core;
 using waxnet.Internal.Models;
+using waxnet.Internal.Utils;
 
 namespace WAX
 {
-    public sealed class Api : IDisposable
+    sealed class Api : IDisposable
     {
+        public const string CoreVersion = "2.3.8";
         public event EventHandler<string> OnCodeUpdate;
         public event EventHandler OnLogin;
-        public event EventHandler<ChatMessage> OnChatMessage;
-        public event EventHandler<GroupMessage> OnGroupMessage;
         public event EventHandler<Exception> OnAccountDropped;
         public event EventHandler<CancellationToken> OnStart;
         public event EventHandler<CancellationToken> OnStop;
         public event EventHandler<CancellationToken> OnDispose;
         public static event EventHandler<Exception> OnException;
-        public event EventHandler<string> OnLicenseMessage;
+        public event EventHandler<CancellationToken> OnConnection;
         internal static void CallException(object sender, Exception e)
         {
             Task.Factory.StartNew(() =>
@@ -44,67 +45,25 @@ namespace WAX
             }
         }
         public bool IsAuthorized { get; private set; }
-        public string License { get; private set; }
-        public DateTime LicenseStart
-        {
-            get
-            {
-                return Engine.ServiceKeyManager.Info.Start;
-            }
-        }
-        public DateTime LicenseEnding
-        {
-            get
-            {
-                return Engine.ServiceKeyManager.Info.Ending;
-            }
-        }
-        public static string VSCA
-        {
-            get
-            {
-                return ServiceKeyManager.GenerateVSCA;
-            }
-        }
-
         public Messages Messages { get; private set; }
         public User User { get; private set; }
         public Profile Profile { get; private set; }
         public Group Group { get; private set; }
         public Chat Chat { get; private set; }
-
+        public long Id
+        {
+            get => Engine.Session.Id.GetId();
+        }
         public UserInfo UserInfo { get; internal set; }
         public DeviceInfo DeviceInfo { get; internal set; }
 
-        public Api(string license)
+        public Api()
         {
-            License = license;
             Initialize();
-            Engine.SessionManager = new SessionManager();
-        }
-        public Api(string license, SessionManagerParameters parameters)
-        {
-            License = license;
-            Initialize();
-            Engine.SessionManager = new SessionManager(parameters);
-            Engine.SessionManager.Read();
         }
         private void Initialize()
         {
-            ServiceKeyManager.OnMessage += OnLicenseMessages;
             Engine = new Engine();
-            Engine.ServiceKeyManager = new ServiceKeyManager(License, new Pattern
-            {
-                Days = 3,
-                EndOfTheLicenseWarning = "The license will expire soon!",
-                InvalidDateFormat = "The date has an incorrect format",
-                InvalidLicense = "The license is not valid",
-                InvalidMSW = "Incorrect license data",
-                InvalidPSW = "Incorrect license data",
-                InvalidVSC = "Incorrect license data",
-                LicenseHasExpired = "The license has expired",
-                LicenseHasntStartedYet = "The license hasn't started yet"
-            });
             _handler = new Handler { _api = this };
             Engine.CallEvent += CallEvent;
             Messages = new Messages { _api = this };
@@ -113,7 +72,14 @@ namespace WAX
             Group = new Group { _api = this };
             Chat = new Chat { _api = this };
         }
-
+        public Session GetSession()
+        {
+            return Engine.Session;
+        }
+        public void SetSession(Session session)
+        {
+            Engine.Session = session;
+        }
         internal void CallEvent(object sender, CallEventArgs e)
         {
             if (e.Type == CallEventType.Handle) _handler.Controller(e.Content as ReceiveModel);
@@ -121,13 +87,13 @@ namespace WAX
             else if (e.Type == CallEventType.Login)
             {
                 IsAuthorized = true;
-                Engine.SessionManager.Save();
                 Task.Factory.StartNew(() => OnLogin?.Invoke(this, null));
             }
             else if (e.Type == CallEventType.Exception) CallException(this, e.Content as Exception);
             else if (e.Type == CallEventType.AccountDropped)
             {
                 IsAuthorized = false;
+                Stop();
                 Task.Factory.StartNew(() => OnAccountDropped?.Invoke(this, e.Content as Exception));
             }
             else if(e.Type == CallEventType.Stop)
@@ -136,15 +102,20 @@ namespace WAX
                 Task.Factory.StartNew(() => OnStop?.Invoke(this, CancellationToken));
             }
             else if(e.Type == CallEventType.Start) Task.Factory.StartNew(() => OnStart?.Invoke(this, CancellationToken));
-            else if(e.Type == CallEventType.Message) Task.Factory.StartNew(() => OnChatMessage?.Invoke(this, e.Content as ChatMessage));
-            else if(e.Type == CallEventType.GroupMessage) Task.Factory.StartNew(() => OnGroupMessage?.Invoke(this, e.Content as GroupMessage));
+            else if (e.Type == CallEventType.Connection) Task.Factory.StartNew(() => OnConnection?.Invoke(this, CancellationToken));
         }
         public void Start()
         {
             Engine.Start();
         }
+        public void ReStart()
+        {
+            Stop();
+            Start();
+        }
         public void Stop()
         {
+            IsAuthorized = false;
             Engine.Stop();
         }
         public void Dispose()
@@ -152,11 +123,8 @@ namespace WAX
             IsAuthorized = false;
             Task.Factory.StartNew(() => OnDispose?.Invoke(this, CancellationToken));
             Engine.Dispose();
+            GC.SuppressFinalize(this);
             GC.Collect();
-        }
-        private void OnLicenseMessages(object sender, MessageEventArgs e)
-        {
-            Task.Factory.StartNew(()=>OnLicenseMessage?.Invoke(this, e.Message));
         }
     }
 }

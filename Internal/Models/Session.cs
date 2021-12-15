@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using System;
+using System.Text;
+using waxnet.Internal.Utils;
 
 namespace waxnet.Internal.Models
 {
